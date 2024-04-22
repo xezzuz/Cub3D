@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:18:32 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/21 19:33:32 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/04/22 17:06:26 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ int	get_key_value(t_game *game, char **array)
 		game->textures.west = ft_strdup(array[1]);
 	else if (!strcmp("EA", array[0]) && !game->textures.east)
 		game->textures.east = ft_strdup(array[1]);
-	else if (!strcmp("F", array[0]) && !game->textures.floor)
+	else if (!strcmp("F", array[0]) && !game->textures.ch_floor)
 		game->textures.ch_floor = ft_split(array[1], ',');
-	else if (!strcmp("C", array[0]) && !game->textures.ceiling)
+	else if (!strcmp("C", array[0]) && !game->textures.ch_ceiling)
 		game->textures.ch_ceiling = ft_split(array[1], ',');
 	else
 		return (0);

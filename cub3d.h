@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:38:17 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/21 19:05:12 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/04/22 17:06:11 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <string.h>
+#include <limits.h>
 
 #define	ERROR -42
 #define	SUCCESS 1337
@@ -54,6 +55,8 @@ void	struct_init(t_game *game);
 int		map_extension(char *map_name);
 int		read_config(t_game *game, char *map_name);
 int		get_key_value(t_game *game, char **array);
+int		get_rgb_colors(t_game *game);
+int		validate_map(t_game *game);
 
 
 size_t	ft_strlen(const char *s);
@@ -61,6 +64,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	**ft_split(char const *s, char c);
 char	*ft_strdup(const char *s1);
+int		ft_atoi(const char *str);
 
 
 void	ft_print_config(t_game *game, char *mapname);

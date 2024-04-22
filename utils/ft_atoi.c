@@ -1,19 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_validate.c                                 :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/21 19:20:14 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/22 17:06:36 by nazouz           ###   ########.fr       */
+/*   Created: 2024/04/22 17:04:06 by nazouz            #+#    #+#             */
+/*   Updated: 2024/04/22 17:04:16 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int	validate_map(t_game *game)
+int	ft_atoi(const char *str)
 {
-	(void)game;
-	return (1);
+	int				sign;
+	long			result;
+
+	sign = 1;
+	result = 0;
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
+	if (!(*str) || sign == -1)
+		return (-1);
+	while (*str >= 48 && *str <= 57)
+	{
+		result = result * 10 + (*str++ - 48);
+		if (result > INT_MAX)
+			return (-1);
+	}
+	if (*str)
+		return (-1);
+	return (result * sign);
 }

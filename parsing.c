@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:37:40 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/21 19:18:54 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/04/22 15:36:22 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ int	parsing(t_game *game, char *map_name)
 	if (!read_config(game, map_name))
 		return (0);
 	if (!fill_struct(game))
-		return (0);
-	if (!validate_config(game))
 		return (0);
 	if (!validate_map(game))
 		return (0);

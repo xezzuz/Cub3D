@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/04/22 15:35:00 by nazouz            #+#    #+#              #
+#    Updated: 2024/04/22 17:07:03 by nazouz           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME			= 		cub3d
 
 CC				= 		cc
@@ -9,8 +21,10 @@ INCLUDE			=		./cub3d.h
 SRCS			= 		\
 						./utils/utils.c \
 						./utils/ft_split.c \
+						./utils/ft_atoi.c \
 						./parsing.c \
 						./parsing_utils.c \
+						./parsing_validate.c \
 						./exit.c \
 						./helpers.c \
 						./main.c

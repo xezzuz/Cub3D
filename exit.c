@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:41:58 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/20 18:24:23 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/04/22 17:06:51 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	exit_cub3d(t_game *game, int flag)
 	// CLEANING
 	free_2d(game->map_cub);
 	free_2d(game->data.map);
-	free_2d(game->textures.floor);
-	free_2d(game->textures.ceiling);
+	free_2d(game->textures.ch_floor);
+	free_2d(game->textures.ch_ceiling);
 	if (game->textures.north)
 		free(game->textures.north);
 	if (game->textures.south)
