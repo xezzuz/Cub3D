@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:38:17 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/22 17:06:11 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/04/22 19:15:59 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
 
 #define	ERROR -42
 #define	SUCCESS 1337
+
+# define WALL '1'
+# define FLOOR '0'
+# define NORTH 'N'
+# define SOUTH 'S'
+# define WEST 'W'
+# define EAST 'E'
+# define EMPTY ' '
 
 typedef struct s_texture
 {
@@ -37,6 +45,7 @@ typedef struct s_data
 	char		**map;
 	int			rows;
 	int			columns;
+	int			p_count;
 }				t_data;
 
 typedef struct s_game
