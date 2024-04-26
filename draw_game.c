@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/26 17:30:31 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/04/26 18:49:39 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 void	draw_circle(t_game *game)
 {
-	int		i;
-	int		j;
-	int		distance;
-	int		radius;
+	int	i;
+	int	j;
+	int	distance;
 
-	radius = 3;
 	i = 0;
 	while (i < WIDTH)
 	{
@@ -27,8 +25,8 @@ void	draw_circle(t_game *game)
 		while (j < HEIGHT)
 		{
 			distance = (i - game->bob.coords.x) * (i - game->bob.coords.x) + (j - game->bob.coords.y) * (j - game->bob.coords.y);
-			if (distance <= radius * radius)
-				my_mlx_pixel_put(game, i, j, RED);
+			if (distance <= game->bob.radius * game->bob.radius)
+				my_mlx_pixel_put(game, i, j, 0x00FF0000);
 			j++;
 		}
 		i++;
@@ -61,7 +59,6 @@ void	draw_line(t_game *game, t_coords a, t_coords b)
 	while (i < line.steps)
 	{
 		my_mlx_pixel_put(game, round(x), round(y), RED);
-		// printf("[%.2f][%.2f]\n", x, y);
 		x += line.x_inc;
 		y += line.y_inc;
 		i++;
@@ -70,39 +67,18 @@ void	draw_line(t_game *game, t_coords a, t_coords b)
 
 void	draw_square(t_game *game, int x, int y, int color)
 {
-	int		X;
-	int		Y;
+	int		cols;
+	int		rows;
 
-	Y = y + 1;
-	while (Y < y + TILE_SIZE)
+	rows = y;
+	while (rows < y + TILE_SIZE)
 	{
-		X = x + 1;
-		while (X < x + TILE_SIZE)
+		cols = x;
+		while (cols < x + TILE_SIZE)
 		{
-			my_mlx_pixel_put(game, X, Y, color);
-			X++;
+			my_mlx_pixel_put(game, cols, rows, color);
+			cols++;
 		}
-		Y++;
-	}
-}
-
-void	draw_map(t_game *game)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < ROWS)
-	{
-		j = 0;
-		while (j < COLS)
-		{
-			if (game->map[i][j] == '1')
-				draw_square(game, j * TILE_SIZE, i * TILE_SIZE, BLACK);
-			else
-				draw_square(game, j * TILE_SIZE, i * TILE_SIZE, WHITE);
-			j++;
-		}
-		i++;
+		rows++;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/26 16:24:46 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/04/26 18:53:37 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef struct s_game
 
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	render_game(t_game	*game);
-void	update_game(t_game *game);
+void	update(t_game *game);
 void	update_player(t_game *game);
 
 int		keypress(int key, t_game *game);
@@ -97,6 +97,5 @@ int		keyrelease(int key, t_game *game);
 void	draw_circle(t_game *game);
 void	draw_line(t_game *game, t_coords a, t_coords b);
 void	draw_square(t_game *game, int x, int y, int color);
-void	draw_map(t_game *game);
 
 #endif
