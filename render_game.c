@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/26 18:53:22 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/04/30 11:34:28 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	render_map(t_game *game)
 void	render_player(t_game *game)
 {
 	draw_circle(game);
-	draw_line(game, game->bob.coords, getline_coords(game));
+	// draw_line(game, game->bob.coords, getline_coords(game), RED);
 	printf("(x: %d, y: %d)\n",game->bob.coords.x, game->bob.coords.y);
 	printf("%f\n", game->bob.rotationAngle * (180 / M_PI));
 }
@@ -54,6 +54,7 @@ void	render_game(t_game	*game)
 {
 	update(game);
 	render_map(game);
+	render_fov(game);
 	render_player(game);
 	mlx_put_image_to_window(game->data.mlx, game->data.win, game->data.img, 0, 0);
 }

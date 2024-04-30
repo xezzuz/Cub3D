@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/26 18:49:39 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/04/30 11:34:06 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	max(int a, int b)
 	return (b);
 }
 
-void	draw_line(t_game *game, t_coords a, t_coords b)
+void	draw_line(t_game *game, t_coords a, t_coords b, int color)
 {
 	int			i;
 	float		x;
@@ -58,7 +58,7 @@ void	draw_line(t_game *game, t_coords a, t_coords b)
 	line.y_inc = line.dy / line.steps;
 	while (i < line.steps)
 	{
-		my_mlx_pixel_put(game, round(x), round(y), RED);
+		my_mlx_pixel_put(game, round(x), round(y), color);
 		x += line.x_inc;
 		y += line.y_inc;
 		i++;

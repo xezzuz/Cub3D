@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/26 18:53:37 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/04/30 11:33:45 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define ROWS 7
 # define WIDTH COLS * TILE_SIZE
 # define HEIGHT ROWS * TILE_SIZE
+# define FOV 60 * (M_PI / 180)
+# define COL_WIDTH 1
 
 # define UP 126
 # define DOWN 125
@@ -39,6 +41,7 @@
 # define WHITE 0xffffff
 # define BLACK 0x000000
 # define RED 0xff0000
+# define GRAY 0xC0C0C0
 
 typedef struct s_line
 {
@@ -90,12 +93,13 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	render_game(t_game	*game);
 void	update(t_game *game);
 void	update_player(t_game *game);
+void	render_fov(t_game *game);
 
 int		keypress(int key, t_game *game);
 int		keyrelease(int key, t_game *game);
 
 void	draw_circle(t_game *game);
-void	draw_line(t_game *game, t_coords a, t_coords b);
+void	draw_line(t_game *game, t_coords a, t_coords b, int color);
 void	draw_square(t_game *game, int x, int y, int color);
 
 #endif
