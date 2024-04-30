@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:34:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/26 17:39:52 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/04/30 15:53:18 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	setup_init(t_game *game, char *map[])
 	game->data.addr = mlx_get_data_addr(game->data.img, &game->data.bits_per_pixel, &game->data.line_length, &game->data.endian);
 	game->bob.coords.x = (19 * TILE_SIZE) + TILE_SIZE / 2;
 	game->bob.coords.y = (4 * TILE_SIZE) + TILE_SIZE / 2;
+	game->mapos.x =  WIDTH / 6 - game->bob.coords.x;
+	game->mapos.y = HEIGHT / 6 - game->bob.coords.y;
 	game->bob.turnDirection = 0; // -1 left, 1 right
 	game->bob.walkDirection = 0; // -1 back, 1 front
 	game->bob.startingAngle = M_PI_2;

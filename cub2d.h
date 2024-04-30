@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/30 11:33:45 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/04/30 15:53:54 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_data
 typedef struct s_game
 {
 	char		**map;
+	t_coords	mapos;
 	t_data		data;
 	t_player	bob;
 }				t_game;
