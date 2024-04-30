@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/30 21:29:44 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/04/30 22:23:59 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ void	render_map(t_game *game)
 		{
 			pos.x = j * TILE_SIZE;
 			pos.y = i * TILE_SIZE;
-			draw_rect(game, pos, TILE_SIZE, TILE_SIZE, 0x8C8017);
+			if (pos.y < HEIGHT / 2)
+				draw_rect(game, pos, TILE_SIZE, TILE_SIZE, 0x646661);
+			else
+				draw_rect(game, pos, TILE_SIZE, TILE_SIZE, 0xBFC4B5);
 			// my_mlx_pixel_put(game, pos.x, pos.y, WHITE);
 			// if (game->map[i][j] == '1')
 			// 	draw_rect(game, pos, TILE_SIZE, TILE_SIZE, BLACK);

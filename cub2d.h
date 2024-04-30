@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/30 21:36:56 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/04/30 22:24:56 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdlib.h>
 # include <math.h>
 
-# define TILE_SIZE 64
+# define TILE_SIZE 32
 # define COLS 25
 # define ROWS 18
 # define WIDTH COLS * TILE_SIZE

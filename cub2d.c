@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:34:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/30 21:38:29 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/04/30 22:29:59 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void	setup_init(t_game *game, char *map[])
 	game->mapos.y = HEIGHT / 6 - game->bob.coords.y;
 	game->bob.turnDirection = 0; // -1 left, 1 right
 	game->bob.walkDirection = 0; // -1 back, 1 front
-	game->bob.startingAngle = M_PI_2;
+	game->bob.startingAngle = 2 * M_PI;
 	game->bob.rotationAngle = game->bob.startingAngle;
-	game->bob.moveSpeed = 8.0;
-	game->bob.rotationSpeed = 3 * (M_PI / 180);
+	game->bob.moveSpeed = 9.0;
+	game->bob.rotationSpeed = 4 * (M_PI / 180);
 	game->bob.radius = 3;
 }
 

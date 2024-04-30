@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/30 21:35:16 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/04/30 22:23:43 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,5 @@ void	draw_column(t_game *game, int x, double ray_length)
 	start.x = x;
 	start.y = ((HEIGHT) / 2) - ((int)p_wall_height / 2);
 	// printf("X[%d], Y[%d]\n", start.x, start.y);
-	draw_rect(game, start, WALL_COL_WIDTH, p_wall_height, 0xC8BA43);
+	draw_rect(game, start, WALL_COL_WIDTH, p_wall_height, 0xA0A597);
 }
