@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/30 18:22:09 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/04/30 19:31:01 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define WIDTH COLS * TILE_SIZE
 # define HEIGHT ROWS * TILE_SIZE
 # define FOV 60 * (M_PI / 180)
-# define COL_WIDTH 1
+# define WALL_COL_WIDTH 3
 
 # define UP 126
 # define DOWN 125
@@ -100,7 +100,8 @@ int		keypress(int key, t_game *game);
 int		keyrelease(int key, t_game *game);
 
 void	draw_circle(t_game *game);
-void	draw_line(t_game *game, t_coords a, t_coords b, int color);
+void	draw_line(t_game *game, int z, t_coords a, t_coords b, int color);
 void	draw_rect(t_game *game, t_coords start, int width, int height, int color);
+void	draw_column(t_game *game, int x, double ray_length);
 
 #endif

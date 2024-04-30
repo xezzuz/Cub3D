@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   draw_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/30 18:21:59 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/04/30 19:30:41 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub2d.h"
+
+double	ray_length(t_coords p, int rx, int ry)
+{
+	double		length;
+
+	length = sqrt(((rx - p.x) * (rx - p.x)) + ((ry - p.y) * (ry - p.y)));
+	return (length);
+}
 
 void	draw_circle(t_game *game)
 {
@@ -40,7 +48,7 @@ int	max(int a, int b)
 	return (b);
 }
 
-void	draw_line(t_game *game, t_coords a, t_coords b, int color)
+void	draw_line(t_game *game, int z, t_coords a, t_coords b, int color)
 {
 	int			i;
 	float		x;
@@ -69,6 +77,7 @@ void	draw_line(t_game *game, t_coords a, t_coords b, int color)
 		y += line.y_inc;
 		i++;
 	}
+	draw_column(game, z, ray_length(game->bob.coords, xx, yy));
 }
 
 void	draw_rect(t_game *game, t_coords start, int width, int height, int color)
@@ -87,4 +96,19 @@ void	draw_rect(t_game *game, t_coords start, int width, int height, int color)
 		}
 		rows++;
 	}
+}
+
+void	draw_column(t_game *game, int x, double ray_length)
+{
+	t_coords	start;
+	double		p_wall_height;
+	double		dppp;
+
+	printf("height = %d\n", HEIGHT);
+	dppp = ((320) / 2) / tan(30 * (M_PI / 180));
+	p_wall_height = (TILE_SIZE * dppp) / ray_length;
+	start.x = x;
+	start.y = abs(((HEIGHT) / 2) - ((int)p_wall_height / 2));
+	printf("X[%d], Y[%d]\n", start.x, start.y);
+	draw_rect(game, start, WALL_COL_WIDTH, p_wall_height, RED);
 }
