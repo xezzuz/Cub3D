@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/30 19:30:41 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/04/30 21:35:16 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	draw_line(t_game *game, int z, t_coords a, t_coords b, int color)
 	int 		xx;
 	int 		yy;
 
+	(void)color;
 	i = 0;
 	x = a.x;
 	y = a.y;
@@ -72,7 +73,7 @@ void	draw_line(t_game *game, int z, t_coords a, t_coords b, int color)
 		yy = round(y);
 		if (game->map[yy / TILE_SIZE][xx / TILE_SIZE] == '1')
 			break ;
-		my_mlx_pixel_put(game, xx, yy, color);
+		// my_mlx_pixel_put(game, xx, yy, color);
 		x += line.x_inc;
 		y += line.y_inc;
 		i++;
@@ -104,11 +105,13 @@ void	draw_column(t_game *game, int x, double ray_length)
 	double		p_wall_height;
 	double		dppp;
 
-	printf("height = %d\n", HEIGHT);
-	dppp = ((320) / 2) / tan(30 * (M_PI / 180));
+	// printf("height = %d\n", HEIGHT);
+	dppp = ((WIDTH) / 2) / tan(30 * (M_PI / 180));
 	p_wall_height = (TILE_SIZE * dppp) / ray_length;
+	if (p_wall_height > HEIGHT)
+		p_wall_height = HEIGHT;
 	start.x = x;
-	start.y = abs(((HEIGHT) / 2) - ((int)p_wall_height / 2));
-	printf("X[%d], Y[%d]\n", start.x, start.y);
-	draw_rect(game, start, WALL_COL_WIDTH, p_wall_height, RED);
+	start.y = ((HEIGHT) / 2) - ((int)p_wall_height / 2);
+	// printf("X[%d], Y[%d]\n", start.x, start.y);
+	draw_rect(game, start, WALL_COL_WIDTH, p_wall_height, 0xC8BA43);
 }
