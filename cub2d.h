@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/30 15:53:54 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/04/30 18:22:09 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # define TILE_SIZE 64
 # define COLS 25
-# define ROWS 7
+# define ROWS 9
 # define WIDTH COLS * TILE_SIZE
 # define HEIGHT ROWS * TILE_SIZE
 # define FOV 60 * (M_PI / 180)
@@ -101,6 +101,6 @@ int		keyrelease(int key, t_game *game);
 
 void	draw_circle(t_game *game);
 void	draw_line(t_game *game, t_coords a, t_coords b, int color);
-void	draw_square(t_game *game, int x, int y, int color);
+void	draw_rect(t_game *game, t_coords start, int width, int height, int color);
 
 #endif

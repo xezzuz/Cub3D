@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/30 15:56:32 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/04/30 18:26:33 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_coords	getline_coords(t_game *game)
 
 void	render_map(t_game *game)
 {
+	t_coords pos;
 	int		i;
 	int		j;
 
@@ -32,10 +33,12 @@ void	render_map(t_game *game)
 		j = 0;
 		while (j < COLS)
 		{
+			pos.x = j * TILE_SIZE;
+			pos.y = i * TILE_SIZE;
 			if (game->map[i][j] == '1')
-				draw_square(game, j * TILE_SIZE, i * TILE_SIZE, BLACK);
+				draw_rect(game, pos, TILE_SIZE, TILE_SIZE, BLACK);
 			else
-				draw_square(game, j * TILE_SIZE, i * TILE_SIZE, WHITE);
+				draw_rect(game, pos, TILE_SIZE, TILE_SIZE,  WHITE);
 			j++;
 		}
 		i++;
