@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:34:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/30 22:29:59 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/01 15:53:57 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int main(void)
 	// 	"1001P01001",
 	// 	"1111111111"
 	// };
+	printf("Game Resolution: %dx%d\n\n", WIDTH, HEIGHT);
 	setup_init(&game, map);
 	render_game(&game);
 	mlx_hook(game.data.win, 2, 0, keypress, &game);

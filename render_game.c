@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/30 22:23:59 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/01 15:49:50 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ t_coords	getline_coords(t_game *game)
 	return (endpoint);
 }
 
-void	render_map(t_game *game)
+void	render_ceiling_floor(t_game *game)
 {
-	t_coords pos;
-	int		i;
-	int		j;
+	int			i;
+	int			j;
+	t_coords	pos;
 
 	i = 0;
 	while (i < ROWS)
@@ -61,7 +61,7 @@ void	render_player(t_game *game)
 void	render_game(t_game	*game)
 {
 	update(game);
-	render_map(game);
+	render_ceiling_floor(game);
 	render_fov(game);
 	render_player(game);
 	mlx_put_image_to_window(game->data.mlx, game->data.win, game->data.img, 0, 0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/30 15:54:49 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/01 15:46:35 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	update_player(t_game *game)
 		game->bob.coords.y = new_y;
 	}
 }
-
+// updates player position, rotation angle, etc...
 void	update(t_game *game)
 {
 	update_player(game);
