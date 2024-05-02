@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/02 16:34:57 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/05/02 19:44:14 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
-# define TILE_SIZE 32
+# define TILE_SIZE 64
 # define COLS 25
 # define ROWS 20
 # define WIDTH COLS * TILE_SIZE
@@ -104,7 +104,7 @@ typedef struct s_game
 }				t_game;
 
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
-void	render_game(t_game	*game);
+int		render_game(t_game	*game);
 void	update(t_game *game);
 void	update_player(t_game *game);
 // void	render_fov(t_game *game);

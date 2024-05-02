@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/02 16:35:09 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/05/02 17:04:35 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	render_walls(t_game *game)
 	int			i;
 
 	dppp = ((WINDOW_WIDTH) / 2) / tan(30 * (M_PI / 180));
-	// printf("%f\n", dppp);
 	start.x = 0;
 	i = 0;
 	while (i < NUM_OF_RAYS / WALL_COL_WIDTH)
@@ -67,9 +66,7 @@ void	render_walls(t_game *game)
 		p_wall_height = round((TILE_SIZE * dppp) / game->rays[i].distance);
 		if (p_wall_height > WINDOW_HEIGHT)
 			p_wall_height = WINDOW_HEIGHT;
-		// printf("(%f)\n", game->rays[i].distance);
 		start.y = ((WINDOW_HEIGHT) / 2) - ((int)p_wall_height / 2);
-		// printf("%d,%d\n", start.x, start.y);
 		draw_rect(game, start, WALL_COL_WIDTH, p_wall_height, 0xA0A597);
 		start.x += WALL_COL_WIDTH;
 		i++;

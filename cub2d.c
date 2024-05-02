@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:34:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/02 16:34:46 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/05/02 21:20:34 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	setup_init(t_game *game, char *map[])
 	game->data.mlx = mlx_init();
 	if (!game->data.mlx)
 		exit(1);
-	game->data.win = mlx_new_window(game->data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "RED");
+	game->data.win = mlx_new_window(game->data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "R|D");
 	if (!game->data.win)
 		exit(1);
 	game->map = map;
@@ -39,8 +39,8 @@ void	setup_init(t_game *game, char *map[])
 	game->bob.walkDirection = 0;
 	game->bob.startingAngle = 2 * M_PI;
 	game->bob.rotationAngle = game->bob.startingAngle;
-	game->bob.moveSpeed = 7.0;
-	game->bob.rotationSpeed = 3 * (M_PI / 180);
+	game->bob.moveSpeed = 6.0;
+	game->bob.rotationSpeed = 1 * (M_PI / 180);
 	game->bob.radius = 3;
 }
 
@@ -78,9 +78,9 @@ int main(void)
 	// };
 	// printf("Game Resolution: %dx%d\n\n", WIDTH, HEIGHT);
 	setup_init(&game, map);
-	render_game(&game);
 	mlx_hook(game.data.win, 2, 0, keypress, &game);
 	mlx_hook(game.data.win, 3, 0, keyrelease, &game);
+	mlx_loop_hook(game.data.mlx, render_game, &game);
 	mlx_loop(game.data.mlx);
 	printf("FINISHED\n");
 }
