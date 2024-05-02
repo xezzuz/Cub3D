@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/02 01:48:19 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/02 16:35:20 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	render_ceiling_floor(t_game *game)
 	int	j;
 
 	i = 0;
-	while (i < SCREEN_HEIGHT)
+	while (i < WINDOW_HEIGHT)
 	{
 		j = 0;
-		while (j < SCREEN_WIDTH)
+		while (j < WINDOW_WIDTH)
 		{
-			if (i < SCREEN_HEIGHT / 2)
+			if (i < WINDOW_HEIGHT / 2)
 				my_mlx_pixel_put(game, j, i, 0x646661);
 			else
 				my_mlx_pixel_put(game, j, i, 0xBFC4B5);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/02 16:14:24 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/02 16:35:31 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void	cast_rays(t_game *game)
 		deltax = game->rays[i].endpoint.x - game->bob.coords.x;
 		deltay = game->rays[i].endpoint.y - game->bob.coords.y;
 		game->rays[i].distance = round(sqrt(deltax * deltax + deltay * deltay));
-		current_angle += ((FOV) / (SCREEN_WIDTH / WALL_COL_WIDTH));
+		current_angle += ((FOV) / (WINDOW_WIDTH / WALL_COL_WIDTH));
 		// printf("X(%d),Y(%d),DISTANCE(%f)\n",game->rays[i].endpoint.x, game->rays[i].endpoint.y, game->rays[i].distance);
 		i++;
 	}

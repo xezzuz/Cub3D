@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/02 16:01:27 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/02 16:34:57 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <stdlib.h>
 # include <math.h>
 
-# define SCREEN_WIDTH 1920
-# define SCREEN_HEIGHT 1080
+# define WINDOW_WIDTH 1920
+# define WINDOW_HEIGHT 1080
 # define TILE_SIZE 32
 # define COLS 25
 # define ROWS 20
@@ -29,7 +29,7 @@
 # define HEIGHT ROWS * TILE_SIZE
 # define FOV 60 * (M_PI / 180)
 # define WALL_COL_WIDTH 1
-# define NUM_OF_RAYS SCREEN_WIDTH / WALL_COL_WIDTH
+# define NUM_OF_RAYS WINDOW_WIDTH / WALL_COL_WIDTH
 
 # define UP 126
 # define DOWN 125

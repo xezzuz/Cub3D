@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:34:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/02 14:22:18 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/02 16:34:46 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	setup_init(t_game *game, char *map[])
 	game->data.mlx = mlx_init();
 	if (!game->data.mlx)
 		exit(1);
-	game->data.win = mlx_new_window(game->data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "RED");
+	game->data.win = mlx_new_window(game->data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "RED");
 	if (!game->data.win)
 		exit(1);
 	game->map = map;
-	game->data.img = mlx_new_image(game->data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	game->data.img = mlx_new_image(game->data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	game->data.addr = mlx_get_data_addr(game->data.img, &game->data.bits_per_pixel, &game->data.line_length, &game->data.endian);
 	game->bob.coords.x = ((COLS / 2) * TILE_SIZE) + TILE_SIZE / 2;
 	game->bob.coords.y = ((ROWS / 2) * TILE_SIZE) + TILE_SIZE / 2;
