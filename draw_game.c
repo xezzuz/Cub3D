@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/02 14:51:20 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/02 15:49:05 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	render_walls(t_game *game)
 	i = 0;
 	while (i < NUM_OF_RAYS / WALL_COL_WIDTH)
 	{
-		p_wall_height = (TILE_SIZE * dppp) / game->rays[i].distance;
+		p_wall_height = round((TILE_SIZE * dppp) / game->rays[i].distance);
 		if (p_wall_height > SCREEN_HEIGHT)
 			p_wall_height = SCREEN_HEIGHT;
 		// printf("(%f)\n", game->rays[i].distance);
