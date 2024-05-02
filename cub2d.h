@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/01 16:07:26 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/05/02 01:54:22 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,16 @@
 # include <stdlib.h>
 # include <math.h>
 
+# define SCREEN_WIDTH 1920
+# define SCREEN_HEIGHT 1080
 # define TILE_SIZE 32
 # define COLS 25
-# define ROWS 18
+# define ROWS 20
 # define WIDTH COLS * TILE_SIZE
 # define HEIGHT ROWS * TILE_SIZE
 # define FOV 60 * (M_PI / 180)
 # define WALL_COL_WIDTH 1
+# define NUM_OF_RAYS SCREEN_WIDTH / WALL_COL_WIDTH
 
 # define UP 126
 # define DOWN 125
@@ -43,21 +46,23 @@
 # define RED 0xff0000
 # define GRAY 0xC0C0C0
 
-typedef struct s_line
-{
-	float		dx;
-	float		dy;
-	float		m;
-	float		steps;
-	float		x_inc;
-	float		y_inc;
-}				t_line;
 
 typedef struct s_coords
 {
 	int			x;
 	int			y;
 }				t_coords;
+
+typedef struct s_line
+{
+	t_coords	intersection;
+	int			dx;
+	int			dy;
+	int			stepx;
+	int			stepy;
+	int			err;
+	int			e2;
+}				t_line;
 
 typedef struct s_player
 {
@@ -70,6 +75,13 @@ typedef struct s_player
 	double		moveSpeed;
 	float		rotationSpeed;
 }				t_player;
+
+
+typedef struct s_ray
+{
+	t_coords	endpoint;
+	double		distance;
+}				t_ray;
 
 typedef struct s_data
 {
@@ -85,6 +97,7 @@ typedef struct s_data
 typedef struct s_game
 {
 	char		**map;
+	t_ray		rays[NUM_OF_RAYS];
 	t_coords	mapos;
 	t_data		data;
 	t_player	bob;
@@ -94,14 +107,15 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	render_game(t_game	*game);
 void	update(t_game *game);
 void	update_player(t_game *game);
-void	render_fov(t_game *game);
+// void	render_fov(t_game *game);
 
 int		keypress(int key, t_game *game);
 int		keyrelease(int key, t_game *game);
 
-void	draw_circle(t_game *game);
-void	draw_line(t_game *game, int z, t_coords a, t_coords b, int color);
+// void	draw_circle(t_game *game);
+// void	draw_line(t_game *game, int z, t_coords a, t_coords b, int color);
 void	draw_rect(t_game *game, t_coords start, int width, int height, int color);
 void	draw_column(t_game *game, int x, double ray_length);
+void	render_walls(t_game *game);
 
 #endif
