@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/03 16:34:59 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/03 19:17:12 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,20 +94,20 @@ t_coords	draw_line(t_game *game, t_coords a, t_coords b)
 void	cast_rays(t_game *game)
 {
 	double		current_angle;
-	int			deltax;
-	int			deltay;
+	double		deltax;
+	double		deltay;
 	int			i;
 
 	i = 0;
 	current_angle = game->bob.rotationAngle - ((FOV) / 2);
 	while (i < NUM_OF_RAYS)
 	{
-		game->rays[i].endpoint.x = game->bob.coords.x + round(cos(current_angle) * 10000);
-		game->rays[i].endpoint.y = game->bob.coords.y + round(sin(current_angle) * 10000);
+		game->rays[i].endpoint.x = game->bob.coords.x + cos(current_angle) * 10000;
+		game->rays[i].endpoint.y = game->bob.coords.y + sin(current_angle) * 10000;
 		game->rays[i].endpoint = draw_line(game, game->bob.coords, game->rays[i].endpoint);
 		deltax = game->rays[i].endpoint.x - game->bob.coords.x;
 		deltay = game->rays[i].endpoint.y - game->bob.coords.y;
-		game->rays[i].distance = round(sqrt(deltax * deltax + deltay * deltay));
+		game->rays[i].distance = sqrt(deltax * deltax + deltay * deltay) * cos(game->bob.rotationAngle - current_angle);
 		current_angle += ((FOV) / (WINDOW_WIDTH / WALL_COL_WIDTH));
 		i++;
 	}
@@ -129,7 +129,6 @@ void	update_player(t_game *game)
 	new_y += game->bob.coords.y + round(sin(game->bob.rotationAngle) * moveStep);
 	game->mapos.x -= round(cos(game->bob.rotationAngle) * moveStep);
 	game->mapos.y -= round(sin(game->bob.rotationAngle) * moveStep);
-	printf("%d,%d\n", new_x, new_y);
 	if (game->map[new_y / TILE_SIZE][new_x / TILE_SIZE] != '1')
 	{
 		game->bob.coords.x = new_x;
