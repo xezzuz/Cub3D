@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/03 18:30:43 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/05/03 21:16:12 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	max(int a, int b)
 	return (b);
 }
 
-t_coords	get_wall_intersection(t_game *game, t_coords a, t_coords b)
+t_coords	cast_ray(t_game *game, t_coords a, t_coords b)
 {
 	int			i;
 	float		x;
@@ -67,7 +67,7 @@ void	cast_rays(t_game *game)
 	{
 		game->rays[i].endpoint.x = game->bob.coords.x + round(cos(current_angle) * TILE_SIZE * COLS * 2);
 		game->rays[i].endpoint.y = game->bob.coords.y + round(sin(current_angle) * TILE_SIZE * COLS * 2);
-		game->rays[i].endpoint = get_wall_intersection(game, game->bob.coords, game->rays[i].endpoint);
+		game->rays[i].endpoint = cast_ray(game, game->bob.coords, game->rays[i].endpoint);
 		deltax = game->rays[i].endpoint.x - game->bob.coords.x;
 		deltay = game->rays[i].endpoint.y - game->bob.coords.y;
 		game->rays[i].distance = sqrt(deltax * deltax + deltay * deltay) * cos(game->bob.rotationAngle - current_angle);
@@ -92,7 +92,6 @@ void	update_player(t_game *game)
 	new_y += round(game->bob.coords.y + (sin(game->bob.rotationAngle) * moveStep));
 	game->mapos.x -= round(cos(game->bob.rotationAngle) * moveStep);
 	game->mapos.y -= round(sin(game->bob.rotationAngle) * moveStep);
-	printf("%d,%d\n", new_x, new_y);
 	if (game->map[new_y / TILE_SIZE][new_x / TILE_SIZE] != '1')
 	{
 		game->bob.coords.x = new_x;
