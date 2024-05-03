@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/03 15:36:19 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/03 16:27:11 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ typedef struct s_player
 	t_coords	coords;
 	int			radius;
 	int			turnDirection;
-	int			walkDirection;
-	int			diagwalkdir;
+	int			upright;
+	int			sideways;
 	double		startingAngle;
 	double		rotationAngle;
 	double		moveSpeed;
