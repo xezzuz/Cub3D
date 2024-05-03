@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/03 16:27:11 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/03 18:11:52 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
-# define TILE_SIZE 32
+# define TILE_SIZE 64
 # define COLS 25
 # define ROWS 20
 # define WIDTH COLS * TILE_SIZE
@@ -108,15 +108,11 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 int		render_game(t_game	*game);
 void	update(t_game *game);
 void	update_player(t_game *game);
-// void	render_fov(t_game *game);
 
 int		keypress(int key, t_game *game);
 int		keyrelease(int key, t_game *game);
 
-// void	draw_circle(t_game *game);
-// void	draw_line(t_game *game, int z, t_coords a, t_coords b, int color);
 void	draw_rect(t_game *game, t_coords start, int width, int height, int color);
-void	draw_column(t_game *game, int x, double ray_length);
 void	render_walls(t_game *game);
 
 #endif

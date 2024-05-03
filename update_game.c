@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   update_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/03 16:34:59 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/03 18:30:43 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub2d.h"
-
-int	difference(a, b)
-{
-	if (a < b)
-		return (1);
-	else
-		return (-1);
-}
 
 int	max(int a, int b)
 {
@@ -27,7 +19,7 @@ int	max(int a, int b)
 	return (b);
 }
 
-t_coords	draw_line(t_game *game, t_coords a, t_coords b)
+t_coords	get_wall_intersection(t_game *game, t_coords a, t_coords b)
 {
 	int			i;
 	float		x;
@@ -62,52 +54,23 @@ t_coords	draw_line(t_game *game, t_coords a, t_coords b)
 	return (b);
 }
 
-// t_coords	get_rayend(t_game *game, t_coords endpoint)
-// {
-// 	t_line	line;
-
-// 	line.stepx = difference(game->bob.coords.x, endpoint.x);
-// 	line.stepy = difference(game->bob.coords.y, endpoint.y);
-// 	line.intersection.x = game->bob.coords.x;
-// 	line.intersection.y = game->bob.coords.y;
-// 	line.dx = abs(endpoint.x - game->bob.coords.x);
-// 	line.dy = abs(endpoint.y - game->bob.coords.y);
-// 	while (line.intersection.x != endpoint.x && line.intersection.y != endpoint.y)
-// 	{
-//         if (game->map[line.intersection.y / TILE_SIZE][line.intersection.x / TILE_SIZE] == '1')
-//             return (line.intersection);
-//         line.e2 = 2 * line.err;
-//         if (line.e2 > -line.dy)
-// 		{
-//             line.err -= line.dy;
-//             line.intersection.x += line.stepx;
-//         }
-//         if (line.e2 < line.dx)
-// 		{
-//             line.err += line.dx;
-//             line.intersection.y += line.stepy;
-//         }
-//     }
-// 	return (endpoint);
-// }
-
 void	cast_rays(t_game *game)
 {
 	double		current_angle;
-	int			deltax;
-	int			deltay;
+	double		deltax;
+	double		deltay;
 	int			i;
 
 	i = 0;
 	current_angle = game->bob.rotationAngle - ((FOV) / 2);
 	while (i < NUM_OF_RAYS)
 	{
-		game->rays[i].endpoint.x = game->bob.coords.x + round(cos(current_angle) * 10000);
-		game->rays[i].endpoint.y = game->bob.coords.y + round(sin(current_angle) * 10000);
-		game->rays[i].endpoint = draw_line(game, game->bob.coords, game->rays[i].endpoint);
+		game->rays[i].endpoint.x = game->bob.coords.x + round(cos(current_angle) * TILE_SIZE * COLS * 2);
+		game->rays[i].endpoint.y = game->bob.coords.y + round(sin(current_angle) * TILE_SIZE * COLS * 2);
+		game->rays[i].endpoint = get_wall_intersection(game, game->bob.coords, game->rays[i].endpoint);
 		deltax = game->rays[i].endpoint.x - game->bob.coords.x;
 		deltay = game->rays[i].endpoint.y - game->bob.coords.y;
-		game->rays[i].distance = round(sqrt(deltax * deltax + deltay * deltay));
+		game->rays[i].distance = sqrt(deltax * deltax + deltay * deltay) * cos(game->bob.rotationAngle - current_angle);
 		current_angle += ((FOV) / (WINDOW_WIDTH / WALL_COL_WIDTH));
 		i++;
 	}
@@ -125,8 +88,8 @@ void	update_player(t_game *game)
 	diagmovestep = game->bob.sideways * game->bob.moveSpeed / 2;
 	new_x = round(cos(game->bob.rotationAngle - (M_PI / 2)) * diagmovestep);
 	new_y = round(sin(game->bob.rotationAngle - (M_PI / 2)) * diagmovestep);
-	new_x += game->bob.coords.x + round(cos(game->bob.rotationAngle) * moveStep);
-	new_y += game->bob.coords.y + round(sin(game->bob.rotationAngle) * moveStep);
+	new_x += round(game->bob.coords.x + (cos(game->bob.rotationAngle) * moveStep));
+	new_y += round(game->bob.coords.y + (sin(game->bob.rotationAngle) * moveStep));
 	game->mapos.x -= round(cos(game->bob.rotationAngle) * moveStep);
 	game->mapos.y -= round(sin(game->bob.rotationAngle) * moveStep);
 	printf("%d,%d\n", new_x, new_y);
@@ -137,7 +100,7 @@ void	update_player(t_game *game)
 	}
 }
 
-// updates player position, rotation angle, etc...
+// updates player, cast rays...
 void	update(t_game *game)
 {
 	update_player(game);
