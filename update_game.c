@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/03 16:06:20 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/03 16:16:34 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,12 +123,13 @@ void	update_player(t_game *game)
 	game->bob.rotationAngle += game->bob.turnDirection * game->bob.rotationSpeed;
 	moveStep = game->bob.walkDirection * game->bob.moveSpeed;
 	diagmovestep = game->bob.diagwalkdir * game->bob.moveSpeed;
-	new_x = round(cos(game->bob.rotationAngle - (90.0 * (180 / M_PI))) * diagmovestep);
-	new_y = round(sin(game->bob.rotationAngle - (90.0 * (180 / M_PI))) * diagmovestep);
+	new_x = round(cos(game->bob.rotationAngle - (M_PI / 2)) * diagmovestep);
+	new_y = round(sin(game->bob.rotationAngle - (M_PI / 2)) * diagmovestep);
 	new_x += game->bob.coords.x + round(cos(game->bob.rotationAngle) * moveStep);
 	new_y += game->bob.coords.y + round(sin(game->bob.rotationAngle) * moveStep);
 	game->mapos.x -= round(cos(game->bob.rotationAngle) * moveStep);
 	game->mapos.y -= round(sin(game->bob.rotationAngle) * moveStep);
+	printf("%d,%d\n", new_x, new_y);
 	if (game->map[new_y / TILE_SIZE][new_x / TILE_SIZE] != '1')
 	{
 		game->bob.coords.x = new_x;
