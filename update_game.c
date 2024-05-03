@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/02 21:26:38 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/03 16:06:20 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ void	cast_rays(t_game *game)
 	current_angle = game->bob.rotationAngle - ((FOV) / 2);
 	while (i < NUM_OF_RAYS)
 	{
-		game->rays[i].endpoint.x = game->bob.coords.x + (cos(current_angle) * 10000);
-		game->rays[i].endpoint.y = game->bob.coords.y + (sin(current_angle) * 10000);
+		game->rays[i].endpoint.x = game->bob.coords.x + round(cos(current_angle) * 10000);
+		game->rays[i].endpoint.y = game->bob.coords.y + round(sin(current_angle) * 10000);
 		game->rays[i].endpoint = draw_line(game, game->bob.coords, game->rays[i].endpoint);
 		deltax = game->rays[i].endpoint.x - game->bob.coords.x;
 		deltay = game->rays[i].endpoint.y - game->bob.coords.y;
@@ -116,13 +116,17 @@ void	cast_rays(t_game *game)
 void	update_player(t_game *game)
 {
 	float	moveStep;
+	float	diagmovestep;
 	int		new_x;
 	int		new_y;
 
 	game->bob.rotationAngle += game->bob.turnDirection * game->bob.rotationSpeed;
 	moveStep = game->bob.walkDirection * game->bob.moveSpeed;
-	new_x = game->bob.coords.x + round(cos(game->bob.rotationAngle) * moveStep);
-	new_y = game->bob.coords.y + round(sin(game->bob.rotationAngle) * moveStep);
+	diagmovestep = game->bob.diagwalkdir * game->bob.moveSpeed;
+	new_x = round(cos(game->bob.rotationAngle - (90.0 * (180 / M_PI))) * diagmovestep);
+	new_y = round(sin(game->bob.rotationAngle - (90.0 * (180 / M_PI))) * diagmovestep);
+	new_x += game->bob.coords.x + round(cos(game->bob.rotationAngle) * moveStep);
+	new_y += game->bob.coords.y + round(sin(game->bob.rotationAngle) * moveStep);
 	game->mapos.x -= round(cos(game->bob.rotationAngle) * moveStep);
 	game->mapos.y -= round(sin(game->bob.rotationAngle) * moveStep);
 	if (game->map[new_y / TILE_SIZE][new_x / TILE_SIZE] != '1')

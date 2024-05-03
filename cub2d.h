@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/02 19:44:14 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/03 15:36:19 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
-# define TILE_SIZE 64
+# define TILE_SIZE 32
 # define COLS 25
 # define ROWS 20
 # define WIDTH COLS * TILE_SIZE
@@ -70,6 +70,7 @@ typedef struct s_player
 	int			radius;
 	int			turnDirection;
 	int			walkDirection;
+	int			diagwalkdir;
 	double		startingAngle;
 	double		rotationAngle;
 	double		moveSpeed;
