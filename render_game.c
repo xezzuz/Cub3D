@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/05 16:18:05 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/05/05 17:03:08 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,18 @@ void	render_minimap(t_game *game)
 	center.y = 150;
 	diff.x = center.x - game->bob.coords.x;
 	diff.y = center.y - game->bob.coords.y;
-	draw_rect(game, (t_coords){7,17}, 300, 300, 0x404040);
-	draw_rect(game, (t_coords){12,12}, 300, 300, 0x606060);
+	draw_rect(game, (t_coords){7,312}, 300, 7, 0x62645F);
+	draw_rect(game, (t_coords){7,19}, 5, 300, 0x62645F);
+	draw_rect(game, (t_coords){12,12}, 300, 300, 0x2F312D);
 	x = 0;
 	while (x < WIDTH)
 	{
 		y = 0;
 		while (y < HEIGHT)
 		{
-			if (game->map[y / TILE_SIZE][x / TILE_SIZE] == '0')
+			if (x + diff.x <= 300 && x + diff.x >= 0 && y + diff.y <= 300 && y + diff.y >= 0)
 			{
-				if (x + diff.x <= 300 && x + diff.x >= 0 && y + diff.y <= 300 && y + diff.y >= 0)
+				if (game->map[y / TILE_SIZE][x / TILE_SIZE] == '0')
 					my_mlx_pixel_put(game, x + diff.x + 12, y + diff.y + 12, WHITE);
 			}
 			y++;
