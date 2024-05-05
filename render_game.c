@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/03 18:10:51 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/05/05 16:16:45 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,36 +50,36 @@ void	render_player(t_game *game)
 	printf("%f\n", game->bob.rotationAngle * (180 / M_PI));
 }
 
-// void	draw_line(t_game *game, int z, t_coords a, t_coords b, int color)
-// {
-// 	int			i;
-// 	float		x;
-// 	float		y;
-// 	t_line		line;
-// 	int 		xx;
-// 	int 		yy;
-
-// 	(void)color;
-// 	i = 0;
-// 	x = a.x;
-// 	y = a.y;
-// 	line.dx = b.x - a.x;
-// 	line.dy = b.y - a.y;
-// 	line.m = line.dy / line.dx;
-// 	line.steps = max(abs((int)line.dx), abs((int)line.dy));
-// 	line.x_inc = line.dx / line.steps;
-// 	line.y_inc = line.dy / line.steps;
-// 	while (i < line.steps)
-// 	{
-// 		xx = round(x);
-// 		yy = round(y);
-// 		if (game->map[yy / TILE_SIZE][xx / TILE_SIZE] == '1')
-// 			break ;
-// 		x += line.x_inc;
-// 		y += line.y_inc;
-// 		i++;
-// 	}
-// }
+void	render_minimap(t_game *game)
+{
+	t_coords		diff;
+	t_coords		center;
+	int				x;
+	int				y;
+	
+	center.x = 150;
+	center.y = 150;
+	diff.x = center.x - game->bob.coords.x;
+	diff.y = center.y - game->bob.coords.y;
+	draw_rect(game, (t_coords){7,17}, 300, 300, 0x404040);
+	draw_rect(game, (t_coords){12,12}, 300, 300, 0x606060);
+	x = 0;
+	while (x < WIDTH)
+	{
+		y = 0;
+		while (y < HEIGHT)
+		{
+			if (game->map[y / TILE_SIZE][x / TILE_SIZE] == '0')
+			{
+				if (x + diff.x <= 300 && x + diff.x >= 0 && y + diff.y <= 300 && y + diff.y >= 0)
+					my_mlx_pixel_put(game, x + diff.x + 12, y + diff.y + 12, WHITE);
+			}
+			y++;
+		}
+		x++;
+	}
+	draw_rect(game, (t_coords){162,162}, 5, 5, RED);
+}
 
 void	render_crosshair(t_game *game)
 {
@@ -105,6 +105,7 @@ int	render_game(t_game	*game)
 	render_ceiling_floor(game);
 	render_walls(game);
 	render_crosshair(game);
+	render_minimap(game);
 	// render_player(game);
 	mlx_put_image_to_window(game->data.mlx, game->data.win, game->data.img, 0, 0);
 	return (0);
