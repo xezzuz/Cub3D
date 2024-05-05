@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/03 18:11:52 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/05/05 14:59:50 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ typedef struct s_ray
 {
 	t_coords	endpoint;
 	double		distance;
+	int			vertical;
+	int			horizontal;
 }				t_ray;
 
 typedef struct s_data
@@ -106,9 +108,11 @@ typedef struct s_game
 
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 int		render_game(t_game	*game);
+void	render_ceiling_floor(t_game *game);
 void	update(t_game *game);
 void	update_player(t_game *game);
 
+void	minimap(t_game *game);
 int		keypress(int key, t_game *game);
 int		keyrelease(int key, t_game *game);
 

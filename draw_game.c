@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/03 21:14:34 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/05 16:04:27 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ void	render_walls(t_game *game)
 		if (p_wall_height > WINDOW_HEIGHT)
 			p_wall_height = WINDOW_HEIGHT;
 		start.y = ((WINDOW_HEIGHT) / 2) - ((int)p_wall_height / 2);
+		draw_rect(game, (t_coords){start.x, 0}, 1, (WINDOW_HEIGHT - p_wall_height) / 2, 0x646661);
 		draw_rect(game, start, WALL_COL_WIDTH, p_wall_height, 0xA0A597);
+		draw_rect(game, (t_coords){start.x, start.y + p_wall_height}, 1, (WINDOW_HEIGHT - p_wall_height) / 2, 0xBFC4B5);
 		start.x += WALL_COL_WIDTH;
 		i++;
 	}
