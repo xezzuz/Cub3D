@@ -6,7 +6,11 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/05/04 16:16:51 by mmaila           ###   ########.fr       */
+=======
+/*   Updated: 2024/05/05 13:53:00 by nazouz           ###   ########.fr       */
+>>>>>>> minimap
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +96,10 @@ void	update_player(t_game *game)
 	new_y += round(game->bob.coords.y + (sin(game->bob.rotationAngle) * moveStep));
 	game->mapos.x -= round(cos(game->bob.rotationAngle) * moveStep);
 	game->mapos.y -= round(sin(game->bob.rotationAngle) * moveStep);
+<<<<<<< HEAD
+=======
+	// printf("%d,%d\n", new_x, new_y);
+>>>>>>> minimap
 	if (game->map[new_y / TILE_SIZE][new_x / TILE_SIZE] != '1')
 	{
 		game->bob.coords.x = new_x;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:18:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/03 16:27:30 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/05 13:51:47 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int keypress(int key, t_game *game)
 		game->bob.turnDirection = -1;
 	else if (key == RIGHT)
 		game->bob.turnDirection = 1;
+	game->player_x += game->bob.sideways;
+	game->player_y += game->bob.upright;
 	return (0);
 }
 

@@ -6,7 +6,11 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/05/05 14:59:50 by mmaila           ###   ########.fr       */
+=======
+/*   Updated: 2024/05/05 13:50:05 by nazouz           ###   ########.fr       */
+>>>>>>> minimap
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +28,7 @@
 # define WINDOW_HEIGHT 1080
 # define TILE_SIZE 64
 # define COLS 25
-# define ROWS 20
+# define ROWS 18
 # define WIDTH COLS * TILE_SIZE
 # define HEIGHT ROWS * TILE_SIZE
 # define FOV 60 * (M_PI / 180)
@@ -104,6 +108,8 @@ typedef struct s_game
 	t_coords	mapos;
 	t_data		data;
 	t_player	bob;
+	int			player_x;
+	int			player_y;
 }				t_game;
 
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);

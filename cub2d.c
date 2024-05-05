@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:34:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/04 14:42:35 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/05 16:18:48 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ int main(void)
 	// };
 	// printf("Game Resolution: %dx%d\n\n", WIDTH, HEIGHT);
 	setup_init(&game, map);
+	game.player_x = COLS * 10 / 2;
+	game.player_y = ROWS * 10 / 2;
 	mlx_hook(game.data.win, 2, 0, keypress, &game);
 	mlx_hook(game.data.win, 3, 0, keyrelease, &game);
 	mlx_loop_hook(game.data.mlx, render_game, &game);
