@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/05 16:04:27 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/07 23:12:50 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	draw_rect(t_game *game, t_coords start, int width, int height, int color)
 	int		cols;
 	int		rows;
 
+	if (height < 0)
+		return ;
 	rows = start.y;
 	while (rows < start.y + height)
 	{
@@ -30,6 +32,37 @@ void	draw_rect(t_game *game, t_coords start, int width, int height, int color)
 	}
 }
 
+int	get_pixel_color(t_game *game, int x, int y)
+{
+	char	*dst;
+
+	dst = game->wall.texture.addr + y * game->wall.texture.line_length + x * (game->wall.texture.bits_per_pixel / 8);
+	return (*(unsigned int *)dst);
+}
+
+void	render_texture(t_game *game, t_coords start, int height, t_ray ray)
+{
+	int	i;
+
+	i = 0;
+	game->wall.x_offset = round(fmod(ray.endpoint.y * (game->wall.width / TILE_SIZE), game->wall.height));
+	while (i < height)
+	{
+		game->wall.y_offset = (start.y + (height / 2) - (WINDOW_HEIGHT / 2)) * game->wall.height / height;
+		if (start.y < 0)
+		{
+			i += -start.y;
+			start.y = 0;
+			continue ;
+		}
+		else if (start.y >= WINDOW_HEIGHT)
+			break ;
+		my_mlx_pixel_put(game, start.x, start.y, get_pixel_color(game, game->wall.x_offset, game->wall.y_offset));
+		start.y++;
+		i++;
+	}
+}
+
 void	render_walls(t_game *game)
 {
 	t_coords	start;
@@ -37,17 +70,16 @@ void	render_walls(t_game *game)
 	double		dppp;
 	int			i;
 
-	dppp = ((WINDOW_WIDTH) / 2) / tan(30 * (M_PI / 180));
+	dppp = ((WINDOW_WIDTH) / 2) / tan(FOV / 2);
 	start.x = 0;
 	i = 0;
 	while (i < NUM_OF_RAYS / WALL_COL_WIDTH)
 	{
 		p_wall_height = (TILE_SIZE * dppp) / game->rays[i].distance;
-		if (p_wall_height > WINDOW_HEIGHT)
-			p_wall_height = WINDOW_HEIGHT;
 		start.y = ((WINDOW_HEIGHT) / 2) - ((int)p_wall_height / 2);
 		draw_rect(game, (t_coords){start.x, 0}, 1, (WINDOW_HEIGHT - p_wall_height) / 2, 0x646661);
-		draw_rect(game, start, WALL_COL_WIDTH, p_wall_height, 0xA0A597);
+		render_texture(game, start, p_wall_height, game->rays[i]);
+		// draw_rect(game, start, WALL_COL_WIDTH, p_wall_height, 0xA0A597);
 		draw_rect(game, (t_coords){start.x, start.y + p_wall_height}, 1, (WINDOW_HEIGHT - p_wall_height) / 2, 0xBFC4B5);
 		start.x += WALL_COL_WIDTH;
 		i++;

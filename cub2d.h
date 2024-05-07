@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/05 16:20:32 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/08 00:46:38 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 # define TILE_SIZE 64
-# define COLS 25
-# define ROWS 18
+# define COLS 3
+# define ROWS 3
 # define WIDTH COLS * TILE_SIZE
 # define HEIGHT ROWS * TILE_SIZE
-# define FOV 60 * (M_PI / 180)
+# define FOV (M_PI / 3)
 # define WALL_COL_WIDTH 1
 # define NUM_OF_RAYS WINDOW_WIDTH / WALL_COL_WIDTH
 
@@ -53,16 +53,16 @@ typedef struct s_coords
 	int			y;
 }				t_coords;
 
-typedef struct s_line
-{
-	t_coords	intersection;
-	int			dx;
-	int			dy;
-	int			stepx;
-	int			stepy;
-	int			err;
-	int			e2;
-}				t_line;
+// typedef struct s_line
+// {
+// 	t_coords	intersection;
+// 	int			dx;
+// 	int			dy;
+// 	int			stepx;
+// 	int			stepy;
+// 	int			err;
+// 	int			e2;
+// }				t_line;
 
 typedef struct s_player
 {
@@ -77,6 +77,14 @@ typedef struct s_player
 	float		rotationSpeed;
 }				t_player;
 
+typedef struct s_frame
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_frame;
 
 typedef struct s_ray
 {
@@ -86,26 +94,43 @@ typedef struct s_ray
 	int			horizontal;
 }				t_ray;
 
+typedef struct s_texture
+{
+	t_frame	texture;
+	int		height;
+	int		width;
+	int		x_offset;
+	int		y_offset;
+}			t_texture;
+
 typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
-	void		*img;
-	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
+	t_frame		frame;
 }				t_data;
+
+typedef struct s_weapon
+{
+	void	*frame1;
+	void	*frame2;
+	void	*frame3;
+	void	*frame4;
+	int		width;
+	int		height;
+	int		count;
+}			t_weapon;
 
 typedef struct s_game
 {
 	char		**map;
 	t_ray		rays[NUM_OF_RAYS];
-	t_coords	mapos;
 	t_data		data;
 	t_player	bob;
-	int			player_x;
-	int			player_y;
+	t_texture	wall;
+	t_weapon	gun;
+	int	i;
+	void		*currframe;
 }				t_game;
 
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:34:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/05 16:18:48 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/05/08 00:46:52 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = game->data.addr + (y * game->data.line_length + x * (game->data.bits_per_pixel / 8));
+	dst = game->data.frame.addr + (y * game->data.frame.line_length + x * (game->data.frame.bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
 
@@ -29,12 +29,17 @@ void	setup_init(t_game *game, char *map[])
 	if (!game->data.win)
 		exit(1);
 	game->map = map;
-	game->data.img = mlx_new_image(game->data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	game->data.addr = mlx_get_data_addr(game->data.img, &game->data.bits_per_pixel, &game->data.line_length, &game->data.endian);
+	game->i = 0;
+	game->gun.frame1 = mlx_xpm_file_to_image(game->data.mlx, "textures/GunSprites/frame1.xpm", &game->gun.width, &game->gun.height);
+	game->gun.frame2 = mlx_xpm_file_to_image(game->data.mlx, "textures/GunSprites/frame2.xpm", &game->gun.width, &game->gun.height);
+	game->gun.frame3 = mlx_xpm_file_to_image(game->data.mlx, "textures/GunSprites/frame3.xpm", &game->gun.width, &game->gun.height);
+	game->gun.frame4 = mlx_xpm_file_to_image(game->data.mlx, "textures/GunSprites/frame4.xpm", &game->gun.width, &game->gun.height);
+	game->wall.texture.img = mlx_xpm_file_to_image(game->data.mlx, "textures/bricks", &game->wall.width, &game->wall.height);
+	game->wall.texture.addr = mlx_get_data_addr(game->wall.texture.img, &game->wall.texture.bits_per_pixel, &game->wall.texture.line_length, &game->wall.texture.endian);
+	game->data.frame.img = mlx_new_image(game->data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	game->data.frame.addr = mlx_get_data_addr(game->data.frame.img, &game->data.frame.bits_per_pixel, &game->data.frame.line_length, &game->data.frame.endian);
 	game->bob.coords.x = ((COLS / 2) * TILE_SIZE) + TILE_SIZE / 2;
 	game->bob.coords.y = ((ROWS / 2) * TILE_SIZE) + TILE_SIZE / 2;
-	game->mapos.x =  WIDTH / 6 - game->bob.coords.x;
-	game->mapos.y = HEIGHT / 6 - game->bob.coords.y;
 	game->bob.turnDirection = 0;
 	game->bob.upright = 0;
 	game->bob.sideways = 0;
@@ -49,25 +54,10 @@ int main(void)
 {
 	t_game		game;
 
-	// char	*map[18] = {
-    //     "1111111111111111111111111",
-    //     "1000000000000000000000001",
-    //     "1000000000000000000000001",
-    //     "1000000000000000000000001",
-    //     "1000000000000000000000001",
-    //     "1000000000000000000000001",
-    //     "1000000000000000000000001",
-    //     "1000000000000000000000001",
-    //     "1000000000000000000000001",
-    //     "1000000000000000000000001",
-    //     "1000000000000000000000001",
-    //     "1000000000000000000000001",
-    //     "1000000000000000000000001",
-    //     "1000000000000000000000001",
-    //     "1000000000000000000000001",
-    //     "1000000000000000000000001",
-    //     "1000000000000000000000001",
-    //     "1111111111111111111111111"
+	// char	*map[3] = {
+    //     "111",
+    //     "101",
+    //     "111"
     // };
 	
 	char	*map[18] = {
@@ -98,10 +88,7 @@ int main(void)
 	// 	"1001P01001",
 	// 	"1111111111"
 	// };
-	// printf("Game Resolution: %dx%d\n\n", WIDTH, HEIGHT);
 	setup_init(&game, map);
-	game.player_x = COLS * 10 / 2;
-	game.player_y = ROWS * 10 / 2;
 	mlx_hook(game.data.win, 2, 0, keypress, &game);
 	mlx_hook(game.data.win, 3, 0, keyrelease, &game);
 	mlx_loop_hook(game.data.mlx, render_game, &game);

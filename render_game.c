@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/05 17:03:08 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/08 00:47:03 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,8 @@ void	render_minimap(t_game *game)
 		while (y < HEIGHT)
 		{
 			if (x + diff.x <= 300 && x + diff.x >= 0 && y + diff.y <= 300 && y + diff.y >= 0)
-			{
 				if (game->map[y / TILE_SIZE][x / TILE_SIZE] == '0')
 					my_mlx_pixel_put(game, x + diff.x + 12, y + diff.y + 12, WHITE);
-			}
 			y++;
 		}
 		x++;
@@ -79,13 +77,38 @@ void	render_crosshair(t_game *game)
 	draw_rect(game, crosshair, 2, 6, 0x4EE41E);
 }
 
+void	render_gun(t_game *game)
+{
+	if (game->i == 10)
+	{
+		game->currframe = game->gun.frame1;
+	}
+	else if (game->i == 20)
+	{
+		game->currframe = game->gun.frame2;
+	}
+	else if (game->i == 30)
+	{
+		game->currframe = game->gun.frame3;
+	}
+	else if (game->i == 40)
+	{
+		game->currframe = game->gun.frame4;
+	}
+	mlx_put_image_to_window(game->data.mlx, game->data.win, game->currframe, 1100, 700);
+	game->i++;
+	if (game->i == 41)
+		game->i = 0;
+}
+
 int	render_game(t_game	*game)
 {
 	update(game);
 	render_walls(game);
 	render_crosshair(game);
-	render_minimap(game);
+	// render_minimap(game);
 	// render_player(game);
-	mlx_put_image_to_window(game->data.mlx, game->data.win, game->data.img, 0, 0);
+	mlx_put_image_to_window(game->data.mlx, game->data.win, game->data.frame.img, 0, 0);
+	render_gun(game);
 	return (0);
 }

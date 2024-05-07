@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
+#    By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/05/05 13:30:16 by nazouz           ###   ########.fr        #
+#    Updated: 2024/05/05 18:50:04 by mmaila           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ SRCS			= 		cub2d.c \
 						keypress.c \
 						render_game.c \
 						update_game.c \
-						raycasting.c
 
 OBJS			= 		$(SRCS:.c=.o)
 
