@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/08 00:47:03 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/08 18:42:41 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,36 +79,52 @@ void	render_crosshair(t_game *game)
 
 void	render_gun(t_game *game)
 {
-	if (game->i == 10)
-	{
+	if (game->counter <= 3)
 		game->currframe = game->gun.frame1;
-	}
-	else if (game->i == 20)
-	{
+	else if (game->counter <= 6 && game->counter > 3)
 		game->currframe = game->gun.frame2;
-	}
-	else if (game->i == 30)
-	{
+	else if (game->counter <= 9 && game->counter > 6)
 		game->currframe = game->gun.frame3;
-	}
-	else if (game->i == 40)
-	{
+	else if (game->counter <= 12 && game->counter > 9)
 		game->currframe = game->gun.frame4;
+	else if (game->counter <= 15 && game->counter > 12)
+		game->currframe = game->gun.frame5;
+	else if (game->counter <= 18 && game->counter > 15)
+		game->currframe = game->gun.frame6;
+	else if (game->counter <= 21 && game->counter > 18)
+		game->currframe = game->gun.frame3;
+	// else if (game->counter <= 21 && game->counter > 18)
+	// 	game->currframe = game->gun.frame7;
+	// else if (game->counter <= 24 && game->counter > 21)
+	// 	game->currframe = game->gun.frame8;
+	// else if (game->counter <= 27 && game->counter > 24)
+	// 	game->currframe = game->gun.frame9;
+	// else if (game->counter <= 30 && game->counter > 27)
+	// 	game->currframe = game->gun.frame10;
+	// else if (game->counter <= 33 && game->counter > 30)
+	// 	game->currframe = game->gun.frame11;
+	// else if (game->counter <= 36 && game->counter > 33)
+	// 	game->currframe = game->gun.frame12;
+	mlx_put_image_to_window(game->data.mlx, game->data.win, game->currframe, 1100, 610);
+	game->counter++;
+	if (game->counter == 25)
+	{
+		game->animate = 0;
+		game->counter = 0;
 	}
-	mlx_put_image_to_window(game->data.mlx, game->data.win, game->currframe, 1100, 700);
-	game->i++;
-	if (game->i == 41)
-		game->i = 0;
 }
 
 int	render_game(t_game	*game)
 {
 	update(game);
 	render_walls(game);
-	render_crosshair(game);
+	// render_crosshair(game);
 	// render_minimap(game);
 	// render_player(game);
 	mlx_put_image_to_window(game->data.mlx, game->data.win, game->data.frame.img, 0, 0);
-	render_gun(game);
+	if (game->animate == 1)
+		render_gun(game);
+	else
+		mlx_put_image_to_window(game->data.mlx, game->data.win, game->gun.frame1, 1100, 610);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/08 00:46:38 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/08 16:50:41 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 # define TILE_SIZE 64
-# define COLS 3
-# define ROWS 3
+# define COLS 25
+# define ROWS 18
 # define WIDTH COLS * TILE_SIZE
 # define HEIGHT ROWS * TILE_SIZE
 # define FOV (M_PI / 3)
@@ -116,6 +116,14 @@ typedef struct s_weapon
 	void	*frame2;
 	void	*frame3;
 	void	*frame4;
+	void	*frame5;
+	void	*frame6;
+	void	*frame7;
+	void	*frame8;
+	void	*frame9;
+	void	*frame10;
+	void	*frame11;
+	void	*frame12;
 	int		width;
 	int		height;
 	int		count;
@@ -129,7 +137,8 @@ typedef struct s_game
 	t_player	bob;
 	t_texture	wall;
 	t_weapon	gun;
-	int	i;
+	int			counter;
+	int			animate;
 	void		*currframe;
 }				t_game;
 
