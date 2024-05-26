@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:34:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/08 16:50:18 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/23 23:55:04 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void	setup_init(t_game *game, char *map[])
 	game->wall.texture.addr = mlx_get_data_addr(game->wall.texture.img, &game->wall.texture.bits_per_pixel, &game->wall.texture.line_length, &game->wall.texture.endian);
 	game->data.frame.img = mlx_new_image(game->data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	game->data.frame.addr = mlx_get_data_addr(game->data.frame.img, &game->data.frame.bits_per_pixel, &game->data.frame.line_length, &game->data.frame.endian);
-	game->bob.coords.x = ((COLS / 2) * TILE_SIZE) + TILE_SIZE / 2;
-	game->bob.coords.y = ((ROWS / 2) * TILE_SIZE) + TILE_SIZE / 2;
+	game->bob.coords.x = (21 * TILE_SIZE) + TILE_SIZE / 2;
+	game->bob.coords.y = (4 * TILE_SIZE) + TILE_SIZE / 2;
 	game->bob.turnDirection = 0;
 	game->bob.upright = 0;
 	game->bob.sideways = 0;
-	game->bob.startingAngle =  M_PI / 2;
+	game->bob.startingAngle =  M_PI;
 	game->bob.rotationAngle = game->bob.startingAngle;
 	game->bob.moveSpeed = 4.0;
 	game->bob.rotationSpeed = 1 * (M_PI / 180);

@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/08 18:42:41 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/25 15:27:23 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,12 +119,12 @@ int	render_game(t_game	*game)
 	update(game);
 	render_walls(game);
 	// render_crosshair(game);
-	// render_minimap(game);
+	render_minimap(game);
 	// render_player(game);
 	mlx_put_image_to_window(game->data.mlx, game->data.win, game->data.frame.img, 0, 0);
-	if (game->animate == 1)
-		render_gun(game);
-	else
-		mlx_put_image_to_window(game->data.mlx, game->data.win, game->gun.frame1, 1100, 610);
+	// if (game->animate == 1)
+	// 	render_gun(game);
+	// else
+	// 	mlx_put_image_to_window(game->data.mlx, game->data.win, game->gun.frame1, 1100, 610);
 	return (0);
 }

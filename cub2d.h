@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/08 16:50:41 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/05/25 15:20:04 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include <limits.h>
 # include <math.h>
 
 # define WINDOW_WIDTH 1920
@@ -49,9 +50,15 @@
 
 typedef struct s_coords
 {
-	int			x;
-	int			y;
+	int	x;
+	int	y;
 }				t_coords;
+
+typedef struct s_fcoords
+{
+	float	x;
+	float	y;
+}				t_fcoords;
 
 // typedef struct s_line
 // {
@@ -88,10 +95,14 @@ typedef struct s_frame
 
 typedef struct s_ray
 {
-	t_coords	endpoint;
+	t_fcoords	endpoint;
+	double		ray_angle;
 	double		distance;
-	int			vertical;
 	int			horizontal;
+	int			up;
+	int			down;
+	int			left;
+	int			right;
 }				t_ray;
 
 typedef struct s_texture
