@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/25 15:20:04 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/26 19:18:41 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,19 +151,20 @@ typedef struct s_game
 	int			counter;
 	int			animate;
 	void		*currframe;
+	int			last_mouse_x;
 }				t_game;
 
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 int		render_game(t_game	*game);
-void	render_ceiling_floor(t_game *game);
-void	update(t_game *game);
+void	update_game(t_game *game);
 void	update_player(t_game *game);
 
-void	minimap(t_game *game);
 int		keypress(int key, t_game *game);
 int		keyrelease(int key, t_game *game);
+int		mousemove(int x, int y, t_game *game);
 
 void	draw_rect(t_game *game, t_coords start, int width, int height, int color);
 void	render_walls(t_game *game);
+void	render_minimap(t_game *game);
 
 #endif

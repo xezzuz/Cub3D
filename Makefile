@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+         #
+#    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/05/05 18:50:04 by mmaila           ###   ########.fr        #
+#    Updated: 2024/07/26 19:11:22 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ SRCS			= 		cub2d.c \
 						draw_game.c \
 						keypress.c \
 						render_game.c \
+						render_game_utils.c \
 						update_game.c \
+						mouse_events.c
 
 OBJS			= 		$(SRCS:.c=.o)
 

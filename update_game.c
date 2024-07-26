@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/24 00:06:33 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/26 19:06:43 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,45 +19,10 @@ int	max(int a, int b)
 	return (b);
 }
 
-int	distance(t_coords a, t_fcoords b)
+double	distance(t_coords a, t_fcoords b)
 {
 	return (sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y)));
 }
-
-// void	cast_ray(t_game *game, t_coords a, t_fcoords b, int v)
-// {
-// 	int			i;
-// 	float		x;
-// 	float		y;
-// 	t_coords	k;
-// 	float		dx;
-// 	float		dy;
-// 	float		m;
-// 	float		steps;
-// 	float		x_inc;
-// 	float		y_inc;
-
-// 	i = 0;
-// 	x = a.x;
-// 	y = a.y;
-// 	dx = b.x - a.x;
-// 	dy = b.y - a.y;
-// 	m = dy / dx;
-// 	steps = max(abs((int)dx), abs((int)dy));
-// 	x_inc = dx / steps;
-// 	y_inc = dy / steps;
-// 	while (i < steps)
-// 	{
-// 		k.x = round(x);
-// 		k.y = round(y);
-// 		(void)v;
-// 		// if (v == (NUM_OF_RAYS / 2) - 1)
-// 			my_mlx_pixel_put(game, k.x, k.y, GRAY);
-// 		x += x_inc;
-// 		y += y_inc;
-// 		i++;
-// 	}
-// }
 
 double	cycle(double ray_angle)
 {
@@ -176,7 +141,9 @@ void	cast_rays(t_game *game)
 		game->rays[i].right = current_angle < M_PI_2 || current_angle > (1.5 * M_PI);
 		game->rays[i].left = !game->rays[i].right;
 		calc_hit(game, &game->rays[i]);
+		// printf("Intersection[%f, %f] - Bob[%d, %d]\n", game->rays[i].endpoint.x, game->rays[i].endpoint.y, game->bob.coords.x, game->bob.coords.y);
 		game->rays[i].distance *= cos(game->rays[i].ray_angle - game->bob.rotationAngle);
+		// printf("Ray[%d] = Distance[%f]\n", i, game->rays[i].distance);
 		current_angle += ((FOV) / (WINDOW_WIDTH / WALL_COL_WIDTH));
 		i++;
 	}
@@ -204,7 +171,7 @@ void	update_player(t_game *game)
 }
 
 // updates player, cast rays...
-void	update(t_game *game)
+void	update_game(t_game *game)
 {
 	update_player(game);
 	cast_rays(game);
