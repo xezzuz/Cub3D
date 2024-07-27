@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:34:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 13:48:10 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/27 17:19:00 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,8 @@ void	setup_init(t_game *game, char *map[])
 	game->bob.moveSpeed = 4.0;
 	game->bob.rotationSpeed = 1 * (M_PI / 180);
 	game->bob.dppp = ((WINDOW_WIDTH) / 2) / tan(FOV / 2);
-	game->last_mouse_pos_x = WINDOW_WIDTH / 2;
+	game->mouse_angle = 0;
 	mlx_mouse_hide();
-	
 }
 
 int main(void)

@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 13:51:46 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/27 17:22:02 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <limits.h>
 # include <math.h>
 
-# define WINDOW_WIDTH 1280
-# define WINDOW_HEIGHT 720
+# define WINDOW_WIDTH 1920
+# define WINDOW_HEIGHT 1080
 # define TILE_SIZE 64
 # define COLS 25
 # define ROWS 18
@@ -170,7 +170,7 @@ typedef struct s_game
 	t_weapon	gun;
 	int			counter;
 	int			animate;
-	int			last_mouse_pos_x;
+	double		mouse_angle;
 	void		*currframe;
 }				t_game;
 

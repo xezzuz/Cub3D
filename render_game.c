@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 13:49:35 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/27 17:19:58 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	render_game(t_game	*game)
 	update_game(game);
 	render_walls(game);
 	render_minimap(game);
-	game->bob.turnDirection = 0;
+	game->mouse_angle = 0;
 	mlx_put_image_to_window(game->data.mlx, game->data.win, game->data.frame.img, 0, 0);
 
 
