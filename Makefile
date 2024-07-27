@@ -6,7 +6,7 @@
 #    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/07/26 19:11:22 by nazouz           ###   ########.fr        #
+#    Updated: 2024/07/27 11:18:52 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ CC				= 		cc
 
 CFLAGS			= 		-Wall -Werror -Wextra -g3
 
-INCLUDE			=		cub2d.h
+INCLUDE			=		cub2d.h mlx/mlx.h
+
+MLX				=		mlx/libmlx.a
 
 SRCS			= 		cub2d.c \
 						draw_game.c \
@@ -35,7 +37,7 @@ all : $(NAME)
 	@$(CC) $(CFLAGS) -O3 -Imlx -c $< -o $@
 
 $(NAME) : $(OBJS) $(INCLUDE)
-	@$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit $(OBJS) $(MLX) -o $(NAME)
 	@echo "\033[1;32mSUCCESS\033[0m"
 
 clean :

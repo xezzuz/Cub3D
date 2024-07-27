@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 10:35:12 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/27 11:17:20 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB2D_H
 # define CUB2D_H
 
-# include <mlx.h>
+# include "./mlx/mlx.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
