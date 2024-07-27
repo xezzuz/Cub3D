@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 13:21:18 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/27 13:51:00 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,13 +145,13 @@ void	cast_rays(t_game *game)
 
 int	hitbox(t_game *game, int new_x, int new_y)
 {
-	game->bob.radius.up.y = new_y - 3;
+	game->bob.radius.up.y = new_y - 6;
 	game->bob.radius.up.x = new_x;
 	game->bob.radius.right.y = new_y;
-	game->bob.radius.right.x = new_x + 3;
+	game->bob.radius.right.x = new_x + 6;
 	game->bob.radius.left.y = new_y;
-	game->bob.radius.left.x = new_x - 3;
-	game->bob.radius.down.y = new_y + 3;
+	game->bob.radius.left.x = new_x - 6;
+	game->bob.radius.down.y = new_y + 6;
 	game->bob.radius.down.x = new_x;
 	if (game->map[game->bob.radius.up.y / TILE_SIZE][game->bob.radius.up.x / TILE_SIZE] == '1'
 		|| game->map[game->bob.radius.right.y / TILE_SIZE][game->bob.radius.right.x / TILE_SIZE] == '1'

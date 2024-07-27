@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 13:21:03 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/27 13:51:46 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef struct s_player
 {
 	t_hitbox	radius;
 	t_coords	coords;
-	int			turnDirection;
+	float		turnDirection;
 	int			upright;
 	int			sideways;
 	float		startingAngle;
@@ -181,8 +181,7 @@ void	update_player(t_game *game);
 
 int		keypress(int key, t_game *game);
 int		keyrelease(int key, t_game *game);
-int		mouse_hook(t_game *game);
-int		mousemove(int x, int y, t_game *game);
+int		mouse_move(int x, int y, t_game *game);
 
 void	draw_rect(t_game *game, t_coords start, int width, int height, int color);
 void	render_walls(t_game *game);

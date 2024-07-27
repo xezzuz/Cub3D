@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:34:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 13:07:40 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/27 13:48:10 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	setup_init(t_game *game, char *map[])
 	game->bob.rotationSpeed = 1 * (M_PI / 180);
 	game->bob.dppp = ((WINDOW_WIDTH) / 2) / tan(FOV / 2);
 	game->last_mouse_pos_x = WINDOW_WIDTH / 2;
+	mlx_mouse_hide();
 	
 }
 
@@ -88,7 +89,7 @@ int main(void)
 	setup_init(&game, map);
 	mlx_hook(game.data.win, 2, 0, keypress, &game);
 	mlx_hook(game.data.win, 3, 0, keyrelease, &game);
-	mlx_hook(game.data.win, 0, 0, mouse_hook, &game);
+	mlx_hook(game.data.win, 6, 0, mouse_move, &game);
 	mlx_loop_hook(game.data.mlx, render_game, &game);
 	mlx_loop(game.data.mlx);
 	printf("FINISHED\n");
