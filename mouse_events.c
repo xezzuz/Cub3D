@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 19:09:49 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 12:22:52 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/27 12:56:13 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int	mousemove(int x, int y, t_game *game)
 {
 	(void)y;
 
-	if (game->mouse_hide > 0)
-		return 0;
 	if (x > (WINDOW_WIDTH / 2) + 1) {
 		game->bob.turnDirection = 1;
 	}
