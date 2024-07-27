@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 13:03:46 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/27 13:04:26 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define WHITE 0xffffff
 # define BLACK 0x000000
 # define RED 0xff0000
-# define GRAY 0xCFCFCF
+# define GRAY 0xC0C0C0
 
 
 typedef struct s_coords
@@ -78,16 +78,6 @@ typedef struct s_hitbox
 	t_coords	right;
 	t_coords	down;
 }				t_hitbox;
-
-typedef struct s_line
-{
-	float		dx;
-	float		dy;
-	float		m;
-	float		steps;
-	float		x_inc;
-	float		y_inc;
-}				t_line;
 
 typedef struct s_player
 {
@@ -171,6 +161,7 @@ typedef struct s_game
 	int			counter;
 	int			animate;
 	void		*currframe;
+	int			last_mouse_pos_x;
 }				t_game;
 
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
@@ -180,7 +171,8 @@ void	update_player(t_game *game);
 
 int		keypress(int key, t_game *game);
 int		keyrelease(int key, t_game *game);
-int		mousemove(int x, int y, t_game *game);
+int		mouse_hook(t_game *game);
+int		mouse_move(int x, int y, t_game *game);
 
 void	draw_rect(t_game *game, t_coords start, int width, int height, int color);
 void	render_walls(t_game *game);

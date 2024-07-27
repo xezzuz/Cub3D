@@ -6,114 +6,64 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 19:04:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 12:55:58 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/27 11:33:16 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub2d.h"
 
-// void	render_crosshair(t_game *game)
-// {
-// 	t_coords crosshair;
+void	render_crosshair(t_game *game)
+{
+	t_coords crosshair;
 	
-// 	crosshair.x = (WINDOW_WIDTH / 2) - 1;
-// 	crosshair.y = (WINDOW_HEIGHT / 2) - 8;
-// 	draw_rect(game, crosshair, 2, 6, 0x4EE41E);
-// 	crosshair.x = (WINDOW_WIDTH / 2) - 10;
-// 	crosshair.y = (WINDOW_HEIGHT / 2) - 1;
-// 	draw_rect(game, crosshair, 8, 2, 0x4EE41E);
-// 	crosshair.x = (WINDOW_WIDTH / 2) + 2;
-// 	crosshair.y = (WINDOW_HEIGHT / 2) - 1;
-// 	draw_rect(game, crosshair, 8, 2, 0x4EE41E);
-// 	crosshair.x = (WINDOW_WIDTH / 2) - 1;
-// 	crosshair.y = (WINDOW_HEIGHT / 2) + 1;
-// 	draw_rect(game, crosshair, 2, 6, 0x4EE41E);
-// }
-
-// void	render_gun(t_game *game)
-// {
-// 	if (game->counter <= 3)
-// 		game->currframe = game->gun.frame1;
-// 	else if (game->counter <= 6 && game->counter > 3)
-// 		game->currframe = game->gun.frame2;
-// 	else if (game->counter <= 9 && game->counter > 6)
-// 		game->currframe = game->gun.frame3;
-// 	else if (game->counter <= 12 && game->counter > 9)
-// 		game->currframe = game->gun.frame4;
-// 	else if (game->counter <= 15 && game->counter > 12)
-// 		game->currframe = game->gun.frame5;
-// 	else if (game->counter <= 18 && game->counter > 15)
-// 		game->currframe = game->gun.frame6;
-// 	else if (game->counter <= 21 && game->counter > 18)
-// 		game->currframe = game->gun.frame3;
-// 	// else if (game->counter <= 21 && game->counter > 18)
-// 	// 	game->currframe = game->gun.frame7;
-// 	// else if (game->counter <= 24 && game->counter > 21)
-// 	// 	game->currframe = game->gun.frame8;
-// 	// else if (game->counter <= 27 && game->counter > 24)
-// 	// 	game->currframe = game->gun.frame9;
-// 	// else if (game->counter <= 30 && game->counter > 27)
-// 	// 	game->currframe = game->gun.frame10;
-// 	// else if (game->counter <= 33 && game->counter > 30)
-// 	// 	game->currframe = game->gun.frame11;
-// 	// else if (game->counter <= 36 && game->counter > 33)
-// 	// 	game->currframe = game->gun.frame12;
-// 	mlx_put_image_to_window(game->data.mlx, game->data.win, game->currframe, 1100, 610);
-// 	game->counter++;
-// 	if (game->counter == 25)
-// 	{
-// 		game->animate = 0;
-// 		game->counter = 0;
-// 	}
-// }
-
-
-float	max(float a, float b)
-{
-	if (a > b)
-		return (a);
-	return (b);
+	crosshair.x = (WINDOW_WIDTH / 2) - 1;
+	crosshair.y = (WINDOW_HEIGHT / 2) - 8;
+	draw_rect(game, crosshair, 2, 6, 0x4EE41E);
+	crosshair.x = (WINDOW_WIDTH / 2) - 10;
+	crosshair.y = (WINDOW_HEIGHT / 2) - 1;
+	draw_rect(game, crosshair, 8, 2, 0x4EE41E);
+	crosshair.x = (WINDOW_WIDTH / 2) + 2;
+	crosshair.y = (WINDOW_HEIGHT / 2) - 1;
+	draw_rect(game, crosshair, 8, 2, 0x4EE41E);
+	crosshair.x = (WINDOW_WIDTH / 2) - 1;
+	crosshair.y = (WINDOW_HEIGHT / 2) + 1;
+	draw_rect(game, crosshair, 2, 6, 0x4EE41E);
 }
 
-void	draw_line(t_game *game, t_coords a, t_fcoords b, int color)
+void	render_gun(t_game *game)
 {
-	int			i;
-	float		x;
-	float		y;
-	t_line		line;
-
-	i = 0;
-	x = a.x;
-	y = a.y;
-	line.dx = b.x - a.x;
-	line.dy = b.y - a.y;
-	line.m = line.dy / line.dx;
-	line.steps = max(fabs(roundf(line.dx)), fabs(roundf(line.dy)));
-	line.x_inc = line.dx / line.steps;
-	line.y_inc = line.dy / line.steps;
-	while (i < line.steps)
+	if (game->counter <= 3)
+		game->currframe = game->gun.frame1;
+	else if (game->counter <= 6 && game->counter > 3)
+		game->currframe = game->gun.frame2;
+	else if (game->counter <= 9 && game->counter > 6)
+		game->currframe = game->gun.frame3;
+	else if (game->counter <= 12 && game->counter > 9)
+		game->currframe = game->gun.frame4;
+	else if (game->counter <= 15 && game->counter > 12)
+		game->currframe = game->gun.frame5;
+	else if (game->counter <= 18 && game->counter > 15)
+		game->currframe = game->gun.frame6;
+	else if (game->counter <= 21 && game->counter > 18)
+		game->currframe = game->gun.frame3;
+	// else if (game->counter <= 21 && game->counter > 18)
+	// 	game->currframe = game->gun.frame7;
+	// else if (game->counter <= 24 && game->counter > 21)
+	// 	game->currframe = game->gun.frame8;
+	// else if (game->counter <= 27 && game->counter > 24)
+	// 	game->currframe = game->gun.frame9;
+	// else if (game->counter <= 30 && game->counter > 27)
+	// 	game->currframe = game->gun.frame10;
+	// else if (game->counter <= 33 && game->counter > 30)
+	// 	game->currframe = game->gun.frame11;
+	// else if (game->counter <= 36 && game->counter > 33)
+	// 	game->currframe = game->gun.frame12;
+	mlx_put_image_to_window(game->data.mlx, game->data.win, game->currframe, 1100, 610);
+	game->counter++;
+	if (game->counter == 25)
 	{
-		my_mlx_pixel_put(game, round(x), round(y), color);
-		x += line.x_inc;
-		y += line.y_inc;
-		i++;
-	}
-}
-
-void	render_fov(t_game *game)
-{
-	float		inc;
-	t_fcoords	endpoint;
-	int			i;
-
-	i = 0;
-	while (i < NUM_OF_RAYS)
-	{
-		endpoint.x = 164 + (cos(game->rays[i].ray_angle) * 50);
-		endpoint.y = 164 + (sin(game->rays[i].ray_angle) * 50);
-		draw_line(game, (t_coords){164, 164}, endpoint, GRAY);
-		inc = ((FOV) / (WIDTH / 3));
-		i++;
+		game->animate = 0;
+		game->counter = 0;
 	}
 }
 
@@ -144,6 +94,5 @@ void	render_minimap(t_game *game)
 		}
 		x++;
 	}
-	render_fov(game);
 	draw_rect(game, (t_coords){162,162}, 5, 5, RED);
 }
