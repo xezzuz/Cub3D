@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:34:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 10:13:18 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/27 10:47:16 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,17 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 
 	dst = game->data.frame.addr + (y * game->data.frame.line_length + x * (game->data.frame.bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
+}
+
+float	rotation(char angle)
+{
+	if (angle == 'N')
+		return ((M_PI * 3.0) / 2.0);
+	else if (angle == 'S')
+		return (M_PI / 2.0);
+	else if (angle == 'E')
+		return (0);
+	return (M_PI);
 }
 
 void	setup_init(t_game *game, char *map[])
@@ -40,7 +51,7 @@ void	setup_init(t_game *game, char *map[])
 	game->bob.turnDirection = 0;
 	game->bob.upright = 0;
 	game->bob.sideways = 0;
-	game->bob.startingAngle =  M_PI;
+	game->bob.startingAngle = rotation('S');
 	game->bob.rotationAngle = game->bob.startingAngle;
 	game->bob.moveSpeed = 4.0;
 	game->bob.rotationSpeed = 1 * (M_PI / 180);
