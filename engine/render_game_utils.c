@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_game_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 19:04:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 13:21:57 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/27 17:27:51 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub2d.h"
+#include "cub3d.h"
 
 // void	render_crosshair(t_game *game)
 // {
@@ -67,54 +67,11 @@
 // 	}
 // }
 
-
 float	max(float a, float b)
 {
 	if (a > b)
 		return (a);
 	return (b);
-}
-
-void	draw_line(t_game *game, t_coords a, t_fcoords b, int color)
-{
-	int			i;
-	float		x;
-	float		y;
-	t_line		line;
-
-	i = 0;
-	x = a.x;
-	y = a.y;
-	line.dx = b.x - a.x;
-	line.dy = b.y - a.y;
-	line.m = line.dy / line.dx;
-	line.steps = max(fabs(roundf(line.dx)), fabs(roundf(line.dy)));
-	line.x_inc = line.dx / line.steps;
-	line.y_inc = line.dy / line.steps;
-	while (i < line.steps)
-	{
-		my_mlx_pixel_put(game, round(x), round(y), color);
-		x += line.x_inc;
-		y += line.y_inc;
-		i++;
-	}
-}
-
-void	render_fov(t_game *game)
-{
-	float		inc;
-	t_fcoords	endpoint;
-	int			i;
-
-	i = 0;
-	while (i < NUM_OF_RAYS)
-	{
-		endpoint.x = 164 + (cos(game->rays[i].ray_angle) * 50);
-		endpoint.y = 164 + (sin(game->rays[i].ray_angle) * 50);
-		draw_line(game, (t_coords){164, 164}, endpoint, GRAY);
-		inc = ((FOV) / (WIDTH / 3));
-		i++;
-	}
 }
 
 void	render_minimap(t_game *game)
@@ -144,6 +101,5 @@ void	render_minimap(t_game *game)
 		}
 		x++;
 	}
-	// render_fov(game);
 	draw_rect(game, (t_coords){162,162}, 5, 5, RED);
 }

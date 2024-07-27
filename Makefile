@@ -6,7 +6,7 @@
 #    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/07/27 11:45:55 by nazouz           ###   ########.fr        #
+#    Updated: 2024/07/27 17:27:18 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,19 +16,19 @@ CC				= 		cc
 
 CFLAGS			= 		-Wall -Werror -Wextra -g3
 
-INCLUDE			=		cub2d.h mlx/mlx.h
+INCLUDE			=		cub3d.h mlx/mlx.h
 
 MLXLIB			=		mlx/libmlx.a
 
 MLX				=		$(MLXLIB) -lm -framework OpenGL -framework AppKit
 
-SRCS			= 		cub2d.c \
-						draw_game.c \
-						keypress.c \
-						render_game.c \
-						render_game_utils.c \
-						update_game.c \
-						mouse_events.c
+SRCS			= 		cub3d.c \
+						./engine/render_walls.c \
+						./engine/render_game.c \
+						./engine/render_game_utils.c \
+						./engine/update_game.c \
+						./events/keypress.c \
+						./events/mouse_events.c
 
 OBJS			= 		$(SRCS:.c=.o)
 
