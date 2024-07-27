@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 12:08:59 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/27 12:58:02 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define WHITE 0xffffff
 # define BLACK 0x000000
 # define RED 0xff0000
-# define GRAY 0xC0C0C0
+# define GRAY 0xCFCFCF
 
 
 typedef struct s_coords
@@ -79,6 +79,16 @@ typedef struct s_hitbox
 	t_coords	right;
 	t_coords	down;
 }				t_hitbox;
+
+typedef struct s_line
+{
+	float		dx;
+	float		dy;
+	float		m;
+	float		steps;
+	float		x_inc;
+	float		y_inc;
+}				t_line;
 
 typedef struct s_player
 {

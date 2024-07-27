@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:34:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 12:09:19 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/27 12:27:47 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	setup_init(t_game *game, char *map[])
 	game->bob.startingAngle = rotation('S');
 	game->bob.rotationAngle = game->bob.startingAngle;
 	game->bob.moveSpeed = 4.0;
-	game->bob.rotationSpeed = 1 * (M_PI / 180);
+	game->bob.rotationSpeed = 2 * (M_PI / 180);
 	game->mouse_hide = -1;
 	game->bob.dppp = ((WINDOW_WIDTH) / 2) / tan(FOV / 2);
 	
