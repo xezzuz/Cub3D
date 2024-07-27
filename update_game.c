@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 10:30:10 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/27 11:34:37 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,24 @@ void	cast_rays(t_game *game)
 	}
 }
 
+int	hitbox(t_game *game, int new_x, int new_y)
+{
+	game->bob.radius.up.y = new_y - 3;
+	game->bob.radius.up.x = new_x;
+	game->bob.radius.right.y = new_y;
+	game->bob.radius.right.x = new_x + 3;
+	game->bob.radius.left.y = new_y;
+	game->bob.radius.left.x = new_x - 3;
+	game->bob.radius.down.y = new_y + 3;
+	game->bob.radius.down.x = new_x;
+	if (game->map[game->bob.radius.up.y / TILE_SIZE][game->bob.radius.up.x / TILE_SIZE] == '1'
+		|| game->map[game->bob.radius.right.y / TILE_SIZE][game->bob.radius.right.x / TILE_SIZE] == '1'
+		|| game->map[game->bob.radius.left.y / TILE_SIZE][game->bob.radius.left.x / TILE_SIZE] == '1'
+		|| game->map[game->bob.radius.down.y / TILE_SIZE][game->bob.radius.down.x / TILE_SIZE] == '1')
+		return (1);
+	return (0);
+}
+
 void	update_player(t_game *game)
 {
 	float	moveStep;
@@ -164,7 +182,7 @@ void	update_player(t_game *game)
 	new_y = round(sin(game->bob.rotationAngle - (M_PI / 2)) * diagmovestep);
 	new_x += round(game->bob.coords.x + (cos(game->bob.rotationAngle) * moveStep));
 	new_y += round(game->bob.coords.y + (sin(game->bob.rotationAngle) * moveStep));
-	if (game->map[new_y / TILE_SIZE][new_x / TILE_SIZE] != '1')
+	if (!hitbox(game, new_x, new_y))
 	{
 		game->bob.coords.x = new_x;
 		game->bob.coords.y = new_y;
