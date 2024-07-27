@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 11:17:20 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/27 11:35:36 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,18 @@ typedef struct s_fcoords
 // 	int			e2;
 // }				t_line;
 
+typedef struct s_hitbox
+{
+	t_coords	up;
+	t_coords	left;
+	t_coords	right;
+	t_coords	down;
+}				t_hitbox;
+
 typedef struct s_player
 {
+	t_hitbox	radius;
 	t_coords	coords;
-	int			radius;
 	int			turnDirection;
 	int			upright;
 	int			sideways;

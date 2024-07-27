@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:34:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 10:47:16 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/27 11:23:38 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	setup_init(t_game *game, char *map[])
 	game->bob.rotationAngle = game->bob.startingAngle;
 	game->bob.moveSpeed = 4.0;
 	game->bob.rotationSpeed = 1 * (M_PI / 180);
-	game->bob.radius = 3;
 	game->last_mouse_x = WINDOW_WIDTH / 2;
 	game->bob.dppp = ((WINDOW_WIDTH) / 2) / tan(FOV / 2);
 	
