@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:34:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/26 19:19:08 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/27 10:13:18 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,6 @@ void	setup_init(t_game *game, char *map[])
 	game->map = map;
 	game->counter = 0;
 	game->animate = 0;
-	game->gun.frame1 = mlx_xpm_file_to_image(game->data.mlx, "textures/GunSprites/frame1.xpm", &game->gun.width, &game->gun.height);
-	game->gun.frame2 = mlx_xpm_file_to_image(game->data.mlx, "textures/GunSprites/frame2.xpm", &game->gun.width, &game->gun.height);
-	game->gun.frame3 = mlx_xpm_file_to_image(game->data.mlx, "textures/GunSprites/frame3.xpm", &game->gun.width, &game->gun.height);
-	game->gun.frame4 = mlx_xpm_file_to_image(game->data.mlx, "textures/GunSprites/frame4.xpm", &game->gun.width, &game->gun.height);
-	game->gun.frame5 = mlx_xpm_file_to_image(game->data.mlx, "textures/GunSprites/frame5.xpm", &game->gun.width, &game->gun.height);
-	game->gun.frame6 = mlx_xpm_file_to_image(game->data.mlx, "textures/GunSprites/frame6.xpm", &game->gun.width, &game->gun.height);
-	game->gun.frame7 = mlx_xpm_file_to_image(game->data.mlx, "textures/GunSprites/frame7.xpm", &game->gun.width, &game->gun.height);
-	game->gun.frame8 = mlx_xpm_file_to_image(game->data.mlx, "textures/GunSprites/frame8.xpm", &game->gun.width, &game->gun.height);
-	game->gun.frame9 = mlx_xpm_file_to_image(game->data.mlx, "textures/GunSprites/frame9.xpm", &game->gun.width, &game->gun.height);
-	game->gun.frame10 = mlx_xpm_file_to_image(game->data.mlx, "textures/GunSprites/frame10.xpm", &game->gun.width, &game->gun.height);
-	game->gun.frame11 = mlx_xpm_file_to_image(game->data.mlx, "textures/GunSprites/frame11.xpm", &game->gun.width, &game->gun.height);
-	game->gun.frame12 = mlx_xpm_file_to_image(game->data.mlx, "textures/GunSprites/frame12.xpm", &game->gun.width, &game->gun.height);
 	game->wall.texture.img = mlx_xpm_file_to_image(game->data.mlx, "textures/bricks", &game->wall.width, &game->wall.height);
 	game->wall.texture.addr = mlx_get_data_addr(game->wall.texture.img, &game->wall.texture.bits_per_pixel, &game->wall.texture.line_length, &game->wall.texture.endian);
 	game->data.frame.img = mlx_new_image(game->data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -58,6 +46,8 @@ void	setup_init(t_game *game, char *map[])
 	game->bob.rotationSpeed = 1 * (M_PI / 180);
 	game->bob.radius = 3;
 	game->last_mouse_x = WINDOW_WIDTH / 2;
+	game->bob.dppp = ((WINDOW_WIDTH) / 2) / tan(FOV / 2);
+	
 }
 
 int main(void)

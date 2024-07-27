@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/05/25 21:14:35 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/27 10:13:37 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,16 +89,14 @@ void	render_texture_v(t_game *game, t_coords start, int height, t_ray ray)
 void	render_walls(t_game *game)
 {
 	t_coords	start;
-	double		p_wall_height;
-	double		dppp;
+	float		p_wall_height;
 	int			i;
 
-	dppp = ((WINDOW_WIDTH) / 2) / tan(FOV / 2);
 	start.x = 0;
 	i = 0;
 	while (i < NUM_OF_RAYS / WALL_COL_WIDTH)
 	{
-		p_wall_height = (TILE_SIZE * dppp) / game->rays[i].distance;
+		p_wall_height = (TILE_SIZE * game->bob.dppp) / game->rays[i].distance;
 		start.y = ((WINDOW_HEIGHT) / 2) - ((int)p_wall_height / 2);
 		draw_rect(game, (t_coords){start.x, 0}, 1, (WINDOW_HEIGHT - p_wall_height) / 2, 0x646661);
 		if (game->rays[i].horizontal)

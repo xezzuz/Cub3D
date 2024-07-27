@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/26 19:18:41 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/27 10:35:12 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <limits.h>
 # include <math.h>
 
-# define WINDOW_WIDTH 1920
-# define WINDOW_HEIGHT 1080
+# define WINDOW_WIDTH 1280
+# define WINDOW_HEIGHT 720
 # define TILE_SIZE 64
 # define COLS 25
 # define ROWS 18
@@ -78,10 +78,11 @@ typedef struct s_player
 	int			turnDirection;
 	int			upright;
 	int			sideways;
-	double		startingAngle;
-	double		rotationAngle;
-	double		moveSpeed;
+	float		startingAngle;
+	float		rotationAngle;
+	float		moveSpeed;
 	float		rotationSpeed;
+	float		dppp;
 }				t_player;
 
 typedef struct s_frame
@@ -96,8 +97,9 @@ typedef struct s_frame
 typedef struct s_ray
 {
 	t_fcoords	endpoint;
-	double		ray_angle;
-	double		distance;
+	float		ray_angle;
+	float		distance;
+	float		wall_height;
 	int			horizontal;
 	int			up;
 	int			down;
