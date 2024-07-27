@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 12:10:42 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/27 12:56:30 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 int	render_game(t_game	*game)
 {
-	if (game->mouse_hide > 0)
-		mlx_mouse_show();
-	else
-		mlx_mouse_hide();
 	update_game(game);
 	render_walls(game);
 	render_minimap(game);
