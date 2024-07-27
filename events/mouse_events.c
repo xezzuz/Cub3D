@@ -6,11 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 19:09:49 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 17:27:55 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/27 17:47:22 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int	mouse_move(int x, int y, t_game *game)
 {

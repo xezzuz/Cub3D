@@ -6,11 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 17:27:52 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/27 17:47:18 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int	render_game(t_game	*game)
 {

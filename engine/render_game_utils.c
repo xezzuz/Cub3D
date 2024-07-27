@@ -6,11 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 19:04:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 17:27:51 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/27 17:47:17 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 // void	render_crosshair(t_game *game)
 // {

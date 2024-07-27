@@ -6,11 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:18:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 17:27:54 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/27 17:47:21 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int keypress(int key, t_game *game)
 {

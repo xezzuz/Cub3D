@@ -6,11 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 17:27:53 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/27 17:47:20 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 float	distance(t_coords a, t_fcoords b)
 {

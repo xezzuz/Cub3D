@@ -6,11 +6,11 @@
 #    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/07/27 17:27:18 by nazouz           ###   ########.fr        #
+#    Updated: 2024/07/27 17:47:53 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= 		cub2d
+NAME			= 		Cub3D
 
 CC				= 		cc
 
@@ -39,7 +39,7 @@ all : $(NAME)
 	@$(CC) $(CFLAGS) -O3 -I ./mlx -c $< -o $@
 
 $(NAME) : $(OBJS) $(INCLUDE)
-	$(CC) $(CFLAGS) $(OBJS) $(MLX) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(MLX) -o $(NAME)
 	@echo "\033[1;32mSUCCESS\033[0m"
 
 clean :

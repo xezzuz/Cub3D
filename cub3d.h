@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 17:27:50 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/27 17:48:07 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ typedef struct s_fcoords
 	float	x;
 	float	y;
 }				t_fcoords;
+
+
+
+
 
 // typedef struct s_line
 // {
