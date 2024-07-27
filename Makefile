@@ -6,7 +6,7 @@
 #    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/07/27 11:18:52 by nazouz           ###   ########.fr        #
+#    Updated: 2024/07/27 11:45:55 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ CFLAGS			= 		-Wall -Werror -Wextra -g3
 
 INCLUDE			=		cub2d.h mlx/mlx.h
 
-MLX				=		mlx/libmlx.a
+MLXLIB			=		mlx/libmlx.a
+
+MLX				=		$(MLXLIB) -lm -framework OpenGL -framework AppKit
 
 SRCS			= 		cub2d.c \
 						draw_game.c \
@@ -34,10 +36,10 @@ all : $(NAME)
 
 %.o : %.c $(INCLUDE)
 	@echo "\033[5;34mCompiling ${notdir $<}\033[0m"
-	@$(CC) $(CFLAGS) -O3 -Imlx -c $< -o $@
+	@$(CC) $(CFLAGS) -O3 -I ./mlx -c $< -o $@
 
 $(NAME) : $(OBJS) $(INCLUDE)
-	$(CC) $(CFLAGS) -lmlx -framework OpenGL -framework AppKit $(OBJS) $(MLX) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(MLX) -o $(NAME)
 	@echo "\033[1;32mSUCCESS\033[0m"
 
 clean :
