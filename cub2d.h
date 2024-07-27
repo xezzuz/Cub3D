@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub2d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 11:35:36 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/27 12:08:59 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define A 0
 # define S 1
 # define D 2
+# define MOUSE 7
 
 # define WHITE 0xffffff
 # define BLACK 0x000000
@@ -161,7 +162,7 @@ typedef struct s_game
 	int			counter;
 	int			animate;
 	void		*currframe;
-	int			last_mouse_x;
+	int			mouse_hide;
 }				t_game;
 
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
