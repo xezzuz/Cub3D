@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 17:47:20 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/28 10:34:25 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,10 +133,10 @@ void	cast_rays(t_game *game)
 		game->rays[i].up = !game->rays[i].down;
 		game->rays[i].right = current_angle < M_PI_2 || current_angle > (1.5 * M_PI);
 		game->rays[i].left = !game->rays[i].right;
-		game->rays[i].wall_height = (TILE_SIZE * game->bob.dppp) / game->rays[i].distance;
 		calc_hit(game, &game->rays[i]);
 		// printf("Intersection[%f, %f] - Bob[%d, %d]\n", game->rays[i].endpoint.x, game->rays[i].endpoint.y, game->bob.coords.x, game->bob.coords.y);
 		game->rays[i].distance *= cos(game->rays[i].ray_angle - game->bob.rotationAngle);
+		game->rays[i].wall_height = (TILE_SIZE * game->bob.dppp) / game->rays[i].distance;
 		// printf("Ray[%d] = Distance[%f]\n", i, game->rays[i].distance);
 		current_angle += ((FOV) / NUM_OF_RAYS);
 		i++;

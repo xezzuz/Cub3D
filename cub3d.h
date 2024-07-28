@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 17:48:07 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/28 11:39:12 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,10 +132,13 @@ typedef struct s_ray
 typedef struct s_texture
 {
 	t_frame	texture;
+	t_frame	texture1;
+	t_frame	texture2;
+	t_frame	texture3;
 	int		height;
 	int		width;
-	int		x_offset;
-	int		y_offset;
+	int		offset;
+	int		y_txt;
 }			t_texture;
 
 typedef struct s_data

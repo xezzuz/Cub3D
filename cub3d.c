@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:34:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 17:27:49 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/28 11:39:32 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,14 @@ void	setup_init(t_game *game, char *map[])
 	game->map = map;
 	game->counter = 0;
 	game->animate = 0;
-	game->wall.texture.img = mlx_xpm_file_to_image(game->data.mlx, "textures/bricks", &game->wall.width, &game->wall.height);
+	game->wall.texture.img = mlx_xpm_file_to_image(game->data.mlx, "textures/pokerheart", &game->wall.width, &game->wall.height);
+	game->wall.texture1.img = mlx_xpm_file_to_image(game->data.mlx, "textures/pokerspades", &game->wall.width, &game->wall.height);
+	game->wall.texture2.img = mlx_xpm_file_to_image(game->data.mlx, "textures/pokerclubs", &game->wall.width, &game->wall.height);
+	game->wall.texture3.img = mlx_xpm_file_to_image(game->data.mlx, "textures/pokerdiamond", &game->wall.width, &game->wall.height);
 	game->wall.texture.addr = mlx_get_data_addr(game->wall.texture.img, &game->wall.texture.bits_per_pixel, &game->wall.texture.line_length, &game->wall.texture.endian);
+	game->wall.texture1.addr = mlx_get_data_addr(game->wall.texture1.img, &game->wall.texture1.bits_per_pixel, &game->wall.texture1.line_length, &game->wall.texture1.endian);
+	game->wall.texture2.addr = mlx_get_data_addr(game->wall.texture2.img, &game->wall.texture2.bits_per_pixel, &game->wall.texture2.line_length, &game->wall.texture2.endian);
+	game->wall.texture3.addr = mlx_get_data_addr(game->wall.texture3.img, &game->wall.texture3.bits_per_pixel, &game->wall.texture3.line_length, &game->wall.texture3.endian);
 	game->data.frame.img = mlx_new_image(game->data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	game->data.frame.addr = mlx_get_data_addr(game->data.frame.img, &game->data.frame.bits_per_pixel, &game->data.frame.line_length, &game->data.frame.endian);
 	game->bob.coords.x = (21 * TILE_SIZE) + TILE_SIZE / 2;
@@ -91,5 +97,4 @@ int main(void)
 	mlx_hook(game.data.win, 6, 0, mouse_move, &game);
 	mlx_loop_hook(game.data.mlx, render_game, &game);
 	mlx_loop(game.data.mlx);
-	printf("FINISHED\n");
 }
