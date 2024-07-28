@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/28 12:15:37 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/28 17:20:20 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int	get_pixel_color(t_frame *wall, int x, int y)
 {
 	char	*dst;
 
-	dst = wall->addr + y * wall->line_length + x * (wall->bits_per_pixel / 8);
+	dst = wall->addr + (y * wall->line_length) + x * (wall->bpp / 8);
 	return (*(unsigned int *)dst);
 }
 
-void	render_texture(t_game *game, t_coords start, int height, t_frame txt)
+void	render_tex(t_game *game, t_coords start, int height, t_frame txt)
 {
 	int	i;
 
@@ -51,25 +51,26 @@ void	render_texture(t_game *game, t_coords start, int height, t_frame txt)
 		i += -start.y;
 		start.y = 0;
 	}
+	// printf("%d\n",((start.y + ((height / 2) - (WINDOW_HEIGHT / 2))) * game->wall.height) / 64);
 	while (i < height && start.y < WINDOW_HEIGHT)
 	{
-		game->wall.y_txt = (start.y + (height / 2) - (WINDOW_HEIGHT / 2)) * game->wall.height / height;
+		game->wall.y_txt = ((start.y + ((height / 2) - (WINDOW_HEIGHT / 2))) * game->wall.height) / height;
 		my_mlx_pixel_put(game, start.x, start.y, get_pixel_color(&txt, game->wall.offset, game->wall.y_txt));
 		start.y++;
 		i++;
 	}
 }
 
-void	assign_texture(t_game *game, t_coords start, t_ray ray)
+void	assign_tex(t_game *game, t_coords start, t_ray ray)
 {
 	if (ray.horizontal && ray.up)
-		render_texture(game, start, ray.wall_height, game->wall.texture);
+		render_tex(game, start, ray.wall_height, game->wall.tex);
 	else if (ray.horizontal && ray.down)
-		render_texture(game, start, ray.wall_height, game->wall.texture1);
+		render_tex(game, start, ray.wall_height, game->wall.tex1);
 	if (!ray.horizontal && ray.left)
-		render_texture(game, start, ray.wall_height, game->wall.texture2);
+		render_tex(game, start, ray.wall_height, game->wall.tex2);
 	else if (!ray.horizontal && ray.right)
-		render_texture(game, start, ray.wall_height, game->wall.texture3);
+		render_tex(game, start, ray.wall_height, game->wall.tex3);
 }
 
 void	render_walls(t_game *game)
@@ -86,10 +87,10 @@ void	render_walls(t_game *game)
 		start.y = ((WINDOW_HEIGHT) / 2) - (game->rays[i].wall_height / 2);
 		draw_rect(game, (t_coords){start.x, 0}, 1, flcl_height, 0x181818); //0x646661
 		if (game->rays[i].horizontal)
-			game->wall.offset = fmod(game->rays[i].endpoint.x * (game->wall.width / TILE_SIZE), game->wall.height);
+			game->wall.offset = fmod(game->rays[i].endpoint.x * (game->wall.width / TILE_SIZE), game->wall.height); // multiplying the ray hit by how much bigger the wall tex is than the actual wall and fmoding it so it loops back around the tex if it exceeds the borders. 
 		else
 			game->wall.offset = fmod(game->rays[i].endpoint.y * (game->wall.width / TILE_SIZE), game->wall.height);
-		assign_texture(game, start, game->rays[i]);
+		assign_tex(game, start, game->rays[i]);
 		start.y += game->rays[i].wall_height;
 		draw_rect(game, (t_coords){start.x, start.y}, 1, flcl_height, 0x181818); //0xBFC4B5
 		start.x += WALL_COL_WIDTH;

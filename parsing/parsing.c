@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:37:40 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 18:08:13 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/28 17:19:11 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	fill_map(t_game *game, int map_size)
 	return (1);
 }
 
-int	fill_textures(t_game *game)
+int	fill_texs(t_game *game)
 {
 	int		i;
 	char	**array;
@@ -53,7 +53,7 @@ int	fill_struct(t_game *game)
 	int		map_size;
 
 	struct_init(game);
-	fill_textures(game);
+	fill_texs(game);
 	map_size = array_size(game->map_cub) - 6;
 	if (map_size <= 3)
 		return (0);
