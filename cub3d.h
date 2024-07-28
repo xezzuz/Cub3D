@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/28 11:39:12 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/28 17:20:03 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,12 @@ typedef struct s_player
 	float		dppp;
 }				t_player;
 
+//bits per pixel > bpp
 typedef struct s_frame
 {
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel;
+	int		bpp;
 	int		line_length;
 	int		endian;
 }			t_frame;
@@ -129,17 +130,17 @@ typedef struct s_ray
 	int			right;
 }				t_ray;
 
-typedef struct s_texture
+typedef struct s_tex
 {
-	t_frame	texture;
-	t_frame	texture1;
-	t_frame	texture2;
-	t_frame	texture3;
+	t_frame	tex;
+	t_frame	tex1;
+	t_frame	tex2;
+	t_frame	tex3;
 	int		height;
 	int		width;
 	int		offset;
 	int		y_txt;
-}			t_texture;
+}			t_tex;
 
 typedef struct s_data
 {
@@ -173,7 +174,7 @@ typedef struct s_game
 	t_ray		rays[NUM_OF_RAYS];
 	t_data		data;
 	t_player	bob;
-	t_texture	wall;
+	t_tex	wall;
 	t_weapon	gun;
 	int			counter;
 	int			animate;

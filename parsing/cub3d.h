@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:38:17 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/23 18:15:20 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/28 17:19:11 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define EAST 'E'
 # define EMPTY ' '
 
-typedef struct s_texture
+typedef struct s_tex
 {
 	char		*north;
 	char		*south;
@@ -39,7 +39,7 @@ typedef struct s_texture
 	char		**ch_ceiling;
 	int			floor[3];
 	int			ceiling[3];
-}				t_texture;
+}				t_tex;
 
 typedef struct s_data
 {
@@ -59,7 +59,7 @@ typedef struct s_game
 	char		**map_cub;
 	t_parse		parse;
 	t_data		data;
-	t_texture	textures;
+	t_tex	texs;
 }				t_game;
 
 
