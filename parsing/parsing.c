@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:37:40 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 18:42:40 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/29 20:09:47 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ int	fill_map(t_game *game, int map_size)
 			non_empty++;
 	while (str_is_empty(game->parse.file[i]))
 		i++;
-	game->map = malloc(sizeof(char *) * (map_size + 1));
-	if (!game->map)
+	game->map.map = malloc(sizeof(char *) * (map_size + 1));
+	if (!game->map.map)
 		return (0);
 	j = 0;
 	while (game->parse.file[i] && !map_is_done(game->parse.file, i))
 	{
 		if (game->parse.file[i][ft_strlen(game->parse.file[i]) - 1] == '\n')
 			game->parse.file[i][ft_strlen(game->parse.file[i]) - 1] = '\0';
-		game->map[j++] = ft_strdup(game->parse.file[i++]);
+		game->map.map[j++] = ft_strdup(game->parse.file[i++]);
 	}
-	game->map[j] = NULL;
+	game->map.map[j] = NULL;
 	return (1);
 }
 
@@ -107,8 +107,8 @@ int	parsing(t_game *game, char *map_name)
 		return (0);
 	if (!validate_map(game))
 		return (0);
+	count_rows_cols(game);
 	init_vars(game);
-	printf("[%s]\n", game->textures.north);
 	// printf("\n\n\n\n");
 	// ft_print_config(game, map_name);
 	return (1);

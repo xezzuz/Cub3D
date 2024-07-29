@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 18:25:32 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/29 20:00:21 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 # define TILE 64
-# define COLS 25
-# define ROWS 18
-# define WIDTH COLS * TILE
-# define HEIGHT ROWS * TILE
+// # define COLS 25
+// # define ROWS 18
+// # define WIDTH COLS * TILE
+// # define HEIGHT ROWS * TILE
 # define FOV (M_PI / 3)
 # define NUM_OF_RAYS WIN_WIDTH
 
@@ -162,14 +162,22 @@ typedef struct s_parse
 {
 	char		**file;
 	char		**tex_colors;
-	int			rows;
-	int			columns;
 	int			p_count;
 }				t_parse;
 
-typedef struct s_game
+typedef struct s_map
 {
 	char		**map;
+	int			rows;
+	int			columns;
+	int			height;
+	int			width;
+
+}				t_map;
+
+typedef struct s_game
+{
+	t_map		map;
 	t_ray		rays[NUM_OF_RAYS];
 	t_player	bob;
 	t_tex		wall;
@@ -235,6 +243,7 @@ int		valid_left_right(char **map, size_t i, size_t j);
 int		map_is_done(char **map, int i);
 void	init_bob(t_game *game, int i, int j, char direction);
 void	init_vars(t_game *game);
+void	count_rows_cols(t_game *game);
 
 int		add_to_array(char ***array, char *str);
 

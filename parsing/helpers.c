@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:07:48 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 18:09:16 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/29 19:59:48 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	ft_print_config(t_game *game, char *mapname)
 	printf("\n\n");
 	
 	printf("GAME MAP:\n");
-	if (!game->map)
+	if (!game->map.map)
 		printf("NONE\n");
 	i = 0;
-	while (game->map && game->map[i])
-		printf("%s\n", game->map[i++]);
+	while (game->map.map && game->map.map[i])
+		printf("%s\n", game->map.map[i++]);
 }

@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:18:32 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 18:14:49 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/29 19:58:30 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	struct_init(t_game *game)
 {
-	game->map = NULL;
+	game->map.rows = 0;
+	game->map.columns = 0;
+	game->map.map = NULL;
 	game->textures.north = NULL;
 	game->textures.south = NULL;
 	game->textures.east = NULL;

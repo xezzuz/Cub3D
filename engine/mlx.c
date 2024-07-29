@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:21:51 by mmaila            #+#    #+#             */
-/*   Updated: 2024/07/29 11:48:35 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/29 19:24:06 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../headers/cub3d.h"
 
 int	get_pixel_color(t_frame *wall, int x, int y)
 {

@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 19:20:14 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 18:01:45 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/29 19:59:32 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,14 +116,14 @@ int	validate_shape(t_game *game, char **map, size_t rows)
 
 int	validate_map(t_game *game)
 {
-	game->parse.rows = array_size(game->map);
-	if (!validate_surroundings(game->map, game->parse.rows))
+	game->map.rows = array_size(game->map.map);
+	if (!validate_surroundings(game->map.map, game->map.rows))
 		return (0);
-	if (validate_objects(game, game->map, game->parse.rows) != 1)
+	if (validate_objects(game, game->map.map, game->map.rows) != 1)
 		return (0);
-	if (!validate_shape(game, game->map, game->parse.rows))
+	if (!validate_shape(game, game->map.map, game->map.rows))
 		return (0);
-	if (!validate_spaces(game, game->map))
+	if (!validate_spaces(game, game->map.map))
 		return (0);
 	return (1);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   update_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 13:42:02 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/29 19:58:02 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../headers/cub3d.h"
 
 float	distance(t_coords a, t_fcoords b)
 {
@@ -59,13 +59,13 @@ int	hitbox(t_game *game, int new_x, int new_y)
 	game->bob.radius.left.x = new_x - 6;
 	game->bob.radius.down.y = new_y + 6;
 	game->bob.radius.down.x = new_x;
-	if (game->map[game->bob.radius.up.y / TILE]
+	if (game->map.map[game->bob.radius.up.y / TILE]
 		[game->bob.radius.up.x / TILE] == '1'
-		|| game->map[game->bob.radius.right.y / TILE]
+		|| game->map.map[game->bob.radius.right.y / TILE]
 		[game->bob.radius.right.x / TILE] == '1'
-		|| game->map[game->bob.radius.left.y / TILE]
+		|| game->map.map[game->bob.radius.left.y / TILE]
 		[game->bob.radius.left.x / TILE] == '1'
-		|| game->map[game->bob.radius.down.y / TILE]
+		|| game->map.map[game->bob.radius.down.y / TILE]
 		[game->bob.radius.down.x / TILE] == '1')
 		return (1);
 	return (0);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_game_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 19:04:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 12:05:11 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/29 20:02:00 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../headers/cub3d.h"
 
 // void	render_crosshair(t_game *game)
 // {
@@ -89,13 +89,13 @@ void	render_minimap(t_game *game)
 	draw_rect(game, (t_coords){7,19}, 5, 300, 0x62645F);
 	draw_rect(game, (t_coords){12,12}, 300, 300, 0x2F312D);
 	x = 0;
-	while (x < WIDTH)
+	while (x < game->map.width)
 	{
 		y = 0;
-		while (y < HEIGHT)
+		while (y < game->map.height)
 		{
 			if (x + diff.x <= 300 && x + diff.x >= 0 && y + diff.y <= 300 && y + diff.y >= 0)
-				if (game->map[y / TILE][x / TILE] == '0')
+				if (game->map.map[y / TILE][x / TILE] == '0')
 					my_mlx_pixel_put(game, x + diff.x + 12, y + diff.y + 12, WHITE);
 			y++;
 		}
