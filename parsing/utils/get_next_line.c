@@ -6,11 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:13:31 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/23 18:13:57 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/29 18:06:07 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../headers/cub3d.h"
 
 void	update_buffer(char **buffer)
 {

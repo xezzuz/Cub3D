@@ -6,11 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:38:04 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 15:46:57 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/29 17:29:37 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../headers/cub3d.h"
 
 int	main(int argc, char **argv)
 {

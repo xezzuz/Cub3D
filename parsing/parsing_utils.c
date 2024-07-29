@@ -6,15 +6,15 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:18:32 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 15:13:26 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/29 18:14:49 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../headers/cub3d.h"
 
 void	struct_init(t_game *game)
 {
-	game->data.map = NULL;
+	game->map = NULL;
 	game->textures.north = NULL;
 	game->textures.south = NULL;
 	game->textures.east = NULL;
@@ -78,6 +78,7 @@ int	get_rgb_colors(t_game *game)
 
 int	get_key_value(t_game *game, char **array)
 {
+	// using system strcmp!!!
 	if (!strcmp("NO", array[0]) && !game->textures.north)
 		game->textures.north = ft_strdup(array[1]);
 	else if (!strcmp("SO", array[0]) && !game->textures.south)
@@ -87,9 +88,9 @@ int	get_key_value(t_game *game, char **array)
 	else if (!strcmp("EA", array[0]) && !game->textures.east)
 		game->textures.east = ft_strdup(array[1]);
 	else if (!strcmp("F", array[0]) && !game->textures.ch_floor)
-		game->textures.ch_floor = ft_split(array[1], ',');
+		game->textures.ch_floor = ft_split(array[1], ','); //
 	else if (!strcmp("C", array[0]) && !game->textures.ch_ceiling)
-		game->textures.ch_ceiling = ft_split(array[1], ',');
+		game->textures.ch_ceiling = ft_split(array[1], ','); //
 	else
 		return (0);
 	return (1);

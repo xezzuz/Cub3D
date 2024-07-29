@@ -6,11 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:37:40 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 15:50:37 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/29 18:42:40 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../headers/cub3d.h"
 
 int	fill_map(t_game *game, int map_size)
 {
@@ -25,17 +25,17 @@ int	fill_map(t_game *game, int map_size)
 			non_empty++;
 	while (str_is_empty(game->parse.file[i]))
 		i++;
-	game->data.map = malloc(sizeof(char *) * (map_size + 1));
-	if (!game->data.map)
+	game->map = malloc(sizeof(char *) * (map_size + 1));
+	if (!game->map)
 		return (0);
 	j = 0;
 	while (game->parse.file[i] && !map_is_done(game->parse.file, i))
 	{
 		if (game->parse.file[i][ft_strlen(game->parse.file[i]) - 1] == '\n')
 			game->parse.file[i][ft_strlen(game->parse.file[i]) - 1] = '\0';
-		game->data.map[j++] = ft_strdup(game->parse.file[i++]);
+		game->map[j++] = ft_strdup(game->parse.file[i++]);
 	}
-	game->data.map[j] = NULL;
+	game->map[j] = NULL;
 	return (1);
 }
 
@@ -107,7 +107,9 @@ int	parsing(t_game *game, char *map_name)
 		return (0);
 	if (!validate_map(game))
 		return (0);
-	// ft_print_config(game, map_name);
+	init_vars(game);
+	printf("[%s]\n", game->textures.north);
 	// printf("\n\n\n\n");
+	// ft_print_config(game, map_name);
 	return (1);
 }

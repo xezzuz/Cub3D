@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:18:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 12:02:27 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/29 18:03:41 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int keypress(int key, t_game *game)
 		game->bob.turn_dir = 1;
 	else if (key == 49 && game->counter == 0)
 		game->animate = 1;
+	// ESC KEY
 	return (0);
 }
 

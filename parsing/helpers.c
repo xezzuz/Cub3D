@@ -6,11 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:07:48 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 10:26:02 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/29 18:09:16 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../headers/cub3d.h"
 
 void	ft_print_config(t_game *game, char *mapname)
 {
@@ -37,23 +37,25 @@ void	ft_print_config(t_game *game, char *mapname)
 	
 	i = 0;
 	printf("FLOOR COLOR: ");
-	if (!game->textures.ch_floor)
-		printf("NONE\n");
-	while (game->textures.ch_floor && game->textures.ch_floor[i])
-		printf("[%s]", game->textures.ch_floor[i++]);
+	printf("[%d, %d, %d]", game->textures.floor[0], game->textures.floor[1], game->textures.floor[2]);
+	// if (!game->textures.ch_floor)
+	// 	printf("NONE\n");
+	// while (game->textures.ch_floor && game->textures.ch_floor[i])
+	// 	printf("[%s]", game->textures.ch_floor[i++]);
 	printf("\n");
 	i = 0;
 	printf("CEILING COLOR: ");
-	if (!game->textures.ch_ceiling)
-		printf("NONE\n");
-	while (game->textures.ch_ceiling && game->textures.ch_ceiling[i])
-		printf("[%s]", game->textures.ch_ceiling[i++]);
+	printf("[%d, %d, %d]", game->textures.ceiling[0], game->textures.ceiling[1], game->textures.ceiling[2]);
+	// if (!game->textures.ch_ceiling)
+	// 	printf("NONE\n");
+	// while (game->textures.ch_ceiling && game->textures.ch_ceiling[i])
+	// 	printf("[%s]", game->textures.ch_ceiling[i++]);
 	printf("\n\n");
 	
 	printf("GAME MAP:\n");
-	if (!game->data.map)
+	if (!game->map)
 		printf("NONE\n");
 	i = 0;
-	while (game->data.map && game->data.map[i])
-		printf("%s\n", game->data.map[i++]);
+	while (game->map && game->map[i])
+		printf("%s\n", game->map[i++]);
 }

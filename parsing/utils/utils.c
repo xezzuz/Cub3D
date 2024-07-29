@@ -6,11 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 13:16:29 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 16:29:33 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/29 18:06:20 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../headers/cub3d.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {

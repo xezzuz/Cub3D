@@ -6,13 +6,13 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 19:20:14 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 16:31:26 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/29 18:01:45 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../headers/cub3d.h"
 
-int	validate_objects(char **map, int rows)
+int	validate_objects(t_game *game, char **map, int rows)
 {
 	int		i;
 	int		j;
@@ -28,8 +28,11 @@ int	validate_objects(char **map, int rows)
 		{
 			c = map[i][j];
 			if (c == NORTH || c == SOUTH || c == WEST || c == EAST)
+			{
+				init_bob(game, i, j, c);
 				player_count++;
-			else if (c != WALL && c != FLOOR && c != EMPTY && c != '\n')
+			}
+			else if (c != WALL && c != FLOOR && c != EMPTY)
 				return (0);
 			j++;
 		}
@@ -113,14 +116,14 @@ int	validate_shape(t_game *game, char **map, size_t rows)
 
 int	validate_map(t_game *game)
 {
-	game->data.rows = array_size(game->data.map);
-	if (!validate_surroundings(game->data.map, game->data.rows))
+	game->parse.rows = array_size(game->map);
+	if (!validate_surroundings(game->map, game->parse.rows))
 		return (0);
-	if (validate_objects(game->data.map, game->data.rows) != 1)
+	if (validate_objects(game, game->map, game->parse.rows) != 1)
 		return (0);
-	if (!validate_shape(game, game->data.map, game->data.rows))
+	if (!validate_shape(game, game->map, game->parse.rows))
 		return (0);
-	if (!validate_spaces(game, game->data.map))
+	if (!validate_spaces(game, game->map))
 		return (0);
 	return (1);
 }

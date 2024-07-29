@@ -6,11 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:41:58 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 15:46:12 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/29 17:37:03 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../headers/cub3d.h"
 
 size_t	array_size(char **array)
 {
@@ -39,19 +39,20 @@ void	free_2d(char **array)
 void	exit_cub3d(t_game *game, int flag)
 {
 	(void)game;
-	free_2d(game->map_cub);
-	free_2d(game->data.map);
-	free_2d(game->textures.ch_floor);
-	free_2d(game->textures.ch_ceiling);
-	if (game->textures.north)
-		free(game->textures.north);
-	if (game->textures.south)
-		free(game->textures.south);
-	if (game->textures.west)
-		free(game->textures.west);
-	if (game->textures.east)
-		free(game->textures.east);
-	if (flag == ERROR)
-		(printf("Error\n"), exit(EXIT_FAILURE)); // STDERR
-	exit(EXIT_SUCCESS);
+	(void)flag;
+	// free_2d(game->map_cub);
+	// free_2d(game->data.map);
+	// free_2d(game->textures.ch_floor);
+	// free_2d(game->textures.ch_ceiling);
+	// if (game->textures.north)
+	// 	free(game->textures.north);
+	// if (game->textures.south)
+	// 	free(game->textures.south);
+	// if (game->textures.west)
+	// 	free(game->textures.west);
+	// if (game->textures.east)
+	// 	free(game->textures.east);
+	// if (flag == ERROR)
+	// 	(printf("Error\n"), exit(EXIT_FAILURE)); // STDERR
+	// exit(EXIT_SUCCESS);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+         #
+#    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/07/29 13:40:30 by mmaila           ###   ########.fr        #
+#    Updated: 2024/07/29 17:43:55 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,13 @@ CC				= 		cc
 
 CFLAGS			= 		-Wall -Werror -Wextra -g3
 
-INCLUDE			=		cub3d.h mlx/mlx.h
+INCLUDE			=		./headers/cub3d.h ./mlx/mlx.h
 
 MLXLIB			=		mlx/libmlx.a
 
 MLX				=		$(MLXLIB) -lm -framework OpenGL -framework AppKit
 
-SRCS			= 		cub3d.c \
+SRCS			= 		./cub3d.c \
 						./init.c \
 						./engine/interception.c \
 						./engine/mlx.c \
@@ -31,7 +31,18 @@ SRCS			= 		cub3d.c \
 						./engine/render_game_utils.c \
 						./engine/update_game.c \
 						./events/keypress.c \
-						./events/mouse_events.c
+						./events/mouse_events.c \
+						./parsing/parsing.c \
+						./parsing/parsing_utils.c \
+						./parsing/parsing_utils_2.c \
+						./parsing/parsing_utils_3.c \
+						./parsing/parsing_validate.c \
+						./parsing/exit.c \
+						./parsing/utils/ft_atoi.c \
+						./parsing/utils/ft_split.c \
+						./parsing/utils/get_next_line.c \
+						./parsing/utils/utils.c \
+						./parsing/helpers.c  #please remove this file, its for debugging puposes
 
 OBJS			= 		$(SRCS:.c=.o)
 
