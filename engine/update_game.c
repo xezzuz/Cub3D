@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 09:26:44 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/29 11:33:27 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ t_fcoords	horizontal(t_game *game, t_ray *ray)
 	intercept.y += (ray->down * TILE_SIZE);
 	intercept.x = game->bob.coords.x + ((intercept.y - game->bob.coords.y) / tan(ray->ray_angle));
 	step.y = TILE_SIZE;
-	step.y *= ray->up ? -1 : 1;
+	step.y *= !ray->down ? -1 : 1;
 	step.x = TILE_SIZE / tan(ray->ray_angle);
-	step.x *= (ray->left && step.x > 0) ? -1 : 1;
+	step.x *= (!ray->right && step.x > 0) ? -1 : 1;
 	step.x *= (ray->right && step.x < 0) ? -1 : 1;
 	while (intercept.x >= 0 && intercept.x <= WIDTH && intercept.y >= 0 && intercept.y <= HEIGHT)
 	{
-		if (wallhit(game, (t_fcoords){intercept.x, intercept.y - ray->up}))
+		if (wallhit(game, (t_fcoords){intercept.x, intercept.y - !ray->down}))
 			return (intercept);
 		intercept.x += step.x;
 		intercept.y += step.y;
@@ -72,13 +72,13 @@ t_fcoords	vertical(t_game *game, t_ray *ray)
 	intercept.x += (ray->right * TILE_SIZE);
 	intercept.y = game->bob.coords.y + ((intercept.x - game->bob.coords.x) * tan(ray->ray_angle));
 	step.x = TILE_SIZE;
-	step.x *= ray->left ? -1 : 1;
+	step.x *= !ray->right ? -1 : 1;
 	step.y = TILE_SIZE * tan(ray->ray_angle);
-	step.y *= (ray->up && step.y > 0) ? -1 : 1;
+	step.y *= (!ray->down && step.y > 0) ? -1 : 1;
 	step.y *= (ray->down && step.y < 0) ? -1 : 1;
 	while (intercept.x >= 0 && intercept.x <= WIDTH && intercept.y >= 0 && intercept.y <= HEIGHT)
 	{
-		if (wallhit(game, (t_fcoords){intercept.x - ray->left, intercept.y}))
+		if (wallhit(game, (t_fcoords){intercept.x - !ray->right, intercept.y}))
 			return (intercept);
 		intercept.x += step.x;
 		intercept.y += step.y;
@@ -130,9 +130,7 @@ void	cast_rays(t_game *game)
 		current_angle = cycle(current_angle);
 		game->rays[i].ray_angle = current_angle;
 		game->rays[i].down = current_angle < M_PI;
-		game->rays[i].up = !game->rays[i].down;
 		game->rays[i].right = current_angle < M_PI_2 || current_angle > (1.5 * M_PI);
-		game->rays[i].left = !game->rays[i].right;
 		calc_hit(game, &game->rays[i]);
 		game->rays[i].distance *= cos(game->rays[i].ray_angle - game->bob.rot_angle);
 		game->rays[i].wall_height = (TILE_SIZE * game->bob.dppp) / game->rays[i].distance;
@@ -166,7 +164,7 @@ void	update_player(t_game *game)
 	int		new_x;
 	int		new_y;
 
-	game->bob.rot_angle += game->bob.turnDirection * game->bob.rotationSpeed + game->mouse_angle;
+	game->bob.rot_angle += game->bob.turnDirection * game->bob.rot_speed + game->mouse_angle;
 	moveStep = game->bob.upright * game->bob.moveSpeed;
 	diagmovestep = game->bob.sideways * game->bob.moveSpeed / 2;
 	new_x = round(cos(game->bob.rot_angle - (M_PI / 2)) * diagmovestep);

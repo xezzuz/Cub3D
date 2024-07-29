@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 09:26:44 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/29 11:34:44 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,6 @@ typedef struct s_fcoords
 	float	y;
 }				t_fcoords;
 
-
-
-
-
-// typedef struct s_line
-// {
-// 	t_coords	intersection;
-// 	int			dx;
-// 	int			dy;
-// 	int			stepx;
-// 	int			stepy;
-// 	int			err;
-// 	int			e2;
-// }				t_line;
-
 typedef struct s_hitbox
 {
 	t_coords	up;
@@ -82,16 +67,6 @@ typedef struct s_hitbox
 	t_coords	right;
 	t_coords	down;
 }				t_hitbox;
-
-typedef struct s_line
-{
-	float		dx;
-	float		dy;
-	float		m;
-	float		steps;
-	float		x_inc;
-	float		y_inc;
-}				t_line;
 
 typedef struct s_player
 {
@@ -103,7 +78,7 @@ typedef struct s_player
 	float		startingAngle;
 	float		rot_angle;
 	float		moveSpeed;
-	float		rotationSpeed;
+	float		rot_speed;
 	float		dppp;
 }				t_player;
 
@@ -124,9 +99,7 @@ typedef struct s_ray
 	float		distance;
 	float		wall_height;
 	int			horizontal;
-	int			up;
 	int			down;
-	int			left;
 	int			right;
 }				t_ray;
 
@@ -149,24 +122,24 @@ typedef struct s_data
 	t_frame		frame;
 }				t_data;
 
-typedef struct s_weapon
-{
-	void	*frame1;
-	void	*frame2;
-	void	*frame3;
-	void	*frame4;
-	void	*frame5;
-	void	*frame6;
-	void	*frame7;
-	void	*frame8;
-	void	*frame9;
-	void	*frame10;
-	void	*frame11;
-	void	*frame12;
-	int		width;
-	int		height;
-	int		count;
-}			t_weapon;
+// typedef struct s_weapon
+// {
+// 	void	*frame1;
+// 	void	*frame2;
+// 	void	*frame3;
+// 	void	*frame4;
+// 	void	*frame5;
+// 	void	*frame6;
+// 	void	*frame7;
+// 	void	*frame8;
+// 	void	*frame9;
+// 	void	*frame10;
+// 	void	*frame11;
+// 	void	*frame12;
+// 	int		width;
+// 	int		height;
+// 	int		count;
+// }			t_weapon;
 
 typedef struct s_game
 {
@@ -174,15 +147,19 @@ typedef struct s_game
 	t_ray		rays[NUM_OF_RAYS];
 	t_data		data;
 	t_player	bob;
-	t_tex	wall;
-	t_weapon	gun;
+	t_tex		wall;
+	// t_weapon	gun;
 	int			counter;
 	int			animate;
-	double		mouse_angle;
+	float		mouse_angle;
 	void		*currframe;
 }				t_game;
 
+void	setup_init(t_game *game, char **map);
+
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
+int		get_pixel_color(t_frame *wall, int x, int y);
+
 int		render_game(t_game	*game);
 void	update_game(t_game *game);
 void	update_player(t_game *game);
