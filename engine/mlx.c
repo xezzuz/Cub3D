@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:21:51 by mmaila            #+#    #+#             */
-/*   Updated: 2024/07/29 11:24:21 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/29 11:48:35 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = game->data.frame.addr +
-		(y * game->data.frame.line_length + x * (game->data.frame.bpp / 8));
+	dst = game->frame.addr +
+		(y * game->frame.line_length + x * (game->frame.bpp / 8));
 	*(unsigned int*)dst = color;
 }

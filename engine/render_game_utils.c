@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_game_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 19:04:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/27 17:47:17 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/29 12:05:11 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
 // {
 // 	t_coords crosshair;
 	
-// 	crosshair.x = (WINDOW_WIDTH / 2) - 1;
-// 	crosshair.y = (WINDOW_HEIGHT / 2) - 8;
+// 	crosshair.x = (WIN_WIDTH / 2) - 1;
+// 	crosshair.y = (WIN_HEIGHT / 2) - 8;
 // 	draw_rect(game, crosshair, 2, 6, 0x4EE41E);
-// 	crosshair.x = (WINDOW_WIDTH / 2) - 10;
-// 	crosshair.y = (WINDOW_HEIGHT / 2) - 1;
+// 	crosshair.x = (WIN_WIDTH / 2) - 10;
+// 	crosshair.y = (WIN_HEIGHT / 2) - 1;
 // 	draw_rect(game, crosshair, 8, 2, 0x4EE41E);
-// 	crosshair.x = (WINDOW_WIDTH / 2) + 2;
-// 	crosshair.y = (WINDOW_HEIGHT / 2) - 1;
+// 	crosshair.x = (WIN_WIDTH / 2) + 2;
+// 	crosshair.y = (WIN_HEIGHT / 2) - 1;
 // 	draw_rect(game, crosshair, 8, 2, 0x4EE41E);
-// 	crosshair.x = (WINDOW_WIDTH / 2) - 1;
-// 	crosshair.y = (WINDOW_HEIGHT / 2) + 1;
+// 	crosshair.x = (WIN_WIDTH / 2) - 1;
+// 	crosshair.y = (WIN_HEIGHT / 2) + 1;
 // 	draw_rect(game, crosshair, 2, 6, 0x4EE41E);
 // }
 
@@ -95,7 +95,7 @@ void	render_minimap(t_game *game)
 		while (y < HEIGHT)
 		{
 			if (x + diff.x <= 300 && x + diff.x >= 0 && y + diff.y <= 300 && y + diff.y >= 0)
-				if (game->map[y / TILE_SIZE][x / TILE_SIZE] == '0')
+				if (game->map[y / TILE][x / TILE] == '0')
 					my_mlx_pixel_put(game, x + diff.x + 12, y + diff.y + 12, WHITE);
 			y++;
 		}

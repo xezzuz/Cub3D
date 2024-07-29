@@ -6,7 +6,7 @@
 #    By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/07/29 11:24:15 by mmaila           ###   ########.fr        #
+#    Updated: 2024/07/29 13:40:30 by mmaila           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ MLX				=		$(MLXLIB) -lm -framework OpenGL -framework AppKit
 
 SRCS			= 		cub3d.c \
 						./init.c \
+						./engine/interception.c \
 						./engine/mlx.c \
 						./engine/render_walls.c \
 						./engine/render_game.c \

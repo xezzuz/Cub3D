@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 11:34:44 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/29 13:42:05 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,15 @@
 # include <limits.h>
 # include <math.h>
 
-# define WINDOW_WIDTH 1920
-# define WINDOW_HEIGHT 1080
-# define TILE_SIZE 64
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
+# define TILE 64
 # define COLS 25
 # define ROWS 18
-# define WIDTH COLS * TILE_SIZE
-# define HEIGHT ROWS * TILE_SIZE
+# define WIDTH COLS * TILE
+# define HEIGHT ROWS * TILE
 # define FOV (M_PI / 3)
-# define WALL_COL_WIDTH 1
-# define NUM_OF_RAYS WINDOW_WIDTH / WALL_COL_WIDTH
+# define NUM_OF_RAYS WIN_WIDTH
 
 # define UP 126
 # define DOWN 125
@@ -72,7 +71,7 @@ typedef struct s_player
 {
 	t_hitbox	radius;
 	t_coords	coords;
-	float		turnDirection;
+	int			turn_dir;
 	int			upright;
 	int			sideways;
 	float		startingAngle;
@@ -95,10 +94,10 @@ typedef struct s_frame
 typedef struct s_ray
 {
 	t_fcoords	endpoint;
-	float		ray_angle;
-	float		distance;
+	float		angle;
+	float		dis;
 	float		wall_height;
-	int			horizontal;
+	int			horiz;
 	int			down;
 	int			right;
 }				t_ray;
@@ -145,9 +144,11 @@ typedef struct s_game
 {
 	char		**map;
 	t_ray		rays[NUM_OF_RAYS];
-	t_data		data;
 	t_player	bob;
 	t_tex		wall;
+	t_frame		frame;
+	void		*mlx;
+	void		*win;
 	// t_weapon	gun;
 	int			counter;
 	int			animate;
@@ -160,8 +161,10 @@ void	setup_init(t_game *game, char **map);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 int		get_pixel_color(t_frame *wall, int x, int y);
 
+float	distance(t_coords a, t_fcoords b);
 int		render_game(t_game	*game);
-void	update_game(t_game *game);
+void	calc_hit(t_game *game, t_ray *ray);
+void	cast_rays(t_game *game);
 void	update_player(t_game *game);
 
 int		keypress(int key, t_game *game);

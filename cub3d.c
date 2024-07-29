@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:34:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 11:19:54 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/29 11:48:08 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int main(void)
     };
 
 	setup_init(&game, map);
-	mlx_hook(game.data.win, 2, 0, keypress, &game);
-	mlx_hook(game.data.win, 3, 0, keyrelease, &game);
-	mlx_hook(game.data.win, 6, 0, mouse_move, &game);
-	mlx_loop_hook(game.data.mlx, render_game, &game);
-	mlx_loop(game.data.mlx);
+	mlx_hook(game.win, 2, 0, keypress, &game);
+	mlx_hook(game.win, 3, 0, keyrelease, &game);
+	mlx_hook(game.win, 6, 0, mouse_move, &game);
+	mlx_loop_hook(game.mlx, render_game, &game);
+	mlx_loop(game.mlx);
 }
