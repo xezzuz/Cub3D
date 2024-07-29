@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:37:40 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/28 17:19:11 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/29 15:50:37 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,64 @@
 
 int	fill_map(t_game *game, int map_size)
 {
-	int		i;
+	int			i;
+	int			j;
+	int			non_empty;
 
-	i = 0;
-	game->data.map = malloc (sizeof(char *) * (map_size + 1));
+	i = -1;
+	non_empty = 0;
+	while (game->parse.file[++i] && non_empty < 6)
+		if (!str_is_empty(game->parse.file[i]))
+			non_empty++;
+	while (str_is_empty(game->parse.file[i]))
+		i++;
+	game->data.map = malloc(sizeof(char *) * (map_size + 1));
 	if (!game->data.map)
 		return (0);
-	while (game->map_cub[i + 6])
+	j = 0;
+	while (game->parse.file[i] && !map_is_done(game->parse.file, i))
 	{
-		game->data.map[i] = ft_strdup(game->map_cub[i + 6]); //?
-		i++;
+		if (game->parse.file[i][ft_strlen(game->parse.file[i]) - 1] == '\n')
+			game->parse.file[i][ft_strlen(game->parse.file[i]) - 1] = '\0';
+		game->data.map[j++] = ft_strdup(game->parse.file[i++]);
 	}
-	game->data.map[i] = NULL;
+	game->data.map[j] = NULL;
 	return (1);
 }
 
-int	fill_texs(t_game *game)
+int	fill_tex_colors(t_game *game)
 {
-	int		i;
-	char	**array;
+	int			i;
+	int			tex;
 
 	i = 0;
-	while (game->parse.file[i])
+	tex = 6;
+	while (game->parse.file[i] && tex)
 	{
-		array = ft_split(game->map_cub[i], ' ');
+		if (!str_is_empty(game->parse.file[i]))
+		{
+			if (!add_to_array(&game->parse.tex_colors, game->parse.file[i]))
+				return (0);
+			tex--;
+		}
+		i++;
+	}
+	if (tex)
+		return (1);
+	return (0);
+}
+
+int	fill_textures(t_game *game)
+{
+	int			i;
+	char		**array;
+
+	i = 0;
+	if (fill_tex_colors(game))
+		return (0);
+	while (game->parse.tex_colors[i])
+	{
+		array = ft_split(game->parse.tex_colors[i], ' ');
 		if (array_size(array) != 2)
 			return (free_2d(array), 0);
 		if (!get_key_value(game, array))
@@ -50,15 +84,16 @@ int	fill_texs(t_game *game)
 
 int	fill_struct(t_game *game)
 {
-	int		map_size;
+	int		file_size;
 
 	struct_init(game);
-	fill_texs(game);
-	map_size = array_size(game->map_cub) - 6;
-	if (map_size <= 3)
+	game->parse.tex_colors = NULL;
+	if (fill_textures(game))
 		return (0);
-	fill_map(game, map_size);
-	return (1);
+	file_size = array_size(game->parse.file) - 6;
+	if (file_size <= 3)
+		return (0);
+	return (fill_map(game, file_size));
 }
 
 int	parsing(t_game *game, char *map_name)
@@ -68,11 +103,11 @@ int	parsing(t_game *game, char *map_name)
 	game->parse.file = NULL;
 	if (!read_config(game, map_name))
 		return (0);
-	
 	if (!fill_struct(game))
 		return (0);
 	if (!validate_map(game))
 		return (0);
-	ft_print_config(game, map_name);
+	// ft_print_config(game, map_name);
+	// printf("\n\n\n\n");
 	return (1);
 }

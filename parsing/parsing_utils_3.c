@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing_utils_3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/20 12:38:04 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 15:46:57 by nazouz           ###   ########.fr       */
+/*   Created: 2024/07/29 15:49:54 by nazouz            #+#    #+#             */
+/*   Updated: 2024/07/29 15:50:41 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+int	map_is_done(char **map, int i)
 {
-	t_game		game;
-
-	if (argc != 2 || !parsing(&game, argv[1]))
-	{
-		printf("Error\n");
+	while (map && map[i] && str_is_empty(map[i]))
+		i++;
+	if (!map[i])
 		return (1);
-	}
-		// return (exit_cub3d(&game, ERROR), 1);
+	return (0);
 }

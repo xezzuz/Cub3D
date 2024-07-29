@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:41:58 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/28 17:19:11 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/29 15:46:12 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,18 @@ void	free_2d(char **array)
 void	exit_cub3d(t_game *game, int flag)
 {
 	(void)game;
-	// CLEANING
 	free_2d(game->map_cub);
 	free_2d(game->data.map);
-	free_2d(game->texs.ch_floor);
-	free_2d(game->texs.ch_ceiling);
-	if (game->texs.north)
-		free(game->texs.north);
-	if (game->texs.south)
-		free(game->texs.south);
-	if (game->texs.west)
-		free(game->texs.west);
-	if (game->texs.east)
-		free(game->texs.east);
-		//
-		//
-		//
+	free_2d(game->textures.ch_floor);
+	free_2d(game->textures.ch_ceiling);
+	if (game->textures.north)
+		free(game->textures.north);
+	if (game->textures.south)
+		free(game->textures.south);
+	if (game->textures.west)
+		free(game->textures.west);
+	if (game->textures.east)
+		free(game->textures.east);
 	if (flag == ERROR)
 		(printf("Error\n"), exit(EXIT_FAILURE)); // STDERR
 	exit(EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:00:20 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/20 15:34:55 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/29 16:30:55 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,13 @@
 static	size_t	ft_count_words(const char *str, char c)
 {
 	size_t		count;
-	int			in_quote;
 
 	count = 0;
-	in_quote = -1;
 	while (*str)
 	{
-		if (*str == '"')
-			in_quote = in_quote * -1;
 		while (*str && *str == c)
 			str++;
-		if (*str && in_quote == 1)
-		{
-			while (*str && *str != '"')
-				str++;
-			count++;
-			in_quote = in_quote * -1;
-		}
-		if (*str && in_quote == -1 && *str != c)
+		if (*str && *str != c)
 		{
 			count++;
 			while (*str && *str != c)

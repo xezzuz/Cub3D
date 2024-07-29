@@ -6,11 +6,21 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:04:06 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/22 17:04:16 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/29 16:29:38 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+size_t	ft_strlen(const char *s)
+{
+	size_t		i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 int	ft_atoi(const char *str)
 {

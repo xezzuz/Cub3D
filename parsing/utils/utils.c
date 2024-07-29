@@ -6,21 +6,11 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 13:16:29 by nazouz            #+#    #+#             */
-/*   Updated: 2024/04/20 13:58:42 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/29 16:29:33 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-size_t	ft_strlen(const char *s)
-{
-	size_t		i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -103,4 +93,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	*(result + total_len) = '\0';
 	return (result);
 }
-
