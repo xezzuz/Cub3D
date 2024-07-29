@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:34:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/28 17:25:21 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/29 09:26:44 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_data(t_game *game)
 {
 	game->bob.moveSpeed = 4.0;
 	game->bob.rotationSpeed = 1 * (M_PI / 180);
-	game->bob.rotationAngle = game->bob.startingAngle;
+	game->bob.rot_angle = game->bob.startingAngle;
 	game->bob.dppp = ((WINDOW_WIDTH) / 2) / tan(FOV / 2);
 	game->mouse_angle = 0;
 	game->bob.turnDirection = 0;

@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/28 17:20:03 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/29 09:26:44 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ typedef struct s_player
 	int			upright;
 	int			sideways;
 	float		startingAngle;
-	float		rotationAngle;
+	float		rot_angle;
 	float		moveSpeed;
 	float		rotationSpeed;
 	float		dppp;

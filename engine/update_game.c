@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/28 10:34:25 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/29 09:26:44 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void	cast_rays(t_game *game)
 	int			i;
 
 	i = 0;
-	current_angle = game->bob.rotationAngle - ((FOV) / 2);
+	current_angle = game->bob.rot_angle - ((FOV) / 2);
 	while (i < NUM_OF_RAYS)
 	{
 		current_angle = cycle(current_angle);
@@ -134,10 +134,8 @@ void	cast_rays(t_game *game)
 		game->rays[i].right = current_angle < M_PI_2 || current_angle > (1.5 * M_PI);
 		game->rays[i].left = !game->rays[i].right;
 		calc_hit(game, &game->rays[i]);
-		// printf("Intersection[%f, %f] - Bob[%d, %d]\n", game->rays[i].endpoint.x, game->rays[i].endpoint.y, game->bob.coords.x, game->bob.coords.y);
-		game->rays[i].distance *= cos(game->rays[i].ray_angle - game->bob.rotationAngle);
+		game->rays[i].distance *= cos(game->rays[i].ray_angle - game->bob.rot_angle);
 		game->rays[i].wall_height = (TILE_SIZE * game->bob.dppp) / game->rays[i].distance;
-		// printf("Ray[%d] = Distance[%f]\n", i, game->rays[i].distance);
 		current_angle += ((FOV) / NUM_OF_RAYS);
 		i++;
 	}
@@ -168,13 +166,13 @@ void	update_player(t_game *game)
 	int		new_x;
 	int		new_y;
 
-	game->bob.rotationAngle += game->bob.turnDirection * game->bob.rotationSpeed + game->mouse_angle;
+	game->bob.rot_angle += game->bob.turnDirection * game->bob.rotationSpeed + game->mouse_angle;
 	moveStep = game->bob.upright * game->bob.moveSpeed;
 	diagmovestep = game->bob.sideways * game->bob.moveSpeed / 2;
-	new_x = round(cos(game->bob.rotationAngle - (M_PI / 2)) * diagmovestep);
-	new_y = round(sin(game->bob.rotationAngle - (M_PI / 2)) * diagmovestep);
-	new_x += round(game->bob.coords.x + (cos(game->bob.rotationAngle) * moveStep));
-	new_y += round(game->bob.coords.y + (sin(game->bob.rotationAngle) * moveStep));
+	new_x = round(cos(game->bob.rot_angle - (M_PI / 2)) * diagmovestep);
+	new_y = round(sin(game->bob.rot_angle - (M_PI / 2)) * diagmovestep);
+	new_x += round(game->bob.coords.x + (cos(game->bob.rot_angle) * moveStep));
+	new_y += round(game->bob.coords.y + (sin(game->bob.rot_angle) * moveStep));
 	if (!hitbox(game, new_x, new_y))
 	{
 		game->bob.coords.x = new_x;
