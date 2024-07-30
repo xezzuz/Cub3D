@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
+#    By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/07/30 13:25:12 by nazouz           ###   ########.fr        #
+#    Updated: 2024/07/30 17:54:18 by mmaila           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ MLX				=		$(MLXLIB) -lm -framework OpenGL -framework AppKit
 
 SRCS			= 		./cub3d.c \
 						./init.c \
-						./engine/interception.c \
+						./engine/intercection.c \
 						./engine/mlx.c \
 						./engine/render_walls.c \
 						./engine/render_game.c \

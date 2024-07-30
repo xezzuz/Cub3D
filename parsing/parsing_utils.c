@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:18:32 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 17:34:52 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 19:01:54 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	struct_init(t_game *game)
 {
-	game->map.rows = 0;
-	game->map.columns = 0;
+	game->lvl.rows = 0;
+	game->lvl.columns = 0;
 	game->parse.err = NULL;
-	game->map.map = NULL;
+	game->lvl.map = NULL;
+	game->lvl.doors = NULL;
 	game->textures.north = NULL;
 	game->textures.south = NULL;
 	game->textures.east = NULL;
@@ -63,13 +64,14 @@ int	get_rgb_colors(t_game *game)
 {
 	int		i;
 
-	i = -1;
-	while (++i < 3)
+	i = 0;
+	while (i < 3)
 	{
 		if (game->textures.floor[i] < 0 || game->textures.floor[i] > 255)
 			return (0);
 		if (game->textures.ceiling[i] < 0 || game->textures.ceiling[i] > 255)
 			return (0);
+		i++;
 	}
 	return (1);
 }

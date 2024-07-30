@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 17:55:08 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 19:00:09 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 # define DOWN 125
 # define LEFT 123
 # define RIGHT 124
+# define SPACE 49
 # define ESC 53
 # define W 13
 # define A 0
@@ -84,7 +85,7 @@ typedef struct s_hitbox
 
 typedef struct s_player
 {
-	t_hitbox	radius;
+	t_hitbox	box;
 	t_coords	coords;
 	int			turn_dir;
 	int			upright;
@@ -112,6 +113,7 @@ typedef struct s_ray
 	float		angle;
 	float		dis;
 	float		wall_height;
+	int			solid;
 	int			horiz;
 	int			down;
 	int			right;
@@ -166,19 +168,28 @@ typedef struct s_parse
 	char		*err;
 }				t_parse;
 
+typedef struct	s_door
+{
+	t_coords	coords;
+	int			closed;
+}				t_door;
+
 typedef struct s_map
 {
-	char		**map;
-	int			rows;
-	int			columns;
-	int			height;
-	int			width;
+	char	**map;
+	t_door	*doors;
+	int		dcount;
+	int		rows;
+	int		columns;
+	int		height;
+	int		width;
 
 }				t_map;
 
+
 typedef struct s_game
 {
-	t_map		map;
+	t_map		lvl;
 	t_ray		rays[NUM_OF_RAYS];
 	t_player	bob;
 	t_tex		wall;
@@ -199,6 +210,7 @@ void	setup_init(t_game *game);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 int		get_pixel_color(t_frame *wall, int x, int y);
 
+int		doorcheck(t_map *lvl, int x);
 float	distance(t_coords a, t_fcoords b);
 int		render_game(t_game	*game);
 void	calc_hit(t_game *game, t_ray *ray);
@@ -242,7 +254,7 @@ int		validate_map(t_game *game);
 int		validate_surr_ends(char **map, int rows);
 int		valid_up_down(char **map, size_t i, size_t j);
 int		valid_left_right(char **map, size_t i, size_t j);
-int		validate_doors(char **map);
+int		validate_doors(t_game *game, char **map);
 int		map_is_rect(t_game *game);
 int		fill_map_ends(t_game *game);
 int		map_is_done(char **map, int i);

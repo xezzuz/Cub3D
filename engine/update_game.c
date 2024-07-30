@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 19:58:02 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 18:28:26 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	cast_rays(t_game *game)
 	while (i < NUM_OF_RAYS)
 	{
 		curr_angle = cycle(curr_angle);
+		game->rays[i].solid = 1;
 		game->rays[i].angle = curr_angle;
 		game->rays[i].down = curr_angle < M_PI;
 		game->rays[i].right = curr_angle < M_PI_2 || curr_angle > (1.5 * M_PI);
@@ -49,24 +50,40 @@ void	cast_rays(t_game *game)
 	}
 }
 
-int	hitbox(t_game *game, int new_x, int new_y)
+int	doorcheck(t_map *lvl, int x)
 {
-	game->bob.radius.up.y = new_y - 6;
-	game->bob.radius.up.x = new_x;
-	game->bob.radius.right.y = new_y;
-	game->bob.radius.right.x = new_x + 6;
-	game->bob.radius.left.y = new_y;
-	game->bob.radius.left.x = new_x - 6;
-	game->bob.radius.down.y = new_y + 6;
-	game->bob.radius.down.x = new_x;
-	if (game->map.map[game->bob.radius.up.y / TILE]
-		[game->bob.radius.up.x / TILE] == '1'
-		|| game->map.map[game->bob.radius.right.y / TILE]
-		[game->bob.radius.right.x / TILE] == '1'
-		|| game->map.map[game->bob.radius.left.y / TILE]
-		[game->bob.radius.left.x / TILE] == '1'
-		|| game->map.map[game->bob.radius.down.y / TILE]
-		[game->bob.radius.down.x / TILE] == '1')
+	int	i;
+
+	i = 0;
+	// if (lvl->dcount == 0)
+	// 	return (1);
+	while (lvl->doors[i].coords.x != x / TILE)
+		i++;
+	return (lvl->doors[i].closed);
+}
+
+int	hitbox(t_map *lvl, t_hitbox *box, int new_x, int new_y)
+{
+	box->up.y = new_y - 6;
+	box->up.x = new_x;
+	box->right.y = new_y;
+	box->right.x = new_x + 6;
+	box->left.y = new_y;
+	box->left.x = new_x - 6;
+	box->down.y = new_y + 6;
+	box->down.x = new_x;
+	if (lvl->map[box->up.y / TILE][box->up.x / TILE] == '1'
+		|| (lvl->map[box->up.y / TILE][box->up.x / TILE] == 'D'
+		&& doorcheck(lvl, box->up.x))
+		|| lvl->map[box->right.y / TILE][box->right.x / TILE] == '1'
+		|| (lvl->map[box->right.y / TILE][box->right.x / TILE] == 'D'
+		&& doorcheck(lvl, box->right.x))
+		|| lvl->map[box->left.y / TILE][box->left.x / TILE] == '1'
+		|| (lvl->map[box->left.y / TILE][box->left.x / TILE] == 'D'
+		&& doorcheck(lvl, box->left.x))
+		|| lvl->map[box->down.y / TILE][box->down.x / TILE] == '1'
+		|| (lvl->map[box->down.y / TILE][box->down.x / TILE] == 'D'
+		&& doorcheck(lvl, box->down.x)))
 		return (1);
 	return (0);
 }
@@ -86,7 +103,7 @@ void	update_player(t_game *game)
 	new_y = round(sin(game->bob.rot_angle - (M_PI / 2)) * diagmovestep);
 	new_x += round(game->bob.coords.x + (cos(game->bob.rot_angle) * move_step));
 	new_y += round(game->bob.coords.y + (sin(game->bob.rot_angle) * move_step));
-	if (!hitbox(game, new_x, new_y))
+	if (!hitbox(&game->lvl, &game->bob.box, new_x, new_y))
 	{
 		game->bob.coords.x = new_x;
 		game->bob.coords.y = new_y;

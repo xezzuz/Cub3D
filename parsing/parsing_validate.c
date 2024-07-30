@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_validate.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 19:20:14 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 17:40:36 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 19:02:36 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int	validate_objects(t_game *game)
 
 	i = 1;
 	player_count = 0;
-	while (i < game->map.rows - 1)
+	while (i < game->lvl.rows - 1)
 	{
 		j = 0;
-		while (game->map.map[i][j])
+		while (game->lvl.map[i][j])
 		{
-			c = game->map.map[i][j];
+			c = game->lvl.map[i][j];
 			if (c == NORTH || c == SOUTH || c == WEST || c == EAST)
 				(init_bob(game, i, j, c), player_count++);
 			else if (c != WALL && c != FLOOR && c != EMPTY && c != DOOR)
@@ -117,10 +117,16 @@ int	validate_shape(char **map, size_t rows)
 
 int	validate_map(t_game *game)
 {
-	game->map.rows = array_size(game->map.map);
-	if (!validate_surroundings(game->map.map, game->map.rows)
-		|| validate_objects(game) != 1 || !validate_shape(game->map.map, game->map.rows)
-		|| !validate_spaces(game->map.map) || !validate_doors(game->map.map))
+	game->lvl.rows = array_size(game->lvl.map);
+	if (!validate_surroundings(game->lvl.map, game->lvl.rows))
+		return (set_error(game, MAP), 0);
+	if (validate_objects(game) != 1)
+		return (set_error(game, MAP), 0);
+	if (!validate_shape(game->lvl.map, game->lvl.rows))
+		return (set_error(game, MAP), 0);
+	if (!validate_spaces(game->lvl.map))
+		return (set_error(game, MAP), 0);
+	if (!validate_doors(game, game->lvl.map))
 		return (set_error(game, MAP), 0);
 	return (1);
 }

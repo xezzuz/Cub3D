@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   interception.c                                     :+:      :+:    :+:   */
+/*   intercection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:40:02 by mmaila            #+#    #+#             */
-/*   Updated: 2024/07/30 15:27:31 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/30 18:20:27 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
-
 
 int	wallhit(t_game *game, t_fcoords check)
 {
@@ -20,8 +19,10 @@ int	wallhit(t_game *game, t_fcoords check)
 
 	x = floor(check.x);
 	y = floor(check.y);
-	if (game->map.map[y / TILE][x / TILE] == '1'
-		|| game->map.map[y / TILE][x / TILE] == ' ')
+	if (game->lvl.map[y / TILE][x / TILE] == '1'
+		|| (game->lvl.map[y / TILE][x / TILE] == 'D'
+		&& doorcheck(&game->lvl, x))
+		|| game->lvl.map[y / TILE][x / TILE] == ' ')
 		return (1);
 	return (0);
 }
@@ -43,8 +44,8 @@ t_fcoords	horiz(t_game *game, t_ray *ray)
 		step.x *= -1;
 	if (ray->right && step.x < 0)
 		step.x *= -1;
-	while (intercept.x >= 0 && intercept.x <= game->map.width
-		&& intercept.y >= 0 && intercept.y <= game->map.height)
+	while (intercept.x >= 0 && intercept.x <= game->lvl.width
+		&& intercept.y >= 0 && intercept.y <= game->lvl.height)
 	{
 		if (wallhit(game, (t_fcoords){intercept.x, intercept.y - !ray->down}))
 			return (intercept);
@@ -72,8 +73,8 @@ t_fcoords	vert(t_game *game, t_ray *ray)
 		step.y *= -1;
 	if (ray->down && step.y < 0)
 		step.y *= -1;
-	while (intercept.x >= 0 && intercept.x <= game->map.width
-		&& intercept.y >= 0 && intercept.y <= game->map.height)
+	while (intercept.x >= 0 && intercept.x <= game->lvl.width
+		&& intercept.y >= 0 && intercept.y <= game->lvl.height)
 	{
 		if (wallhit(game, (t_fcoords){intercept.x - !ray->right, intercept.y}))
 			return (intercept);
