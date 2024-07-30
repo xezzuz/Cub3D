@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:18:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 15:32:45 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/30 16:07:47 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	keypress(int key, t_game *game)
 		game->bob.turn_dir = -1;
 	else if (key == RIGHT)
 		game->bob.turn_dir = 1;
+	else if (key == ESC)
+		exit_cub3d(game);
 	else if (key == 49 && game->counter == 0)
 		game->animate = 1;
 	// ESC KEY

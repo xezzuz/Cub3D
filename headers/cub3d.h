@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 15:33:20 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/30 16:05:39 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,7 @@ void	render_minimap(t_game *game);
 
 
 
-void	exit_cub3d(t_game *game, int flag);
+int		exit_cub3d(t_game *game);
 void	free_2d(char **array);
 size_t	array_size(char **array);
 int		parsing(t_game *game, char *map_name);
@@ -236,7 +236,7 @@ int		validate_map(t_game *game);
 int		validate_surr_ends(char **map, int rows);
 int		valid_up_down(char **map, size_t i, size_t j);
 int		valid_left_right(char **map, size_t i, size_t j);
-int		validate_doors(t_game *game, char **map);
+int		validate_doors(char **map);
 int		map_is_rect(t_game *game);
 int		fill_map_ends(t_game *game);
 int		map_is_done(char **map, int i);

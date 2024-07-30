@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 15:31:38 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/30 15:35:54 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	render_walls(t_game *game)
 		if (game->rays[i].horiz)
 			game->wall.offset = offset(game, game->rays[i].endpoint.x); // horizontal offset of texture : multiplying the ray hit by how much bigger the wall tex is than the actual wall and fmoding it so it loops back around the tex if it exceeds the borders. 
 		else
-			game->wall.offset = offset(game, game->rays[i].endpoint.y);// vertical offset of texture : multiplying the ray hit by how much bigger the wall tex is than the actual wall and fmoding it so it loops back around the tex if it exceeds the borders. 
+			game->wall.offset = offset(game, game->rays[i].endpoint.y); // vertical offset of texture : multiplying the ray hit by how much bigger the wall tex is than the actual wall and fmoding it so it loops back around the tex if it exceeds the borders. 
 		assign_tex(game, start, game->rays[i]);
 		start.y += game->rays[i].wall_height;
 		draw_rect(game, (t_coords){start.x, start.y}, 1, flcl_height, WHITE);

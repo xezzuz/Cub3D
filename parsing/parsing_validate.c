@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_validate.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 19:20:14 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 13:11:20 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 15:58:50 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
 
-int	validate_objects(t_game *game, char **map, int rows)
+int	validate_objects(t_game *game)
 {
 	int		i;
 	int		j;
@@ -21,17 +21,14 @@ int	validate_objects(t_game *game, char **map, int rows)
 
 	i = 1;
 	player_count = 0;
-	while (i < rows - 1)
+	while (i < game->map.rows - 1)
 	{
 		j = 0;
-		while (map[i][j])
+		while (game->map.map[i][j])
 		{
-			c = map[i][j];
+			c = game->map.map[i][j];
 			if (c == NORTH || c == SOUTH || c == WEST || c == EAST)
-			{
-				init_bob(game, i, j, c);
-				player_count++;
-			}
+				(init_bob(game, i, j, c), player_count++);
 			else if (c != WALL && c != FLOOR && c != EMPTY && c != DOOR)
 				return (0);
 			j++;
@@ -66,12 +63,11 @@ int	validate_surroundings(char **map, int rows)
 	return (1);
 }
 
-int	validate_spaces(t_game *game, char **map)
+int	validate_spaces(char **map)
 {
 	size_t		i;
 	size_t		j;
 
-	(void)game;
 	i = -1;
 	while (map[++i])
 	{
@@ -86,28 +82,33 @@ int	validate_spaces(t_game *game, char **map)
 	return (1);
 }
 
-int	validate_shape(t_game *game, char **map, size_t rows)
+int	validate_shape(char **map, size_t rows)
 {
 	size_t		i;
 	size_t		j;
 
-	(void)game;
 	i = 1;
 	while (map[i])
 	{
 		if (i != rows - 1 && ft_strlen(map[i]) > ft_strlen(map[i + 1]))
 		{
-			j = -1;
-			while (map[i][++j])
+			j = 0;
+			while (map[i][j])
+			{
 				if (j >= ft_strlen(map[i + 1]) && map[i][j] != WALL && map[i][j] != EMPTY)
 					return (0);
+				j++;
+			}
 		}
 		if (i != 0 && ft_strlen(map[i]) > ft_strlen(map[i - 1]))
 		{
-			j = -1;
-			while (map[i][++j])
+			j = 0;
+			while (map[i][j])
+			{
 				if (j >= ft_strlen(map[i - 1]) && map[i][j] != WALL && map[i][j] != EMPTY)
 					return (0);
+				j++;
+			}
 		}
 		i++;
 	}
@@ -119,13 +120,13 @@ int	validate_map(t_game *game)
 	game->map.rows = array_size(game->map.map);
 	if (!validate_surroundings(game->map.map, game->map.rows))
 		return (0);
-	if (validate_objects(game, game->map.map, game->map.rows) != 1)
+	if (validate_objects(game) != 1)
 		return (0);
-	if (!validate_shape(game, game->map.map, game->map.rows))
+	if (!validate_shape(game->map.map, game->map.rows))
 		return (0);
-	if (!validate_spaces(game, game->map.map))
+	if (!validate_spaces(game->map.map))
 		return (0);
-	if (!validate_doors(game, game->map.map))
+	if (!validate_doors(game->map.map))
 		return (0);
 	return (1);
 }

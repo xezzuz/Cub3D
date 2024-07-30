@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 15:49:54 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 12:39:26 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 15:59:37 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,17 @@ int	open_textures(t_game *game)
 
 void	count_rows_cols(t_game *game)
 {
-	int		i;
+	int	col_len;
 
 	game->map.columns = ft_strlen(game->map.map[0]);
-	i = 0;
-	while (game->map.map[i])
+	game->map.rows = 0;
+	while (game->map.map[game->map.rows])
 	{
-		if (ft_strlen(game->map.map[i]) > (size_t)game->map.columns)
-			game->map.columns = ft_strlen(game->map.map[i]);
-		i++;
+		col_len = ft_strlen(game->map.map[game->map.rows]);
+		if (col_len > game->map.columns)
+			game->map.columns = col_len;
+		game->map.rows++;
 	}
-	game->map.rows = i;
 	game->map.height = TILE * game->map.rows;
 	game->map.width = TILE * game->map.columns;
 }
@@ -67,13 +67,13 @@ void	init_bob(t_game *game, int i, int j, char direction)
 	game->bob.coords.x = (j * TILE) + TILE / 2;
 	game->bob.coords.y = (i * TILE) + TILE / 2;
 	if (direction == 'N')
-		game->bob.startingAngle = (M_PI * 3.0) / 2.0;
+		game->bob.rot_angle = (M_PI * 3.0) / 2.0;
 	else if (direction == 'S')
-		game->bob.startingAngle = M_PI / 2.0;
+		game->bob.rot_angle = M_PI / 2.0;
 	else if (direction == 'E')
-		game->bob.startingAngle = 0;
+		game->bob.rot_angle = 0;
 	else if (direction == 'W')
-		game->bob.startingAngle = M_PI;
+		game->bob.rot_angle = M_PI;
 }
 
 int	map_is_done(char **map, int i)
