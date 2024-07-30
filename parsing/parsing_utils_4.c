@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_4.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:48:19 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 15:05:10 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 17:04:23 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ int	map_is_rect(t_game *game)
 
 	count_rows_cols(game);
 	i = -1;
-	while (game->map.map[++i])
+	while (game->lvl.map[++i])
 	{
-		if (ft_strlen(game->map.map[i]) != (size_t)game->map.columns)
+		if (ft_strlen(game->lvl.map[i]) != (size_t)game->lvl.columns)
 			return (0);
 	}
 	return (1);
@@ -83,23 +83,23 @@ int	fill_map_ends(t_game *game)
 	int		j;
 	char	**result;
 
-	result = malloc(sizeof(char *) * (game->map.rows + 1));
+	result = malloc(sizeof(char *) * (game->lvl.rows + 1));
 	if (!result)
 		return (0);
 	i = 0;
-	while (i < game->map.rows)
+	while (i < game->lvl.rows)
 	{
-		result[i] = ft_strdup(game->map.map[i]);
+		result[i] = ft_strdup(game->lvl.map[i]);
 		if (!result[i])
 			return (free_2d(result), 0);
-		j = ft_strlen(game->map.map[i]);
-		while (j < game->map.columns)
+		j = ft_strlen(game->lvl.map[i]);
+		while (j < game->lvl.columns)
 			result[i][j++] = ' ';
 		result[i][j] = '\0';
 		i++;
 	}
 	result[i] = NULL;
-	free_2d(game->map.map);
-	game->map.map = result;
+	free_2d(game->lvl.map);
+	game->lvl.map = result;
 	return (1);
 }

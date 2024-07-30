@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 15:49:54 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 15:59:37 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/30 17:04:23 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,17 @@ void	count_rows_cols(t_game *game)
 {
 	int	col_len;
 
-	game->map.columns = ft_strlen(game->map.map[0]);
-	game->map.rows = 0;
-	while (game->map.map[game->map.rows])
+	game->lvl.columns = ft_strlen(game->lvl.map[0]);
+	game->lvl.rows = 0;
+	while (game->lvl.map[game->lvl.rows])
 	{
-		col_len = ft_strlen(game->map.map[game->map.rows]);
-		if (col_len > game->map.columns)
-			game->map.columns = col_len;
-		game->map.rows++;
+		col_len = ft_strlen(game->lvl.map[game->lvl.rows]);
+		if (col_len > game->lvl.columns)
+			game->lvl.columns = col_len;
+		game->lvl.rows++;
 	}
-	game->map.height = TILE * game->map.rows;
-	game->map.width = TILE * game->map.columns;
+	game->lvl.height = TILE * game->lvl.rows;
+	game->lvl.width = TILE * game->lvl.columns;
 }
 
 int	config_exist(t_game *game)

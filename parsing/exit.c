@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:41:58 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 16:05:13 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/30 17:51:17 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	free_2d(char **array)
 		return ;
 	while (array[i])
 	{
-		printf("Pointer being freed [%s]\n", array[i]);
+		// printf("Pointer being freed [%s]\n", array[i]);
 		free(array[i++]);
 	}
 	free(array);
@@ -41,12 +41,15 @@ void	free_2d(char **array)
 
 int	exit_cub3d(t_game *game)
 {
-	free_2d(game->map.map);
+	free_2d(game->lvl.map);
 	free_2d(game->parse.file);
 	free(game->textures.north);
 	free(game->textures.south);
 	free(game->textures.west);
 	free(game->textures.east);
+	if (game->lvl.doors)
+		free(game->lvl.doors);
+	
 	// if (flag == ERROR)
 	// 	(printf("Error\n"), exit(EXIT_FAILURE)); // STDERR
 	// exit(EXIT_SUCCESS);

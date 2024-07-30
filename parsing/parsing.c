@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:37:40 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 15:10:40 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 17:04:23 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ int	fill_map(t_game *game, int map_size)
 			non_empty++;
 	while (str_is_empty(game->parse.file[i]))
 		i++;
-	game->map.map = malloc(sizeof(char *) * (map_size + 1));
-	if (!game->map.map)
+	game->lvl.map = malloc(sizeof(char *) * (map_size + 1));
+	if (!game->lvl.map)
 		return (0);
 	j = 0;
 	while (game->parse.file[i] && !map_is_done(game->parse.file, i))
 	{
 		if (game->parse.file[i][ft_strlen(game->parse.file[i]) - 1] == '\n')
 			game->parse.file[i][ft_strlen(game->parse.file[i]) - 1] = '\0';
-		game->map.map[j++] = ft_strdup(game->parse.file[i++]);
+		game->lvl.map[j++] = ft_strdup(game->parse.file[i++]);
 	}
-	game->map.map[j] = NULL;
+	game->lvl.map[j] = NULL;
 	return (1);
 }
 

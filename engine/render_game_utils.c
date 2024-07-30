@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 19:04:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 15:30:32 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/30 17:04:23 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,14 @@ void	render_minimap(t_game *game)
 	draw_rect(game, (t_coords){7, 19}, 5, 300, 0x62645F);
 	draw_rect(game, (t_coords){12, 12}, 300, 300, 0x2F312D);
 	x = 0;
-	while (x < game->map.width)
+	while (x < game->lvl.width)
 	{
 		y = 0;
-		while (y < game->map.height)
+		while (y < game->lvl.height)
 		{
 			if (x + diff.x <= 312 && x + diff.x >= 12
 				&& y + diff.y <= 312 && y + diff.y >= 12)
-				if (game->map.map[y / TILE][x / TILE] == '0')
+				if (game->lvl.map[y / TILE][x / TILE] == '0')
 					my_mlx_pixel_put(game, x + diff.x, y + diff.y, WHITE);
 			y++;
 		}
