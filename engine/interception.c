@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interception.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:40:02 by mmaila            #+#    #+#             */
-/*   Updated: 2024/07/29 20:18:12 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 15:27:31 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	wallhit(t_game *game, t_fcoords check)
 
 	x = floor(check.x);
 	y = floor(check.y);
-	if (game->map.map[y / TILE][x / TILE] == '1' 
+	if (game->map.map[y / TILE][x / TILE] == '1'
 		|| game->map.map[y / TILE][x / TILE] == ' ')
 		return (1);
 	return (0);
@@ -93,14 +93,12 @@ void	calc_hit(t_game *game, t_ray *ray)
 
 	vintercept = vert(game, ray);
 	hintercept = horiz(game, ray);
+	hdis = __FLT_MAX__;
 	if (hintercept.x != -1)
 		hdis = distance(game->bob.coords, hintercept);
-	else
-		hdis = __FLT_MAX__;
+	vdis = __FLT_MAX__;
 	if (vintercept.x != -1)
 		vdis = distance(game->bob.coords, vintercept);
-	else
-		vdis = __FLT_MAX__;
 	if (hdis < vdis)
 	{
 		ray->dis = hdis;
