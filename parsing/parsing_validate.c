@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_validate.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 19:20:14 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 15:58:50 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/30 17:40:36 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,15 +118,9 @@ int	validate_shape(char **map, size_t rows)
 int	validate_map(t_game *game)
 {
 	game->map.rows = array_size(game->map.map);
-	if (!validate_surroundings(game->map.map, game->map.rows))
-		return (0);
-	if (validate_objects(game) != 1)
-		return (0);
-	if (!validate_shape(game->map.map, game->map.rows))
-		return (0);
-	if (!validate_spaces(game->map.map))
-		return (0);
-	if (!validate_doors(game->map.map))
-		return (0);
+	if (!validate_surroundings(game->map.map, game->map.rows)
+		|| validate_objects(game) != 1 || !validate_shape(game->map.map, game->map.rows)
+		|| !validate_spaces(game->map.map) || !validate_doors(game->map.map))
+		return (set_error(game, MAP), 0);
 	return (1);
 }

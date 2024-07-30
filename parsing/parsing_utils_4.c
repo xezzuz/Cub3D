@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:48:19 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 15:05:10 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 17:42:45 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ int	fill_map_ends(t_game *game)
 
 	result = malloc(sizeof(char *) * (game->map.rows + 1));
 	if (!result)
-		return (0);
+		return (set_error(game, ALLOC), 0);
 	i = 0;
 	while (i < game->map.rows)
 	{
 		result[i] = ft_strdup(game->map.map[i]);
 		if (!result[i])
-			return (free_2d(result), 0);
+			return (free_2d(result), set_error(game, ALLOC), 0);
 		j = ft_strlen(game->map.map[i]);
 		while (j < game->map.columns)
 			result[i][j++] = ' ';

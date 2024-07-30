@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:41:58 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 16:05:13 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/30 17:56:02 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,20 @@ void	free_2d(char **array)
 	if (!array)
 		return ;
 	while (array[i])
-	{
-		printf("Pointer being freed [%s]\n", array[i]);
 		free(array[i++]);
-	}
 	free(array);
+}
+
+void	set_error(t_game *game, char *error)
+{
+	game->parse.err = error;
+}
+
+void	print_stderr(char *error)
+{
+	write(STDERR_FILENO, "Error\n", 6);
+	write(STDERR_FILENO, error, ft_strlen(error));
+	write(STDERR_FILENO, "\n", 1);
 }
 
 int	exit_cub3d(t_game *game)
@@ -50,6 +59,9 @@ int	exit_cub3d(t_game *game)
 	// if (flag == ERROR)
 	// 	(printf("Error\n"), exit(EXIT_FAILURE)); // STDERR
 	// exit(EXIT_SUCCESS);
+	if (game->parse.err)
+		print_stderr(game->parse.err);
+		// write(STDERR_FILENO, game->parse.err, ft_strlen(game->parse.err));
 	exit(0);
 	return (0);
 }

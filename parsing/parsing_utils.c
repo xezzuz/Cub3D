@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:18:32 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 15:15:38 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 17:34:52 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	struct_init(t_game *game)
 {
 	game->map.rows = 0;
 	game->map.columns = 0;
+	game->parse.err = NULL;
 	game->map.map = NULL;
 	game->textures.north = NULL;
 	game->textures.south = NULL;
@@ -46,14 +47,14 @@ int	read_config(t_game *game, char *map_name)
 
 	fd = open(map_name, O_RDONLY);
 	if (fd == -1)
-		return (0);
+		return (set_error(game, FNF), 0);
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
 		if (!add_to_array(&game->parse.file, line))
-			return (close(fd), 0);
+			return (close(fd), set_error(game, ALLOC), 0);
 	}
 	return (close(fd), 1);
 }

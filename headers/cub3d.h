@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 16:05:39 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/30 17:55:08 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@
 # define ERROR -1
 # define SUCCESS 1
 # define BUFFER_SIZE 5
+# define ARGC "Use: ./Cub3D <map_path>"
+# define FNF "Cannot Open Config File :("
+# define ALLOC "Allocation Failed :("
+# define TXT "Textures / Colors are not Valid :("
+# define MAP "Map is not Valid :("
 
 # define WALL '1'
 # define FLOOR '0'
@@ -158,6 +163,7 @@ typedef struct s_parse
 	char		**file;
 	char		**tex_colors;
 	int			p_count;
+	char		*err;
 }				t_parse;
 
 typedef struct s_map
@@ -245,6 +251,8 @@ int		config_exist(t_game *game);
 int		open_textures(t_game *game);
 void	count_rows_cols(t_game *game);
 int		count_commas(char *str);
+void	set_error(t_game *game, char *error);
+void	print_stderr(char *error);
 
 int		add_to_array(char ***array, char *str);
 
