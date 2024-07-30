@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 11:37:32 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 13:45:48 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define WEST 'W'
 # define EAST 'E'
 # define EMPTY ' '
+# define DOOR 'D'
 
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
@@ -239,6 +240,9 @@ int		validate_map(t_game *game);
 int		validate_surr_ends(char **map, int rows);
 int		valid_up_down(char **map, size_t i, size_t j);
 int		valid_left_right(char **map, size_t i, size_t j);
+int		validate_doors(t_game *game, char **map);
+int		map_is_rect(t_game *game);
+int		fill_map_ends(t_game *game);
 int		map_is_done(char **map, int i);
 void	init_bob(t_game *game, int i, int j, char direction);
 int		config_exist(t_game *game);

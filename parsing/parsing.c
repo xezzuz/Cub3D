@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:37:40 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 12:37:37 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 13:51:20 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,9 @@ int	parsing(t_game *game, char *map_name)
 		return (0);
 	if (!config_exist(game))
 		return (0);
-	count_rows_cols(game);
+	if (!map_is_rect(game))
+		return (fill_map_ends(game));
 	printf("\n\n\n\n");
 	ft_print_config(game);
-	exit(0);
 	return (1);
 }

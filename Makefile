@@ -6,7 +6,7 @@
 #    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/07/30 09:58:16 by nazouz           ###   ########.fr        #
+#    Updated: 2024/07/30 13:25:12 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCS			= 		./cub3d.c \
 						./parsing/parsing_utils_3.c \
 						./parsing/parsing_utils_4.c \
 						./parsing/parsing_validate.c \
+						./parsing/parsing_validate_2.c \
 						./parsing/exit.c \
 						./parsing/utils/ft_split.c \
 						./parsing/utils/get_next_line.c \

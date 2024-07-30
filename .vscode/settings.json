@@ -1,5 +1,9 @@
 {
 	"files.associations": {
-		"chrono": "c"
+		"chrono": "c",
+		"__bit_reference": "c",
+		"algorithm": "c",
+		"array": "c",
+		"ios": "c"
 	}
 }

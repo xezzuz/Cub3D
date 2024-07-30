@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 19:20:14 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 19:59:32 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 13:11:20 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	validate_objects(t_game *game, char **map, int rows)
 				init_bob(game, i, j, c);
 				player_count++;
 			}
-			else if (c != WALL && c != FLOOR && c != EMPTY)
+			else if (c != WALL && c != FLOOR && c != EMPTY && c != DOOR)
 				return (0);
 			j++;
 		}
@@ -124,6 +124,8 @@ int	validate_map(t_game *game)
 	if (!validate_shape(game, game->map.map, game->map.rows))
 		return (0);
 	if (!validate_spaces(game, game->map.map))
+		return (0);
+	if (!validate_doors(game, game->map.map))
 		return (0);
 	return (1);
 }
