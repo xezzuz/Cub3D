@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 13:45:48 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 14:56:24 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,6 @@
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 # define TILE 64
-// # define COLS 25
-// # define ROWS 18
-// # define WIDTH COLS * TILE
-// # define HEIGHT ROWS * TILE
 # define FOV (M_PI / 3)
 # define NUM_OF_RAYS WIN_WIDTH
 

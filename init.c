@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:18:54 by mmaila            #+#    #+#             */
-/*   Updated: 2024/07/29 18:05:22 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 14:48:06 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	init_data(t_game *game)
 
 void	init_images(t_game *game)
 {
-	// check if the textures exists
 	game->frame.img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
 	game->frame.addr = mlx_get_data_addr(game->frame.img, &game->frame.bpp, &game->frame.line_length, &game->frame.endian);
 	game->wall.tex.img = mlx_xpm_file_to_image(game->mlx, game->textures.north, &game->wall.width, &game->wall.height);

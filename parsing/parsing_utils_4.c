@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:48:19 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 13:52:59 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 15:05:10 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	fill_map_ends(t_game *game)
 		i++;
 	}
 	result[i] = NULL;
-	// free_2d(game->map.map);
+	free_2d(game->map.map);
 	game->map.map = result;
 	return (1);
 }
