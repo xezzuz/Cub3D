@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 09:25:09 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 09:39:13 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,6 +260,6 @@ int		ft_atoi(const char *str);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 char	*get_next_line(int fd);
 
-void	ft_print_config(t_game *game, char *mapname);
+void	ft_print_config(t_game *game);
 
 #endif

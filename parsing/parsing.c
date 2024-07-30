@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:37:40 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 09:26:35 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 09:42:42 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	fill_tex_colors(t_game *game)
 		}
 		i++;
 	}
-	if (tex)
+	if (!tex)
 		return (1);
 	return (0);
 }
@@ -67,7 +67,7 @@ int	fill_textures(t_game *game)
 	char		**array;
 
 	i = 0;
-	if (fill_tex_colors(game))
+	if (!fill_tex_colors(game))
 		return (0);
 	while (game->parse.tex_colors[i])
 	{
@@ -88,7 +88,7 @@ int	fill_struct(t_game *game)
 
 	struct_init(game);
 	game->parse.tex_colors = NULL;
-	if (fill_textures(game))
+	if (!fill_textures(game))
 		return (0);
 	file_size = array_size(game->parse.file) - 6;
 	if (file_size <= 3)
@@ -111,6 +111,6 @@ int	parsing(t_game *game, char *map_name)
 		return (0);
 	count_rows_cols(game);
 	// printf("\n\n\n\n");
-	// ft_print_config(game, map_name);
+	// ft_print_config(game);
 	return (1);
 }

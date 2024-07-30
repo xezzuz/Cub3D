@@ -6,13 +6,13 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:07:48 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 19:59:48 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 09:39:00 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
 
-void	ft_print_config(t_game *game, char *mapname)
+void	ft_print_config(t_game *game)
 {
 	int		i;
 
@@ -28,7 +28,7 @@ void	ft_print_config(t_game *game, char *mapname)
 		printf("%s", game->parse.tex_colors[i++]);
 	printf("\n-----------------------------------------------------------\n\n\n\n");
 
-	printf("MAP NAME: %s\n", mapname);
+	// printf("MAP NAME: %s\n", mapname);
 	printf("NORTH TEXTURE: %s\n", game->textures.north);
 	printf("SOUTH TEXTURE: %s\n", game->textures.south);
 	printf("WEST TEXTURE: %s\n", game->textures.west);
