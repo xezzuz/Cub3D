@@ -5,4 +5,3 @@ parsing doors
 doors logic
 exit function leaks
 norminette
-strcmp get_key_value
