@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 15:49:54 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 11:40:24 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 12:39:26 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	count_rows_cols(t_game *game)
 
 int	config_exist(t_game *game)
 {
-	// check if the texture files even exist
 	if (!game->textures.north || !game->textures.south
 		|| !game->textures.west || !game->textures.east
 		|| game->textures.floor[0] == ERROR || game->textures.ceiling[0] == ERROR)

@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:48:19 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 12:19:52 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 13:01:20 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	parse_colors(t_game *game, char *str, char key)
 	if (!count_commas(str))
 		return (0);
 	i = 0;
-	while (str[i] == ' ' || str[i] == key)
+	while (str[i++] == ' ');
+	while (str[i] == ' ')
 		i++;
 	while (str[i])
 	{
