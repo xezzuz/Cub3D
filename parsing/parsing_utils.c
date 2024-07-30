@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:18:32 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 19:58:30 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 09:01:59 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,18 +80,17 @@ int	get_rgb_colors(t_game *game)
 
 int	get_key_value(t_game *game, char **array)
 {
-	// using system strcmp!!!
-	if (!strcmp("NO", array[0]) && !game->textures.north)
+	if (!ft_strcmp("NO", array[0]) && !game->textures.north)
 		game->textures.north = ft_strdup(array[1]);
-	else if (!strcmp("SO", array[0]) && !game->textures.south)
+	else if (!ft_strcmp("SO", array[0]) && !game->textures.south)
 		game->textures.south = ft_strdup(array[1]);
-	else if (!strcmp("WE", array[0]) && !game->textures.west)
+	else if (!ft_strcmp("WE", array[0]) && !game->textures.west)
 		game->textures.west = ft_strdup(array[1]);
-	else if (!strcmp("EA", array[0]) && !game->textures.east)
+	else if (!ft_strcmp("EA", array[0]) && !game->textures.east)
 		game->textures.east = ft_strdup(array[1]);
-	else if (!strcmp("F", array[0]) && !game->textures.ch_floor)
+	else if (!ft_strcmp("F", array[0]) && !game->textures.ch_floor)
 		game->textures.ch_floor = ft_split(array[1], ','); //
-	else if (!strcmp("C", array[0]) && !game->textures.ch_ceiling)
+	else if (!ft_strcmp("C", array[0]) && !game->textures.ch_ceiling)
 		game->textures.ch_ceiling = ft_split(array[1], ','); //
 	else
 		return (0);
