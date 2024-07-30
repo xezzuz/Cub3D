@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:37:40 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 09:42:42 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 12:37:37 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ int	fill_textures(t_game *game)
 	while (game->parse.tex_colors[i])
 	{
 		array = ft_split(game->parse.tex_colors[i], ' ');
-		if (array_size(array) != 2)
-			return (free_2d(array), 0);
-		if (!get_key_value(game, array))
+		if (!array)
+			return (0);
+		if (!get_key_value(game, array, i))
 			return (free_2d(array), 0);
 		free_2d(array);
 		i++;
@@ -110,7 +110,8 @@ int	parsing(t_game *game, char *map_name)
 	if (!config_exist(game))
 		return (0);
 	count_rows_cols(game);
-	// printf("\n\n\n\n");
-	// ft_print_config(game);
+	printf("\n\n\n\n");
+	ft_print_config(game);
+	exit(0);
 	return (1);
 }

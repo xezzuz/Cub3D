@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:18:32 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 09:35:17 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 12:37:19 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	struct_init(t_game *game)
 	game->textures.south = NULL;
 	game->textures.east = NULL;
 	game->textures.west = NULL;
-	game->textures.ch_floor = NULL;
-	game->textures.ch_ceiling = NULL;
+	game->textures.floor[0] = ERROR;
+	game->textures.ceiling[0] = ERROR;
 }
 
 int	map_extension(char *map_name)
@@ -62,36 +62,31 @@ int	get_rgb_colors(t_game *game)
 {
 	int		i;
 
-	if (array_size(game->textures.ch_floor) != 3
-		|| array_size(game->textures.ch_ceiling) != 3)
-		return (0);
 	i = -1;
 	while (++i < 3)
 	{
-		game->textures.floor[i] = ft_atoi(game->textures.ch_floor[i]);
 		if (game->textures.floor[i] < 0 || game->textures.floor[i] > 255)
 			return (0);
-		game->textures.ceiling[i] = ft_atoi(game->textures.ch_ceiling[i]);
 		if (game->textures.ceiling[i] < 0 || game->textures.ceiling[i] > 255)
 			return (0);
 	}
 	return (1);
 }
 
-int	get_key_value(t_game *game, char **array)
+int	get_key_value(t_game *game, char **array, int i)
 {
-	if (!ft_strcmp("NO", array[0]) && !game->textures.north)
+	if (!ft_strcmp("NO", array[0]) && !game->textures.north && array_size(array) == 2)
 		game->textures.north = ft_strdup(array[1]);
-	else if (!ft_strcmp("SO", array[0]) && !game->textures.south)
+	else if (!ft_strcmp("SO", array[0]) && !game->textures.south && array_size(array) == 2)
 		game->textures.south = ft_strdup(array[1]);
-	else if (!ft_strcmp("WE", array[0]) && !game->textures.west)
+	else if (!ft_strcmp("WE", array[0]) && !game->textures.west && array_size(array) == 2)
 		game->textures.west = ft_strdup(array[1]);
-	else if (!ft_strcmp("EA", array[0]) && !game->textures.east)
+	else if (!ft_strcmp("EA", array[0]) && !game->textures.east && array_size(array) == 2)
 		game->textures.east = ft_strdup(array[1]);
-	else if (!ft_strcmp("F", array[0]) && !game->textures.ch_floor)
-		game->textures.ch_floor = ft_split(array[1], ','); //
-	else if (!ft_strcmp("C", array[0]) && !game->textures.ch_ceiling)
-		game->textures.ch_ceiling = ft_split(array[1], ','); //
+	else if (!ft_strcmp("F", array[0]) && game->textures.floor[0] == ERROR)
+		return (parse_colors(game, game->parse.tex_colors[i], 'F'));
+	else if (!ft_strcmp("C", array[0]) && game->textures.ceiling[0] == ERROR)
+		return (parse_colors(game, game->parse.tex_colors[i], 'C'));
 	else
 		return (0);
 	return (1);

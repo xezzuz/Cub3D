@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:04:06 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 09:31:33 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 11:06:53 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	i = 0;
 	while (s1[i] == s2[i] && s1[i] && s2[i])
 		i++;
-	return (i);
+	return (s1[i] - s2[i]);
 }
 
 size_t	ft_strlen(const char *s)
@@ -39,6 +39,8 @@ int	ft_atoi(const char *str)
 
 	sign = 1;
 	result = 0;
+	while (*str == 32 || (*str < 14 && *str > 8))
+		str++;
 	if (*str == '-' || *str == '+')
 	{
 		if (*str == '-')

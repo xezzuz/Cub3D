@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 09:39:13 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/30 11:37:32 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,8 +152,6 @@ typedef struct s_texture
 	char		*south;
 	char		*west;
 	char		*east;
-	char		**ch_floor;
-	char		**ch_ceiling;
 	int			floor[3];
 	int			ceiling[3];
 }				t_texture;
@@ -234,7 +232,8 @@ int		parsing(t_game *game, char *map_name);
 void	struct_init(t_game *game);
 int		map_extension(char *map_name);
 int		read_config(t_game *game, char *map_name);
-int		get_key_value(t_game *game, char **array);
+int		get_key_value(t_game *game, char **array, int i);
+int		parse_colors(t_game *game, char *str, char key);
 int		get_rgb_colors(t_game *game);
 int		validate_map(t_game *game);
 int		validate_surr_ends(char **map, int rows);
@@ -245,6 +244,7 @@ void	init_bob(t_game *game, int i, int j, char direction);
 int		config_exist(t_game *game);
 int		open_textures(t_game *game);
 void	count_rows_cols(t_game *game);
+int		count_commas(char *str);
 
 int		add_to_array(char ***array, char *str);
 
