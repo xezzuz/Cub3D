@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_game_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 19:04:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 13:43:03 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/31 16:51:19 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,7 @@ void	render_minimap(t_game *game)
 		{
 			if (x + diff.x <= 312 && x + diff.x >= 12
 				&& y + diff.y <= 312 && y + diff.y >= 12)
-				if (game->lvl.map[y / TILE][x / TILE] == '0'
-					|| game->lvl.map[y / TILE][x / TILE] == 'S'
-					|| game->lvl.map[y / TILE][x / TILE] == 'N'
-					|| game->lvl.map[y / TILE][x / TILE] == 'E'
-					|| game->lvl.map[y / TILE][x / TILE] == 'W'
-					|| game->lvl.map[y / TILE][x / TILE] == 'D')
+				if (game->lvl.map[y / TILE][x / TILE] != '1')
 					my_mlx_pixel_put(game, x + diff.x, y + diff.y, WHITE);
 			y++;
 		}
