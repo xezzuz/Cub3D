@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:18:32 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 11:32:39 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 12:23:30 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,12 @@ int	get_rgb_colors(t_game *game)
 			return (0);
 		i++;
 	}
+	game->textures.ceil = (game->textures.ceiling[0] << 16)
+		| (game->textures.ceiling[1] << 8)
+		| game->textures.ceiling[2];
+	game->textures.fl = (game->textures.floor[0] << 16)
+		| (game->textures.floor[1] << 8)
+		| game->textures.floor[2];
 	return (1);
 }
 

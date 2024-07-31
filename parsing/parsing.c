@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:37:40 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 11:32:06 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 12:09:45 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	fill_map(t_game *game, int map_size)
 	int			j;
 	int			non_empty;
 
-	(void)map_size;
 	i = -1;
 	non_empty = 0;
 	while (game->parse.file[++i] && non_empty < 6)

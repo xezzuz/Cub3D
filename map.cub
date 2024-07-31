@@ -3,8 +3,8 @@ SO ./textures/pokerheart
 WE ./textures/pokerdiamond
 EA ./textures/pokerspades
 
-F 220,151,255
-C 225,30,42
+F 255,255,255
+C 255,255,255
 
         1111111111111111111111111
         1000000000110000000001001

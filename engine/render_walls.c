@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 10:34:39 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 12:25:03 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,14 @@ void	render_walls(t_game *game)
 	{
 		flcl_height = (WIN_HEIGHT - game->rays[i].wall_height) / 2;
 		start.y = ((WIN_HEIGHT) / 2) - (game->rays[i].wall_height / 2);
-		draw_rect(game, (t_coords){start.x, 0}, 1, flcl_height, WHITE);
+		draw_rect(game, (t_coords){start.x, 0}, 1, flcl_height, game->textures.ceil);
 		if (game->rays[i].horiz)
 			game->wall.offset = fmod(game->rays[i].endpoint.x * (game->wall.width / TILE), game->wall.height); // multiplying the ray hit by how much bigger the wall tex is than the actual wall and fmoding it so it loops back around the tex if it exceeds the borders. 
 		else
 			game->wall.offset = fmod(game->rays[i].endpoint.y * (game->wall.width / TILE), game->wall.height);
 		assign_tex(game, start, &game->rays[i]);
 		start.y += game->rays[i].wall_height;
-		draw_rect(game, (t_coords){start.x, start.y}, 1, flcl_height, WHITE);
+		draw_rect(game, (t_coords){start.x, start.y}, 1, flcl_height, game->textures.fl);
 		start.x++;
 		i++;
 	}

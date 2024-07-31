@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 11:33:32 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 11:42:35 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,12 +155,14 @@ typedef struct s_tex
 
 typedef struct s_texture
 {
-	char		*north;
-	char		*south;
-	char		*west;
-	char		*east;
-	int			floor[3];
-	int			ceiling[3];
+	char			*north;
+	char			*south;
+	char			*west;
+	char			*east;
+	unsigned int	fl;
+	unsigned int	ceil;
+	int				floor[3];
+	int				ceiling[3];
 }				t_texture;
 
 typedef struct s_parse
