@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 15:24:10 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 15:44:51 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	update_player(t_game *game)
 	int		new_y;
 
 	game->bob.rot_angle += game->bob.turn_dir * game->bob.rot_speed;
-	game->bob.rot_angle += game->mouse_angle;
+	game->bob.rot_angle += game->mouse_angle * game->mouse_mp;
 	move_step = game->bob.upright * game->bob.move_speed;
 	diagmovestep = game->bob.sideways * game->bob.move_speed / 2;
 	new_x = round(cos(game->bob.rot_angle - (M_PI / 2)) * diagmovestep);

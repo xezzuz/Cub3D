@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 13:57:26 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/31 15:56:04 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@ int	render_game(t_game	*game)
 	cast_rays(game);
 	render_walls(game);
 	render_minimap(game);
-	game->mouse_angle = 0;
-	mlx_mouse_hide(); // we need a button to unhide mouse
+	if (game->mouse_angle > 0)
+		game->mouse_angle -= 0.0007;
+	else if (game->mouse_angle > 0.5)
+		game->mouse_angle -= 0.0009;
+	else
+		game->mouse_angle = 0;
+	mlx_mouse_hide();
 	mlx_put_image_to_window(game->mlx, game->win, game->frame.img, 0, 0);
 	display_animation_frame(game);
 	return (0);
