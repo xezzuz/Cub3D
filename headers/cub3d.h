@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 11:42:35 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 13:36:44 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@
 # define A 0
 # define S 1
 # define D 2
+
+# define NUM_FRAMES 9
 
 # define WHITE 0xffffff
 # define BLACK 0x000000
@@ -208,6 +210,8 @@ typedef struct s_game
 	int			animate;
 	float		mouse_angle;
 	void		*currframe;
+	int			current_frame;
+	void		*animation[NUM_FRAMES];
 }				t_game;
 
 void	setup_init(t_game *game);
@@ -270,6 +274,8 @@ void	count_rows_cols(t_game *game);
 int		count_commas(char *str);
 void	set_error(t_game *game, char *error);
 void	print_stderr(char *error);
+int		init_animation_frames(t_game *game);
+void	display_animation_frame(t_game *game);
 
 int		add_to_array(char ***array, char *str);
 
@@ -284,6 +290,7 @@ char	*ft_strdup(const char *s1);
 int		ft_atoi(const char *str);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 char	*get_next_line(int fd);
+char	*ft_itoa(int n);
 
 void	ft_print_config(t_game *game);
 
