@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_4.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:48:19 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 11:57:45 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 13:53:07 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,11 @@ int	fill_map_ends(t_game *game)
 	i = 0;
 	while (i < game->lvl.rows)
 	{
-		result[i] = ft_strdup(game->lvl.map[i]);
+		// result[i] = ft_strdup(game->lvl.map[i]);
+		result[i] = malloc(game->lvl.columns + 1);
 		if (!result[i])
 			return (free_2d(result), set_error(game, ALLOC), 0);
+		ft_strlcpy(result[i], game->lvl.map[i], game->lvl.columns + 1);
 		j = ft_strlen(game->lvl.map[i]);
 		while (j < game->lvl.columns)
 			result[i][j++] = ' ';

@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:56:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 13:25:59 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/31 13:42:50 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,5 @@ int	render_game(t_game	*game)
 	mlx_mouse_hide();
 	mlx_put_image_to_window(game->mlx, game->win, game->frame.img, 0, 0);
 	display_animation_frame(game);
-
-
-
-	// EXTRA STUFF
-		// render_crosshair(game);
-		// render_player(game);
-		// if (game->animate == 1)
-		// 	render_gun(game);
-		// else
-		// 	mlx_put_image_to_window(game->data.mlx, game->data.win, game->gun.frame1, 1100, 610);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:21:51 by mmaila            #+#    #+#             */
-/*   Updated: 2024/07/30 15:28:18 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 13:42:39 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 
 	dst = game->frame.addr
 		+ (y * game->frame.line_length + x * (game->frame.bpp / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
