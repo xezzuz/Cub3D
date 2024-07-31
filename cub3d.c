@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:34:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 11:31:37 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 13:30:23 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 	if (!parsing(&game, argv[1]))
 		return (exit_cub3d(&game) ,1);
 	setup_init(&game);
+	init_animation_frames(&game);
 	mlx_hook(game.win, 2, 0, keypress, &game);
 	mlx_hook(game.win, 3, 0, keyrelease, &game);
 	mlx_hook(game.win, 6, 0, mouse_move, &game);

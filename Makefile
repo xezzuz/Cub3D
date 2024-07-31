@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+         #
+#    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/07/30 17:54:18 by mmaila           ###   ########.fr        #
+#    Updated: 2024/07/31 13:30:57 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRCS			= 		./cub3d.c \
 						./engine/update_game.c \
 						./events/keypress.c \
 						./events/mouse_events.c \
+						./events/animation.c \
 						./parsing/parsing.c \
 						./parsing/parsing_utils.c \
 						./parsing/parsing_utils_2.c \
@@ -41,6 +42,7 @@ SRCS			= 		./cub3d.c \
 						./parsing/parsing_validate_2.c \
 						./parsing/exit.c \
 						./parsing/utils/ft_split.c \
+						./parsing/utils/ft_itoa.c \
 						./parsing/utils/get_next_line.c \
 						./parsing/utils/utils_2.c \
 						./parsing/utils/utils.c \
