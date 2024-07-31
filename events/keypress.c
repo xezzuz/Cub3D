@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:18:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 14:00:22 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/31 16:25:43 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	keypress(int key, t_game *game)
 		game->bob.turn_dir = 1;
 	else if (key == SPACE)
 		flip_door(game);
+	else if (key == X)
+		game->mouse_hidden = !game->mouse_hidden;
 	else if (key == ESC)
 		exit_cub3d(game);
 	return (0);

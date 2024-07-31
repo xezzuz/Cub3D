@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:18:54 by mmaila            #+#    #+#             */
-/*   Updated: 2024/07/31 16:14:07 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/31 16:27:10 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_data(t_game *game)
 	game->bob.turn_dir = 0;
 	game->bob.upright = 0;
 	game->bob.sideways = 0;
+	game->mouse_hidden = 1;
 }
 
 void	init_images(t_game *game)

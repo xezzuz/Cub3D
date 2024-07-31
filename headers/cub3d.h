@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 15:44:28 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 16:25:18 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 # define A 0
 # define S 1
 # define D 2
+# define X 7
 
 # define NUM_FRAMES 9
 
@@ -189,6 +190,7 @@ typedef struct s_game
 	void		*currframe;
 	int			current_frame;
 	void		*animation[NUM_FRAMES];
+	int			mouse_hidden;
 }				t_game;
 
 void	setup_init(t_game *game);
