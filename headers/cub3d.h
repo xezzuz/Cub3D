@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 09:39:45 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 11:33:32 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,9 @@ typedef struct s_ray
 	float		angle;
 	float		dis;
 	float		wall_height;
-	int			solid;
+	int			doorh;
+	int			doorv;
+	int			door;
 	int			horiz;
 	int			down;
 	int			right;
@@ -125,6 +127,7 @@ typedef struct s_tex
 	t_frame	tex1;
 	t_frame	tex2;
 	t_frame	tex3;
+	t_frame	doortex;
 	int		height;
 	int		width;
 	int		offset;

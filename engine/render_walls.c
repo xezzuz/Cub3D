@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 09:40:08 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 10:34:39 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ void	render_tex(t_game *game, t_coords start, int height, t_frame txt)
 
 void	assign_tex(t_game *game, t_coords start, t_ray *ray)
 {
-	// if ()
-	if (ray->horiz && !ray->down)
+	if (ray->door)
+		render_tex(game, start, ray->wall_height, game->wall.doortex);
+	else if (ray->horiz && !ray->down)
 		render_tex(game, start, ray->wall_height, game->wall.tex);
 	else if (ray->horiz && ray->down)
 		render_tex(game, start, ray->wall_height, game->wall.tex1);

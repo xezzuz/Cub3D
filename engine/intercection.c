@@ -6,13 +6,13 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:40:02 by mmaila            #+#    #+#             */
-/*   Updated: 2024/07/31 09:40:16 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 10:39:14 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
 
-int	wallhit(t_game *game, t_fcoords check)
+int	wallhit(t_game *game, t_fcoords check, int *door)
 {
 	int	x;
 	int	y;
@@ -20,9 +20,10 @@ int	wallhit(t_game *game, t_fcoords check)
 	x = floor(check.x);
 	y = floor(check.y);
 	if (game->lvl.map[y / TILE][x / TILE] == '1'
-		|| doorcheck(&game->lvl, x, y)
 		|| game->lvl.map[y / TILE][x / TILE] == ' ')
 		return (1);
+	if (doorcheck(&game->lvl, x, y))
+		return (*door = 1, 1);
 	return (0);
 }
 
@@ -46,7 +47,7 @@ t_fcoords	horiz(t_game *game, t_ray *ray)
 	while (intercept.x >= 0 && intercept.x <= game->lvl.width
 		&& intercept.y >= 0 && intercept.y <= game->lvl.height)
 	{
-		if (wallhit(game, (t_fcoords){intercept.x, intercept.y - !ray->down}))
+		if (wallhit(game, (t_fcoords){intercept.x, intercept.y - !ray->down}, &ray->doorh))
 			return (intercept);
 		intercept.x += step.x;
 		intercept.y += step.y;
@@ -75,7 +76,7 @@ t_fcoords	vert(t_game *game, t_ray *ray)
 	while (intercept.x >= 0 && intercept.x <= game->lvl.width
 		&& intercept.y >= 0 && intercept.y <= game->lvl.height)
 	{
-		if (wallhit(game, (t_fcoords){intercept.x - !ray->right, intercept.y}))
+		if (wallhit(game, (t_fcoords){intercept.x - !ray->right, intercept.y}, &ray->doorv))
 			return (intercept);
 		intercept.x += step.x;
 		intercept.y += step.y;
@@ -101,12 +102,14 @@ void	calc_hit(t_game *game, t_ray *ray)
 		vdis = distance(game->bob.coords, vintercept);
 	if (hdis < vdis)
 	{
+		ray->door = ray->doorh;
 		ray->dis = hdis;
 		ray->endpoint = hintercept;
 		ray->horiz = 1;
 	}
 	else
 	{
+		ray->door = ray->doorv;
 		ray->dis = vdis;
 		ray->endpoint = vintercept;
 		ray->horiz = 0;

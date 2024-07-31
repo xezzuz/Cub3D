@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 09:45:27 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 10:40:18 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ void	cast_rays(t_game *game)
 	while (i < NUM_OF_RAYS)
 	{
 		curr_angle = cycle(curr_angle);
-		game->rays[i].solid = 1;
+		game->rays[i].doorh = 0;
+		game->rays[i].doorv = 0;
+		game->rays[i].door = 0;
 		game->rays[i].angle = curr_angle;
 		game->rays[i].down = curr_angle < M_PI;
 		game->rays[i].right = curr_angle < M_PI_2 || curr_angle > (1.5 * M_PI);
@@ -57,10 +59,14 @@ int	doorcheck(t_map *lvl, int x, int y)
 	i = 0;
 	if (lvl->map[y / TILE][x / TILE] != 'D')
 		return (0);
-	while (lvl->doors[i].coords.x != x / TILE
-		|| lvl->doors[i].coords.y != y / TILE)
+	while (i < lvl->dcount)
+	{
+		if (lvl->doors[i].coords.x == x / TILE
+			&& lvl->doors[i].coords.y == y / TILE)
+			return (lvl->doors[i].closed);
 		i++;
-	return (lvl->doors[i].closed);
+	}
+	return (0);
 }
 
 int	hitbox(t_map *lvl, t_hitbox *box, int new_x, int new_y)

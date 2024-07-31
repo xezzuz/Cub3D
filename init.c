@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:18:54 by mmaila            #+#    #+#             */
-/*   Updated: 2024/07/30 15:37:04 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 11:18:02 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	init_images(t_game *game)
 	game->wall.tex1.img = mlx_xpm_file_to_image(game->mlx, game->textures.south, &game->wall.width, &game->wall.height);
 	game->wall.tex2.img = mlx_xpm_file_to_image(game->mlx, game->textures.west, &game->wall.width, &game->wall.height);
 	game->wall.tex3.img = mlx_xpm_file_to_image(game->mlx, game->textures.east, &game->wall.width, &game->wall.height);
+	game->wall.doortex.img = mlx_xpm_file_to_image(game->mlx, "./textures/joker", &game->wall.width, &game->wall.height);
+	game->wall.doortex.addr = mlx_get_data_addr(game->wall.doortex.img, &game->wall.doortex.bpp, &game->wall.doortex.line_length, &game->wall.doortex.endian);
 	game->wall.tex.addr = mlx_get_data_addr(game->wall.tex.img, &game->wall.tex.bpp, &game->wall.tex.line_length, &game->wall.tex.endian);
 	game->wall.tex1.addr = mlx_get_data_addr(game->wall.tex1.img, &game->wall.tex1.bpp, &game->wall.tex1.line_length, &game->wall.tex1.endian);
 	game->wall.tex2.addr = mlx_get_data_addr(game->wall.tex2.img, &game->wall.tex2.bpp, &game->wall.tex2.line_length, &game->wall.tex2.endian);
