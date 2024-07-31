@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
+#    By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/07/31 13:55:39 by nazouz           ###   ########.fr        #
+#    Updated: 2024/07/31 15:08:45 by mmaila           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			= 		Cub3D
 
 CC				= 		cc
 
-CFLAGS			= 		-Wall -Werror -Wextra -g3
+CFLAGS			= 		-Wall -Werror -Wextra
 
 INCLUDE			=		./headers/cub3d.h ./mlx/mlx.h
 
@@ -24,7 +24,7 @@ MLX				=		$(MLXLIB) -lm -framework OpenGL -framework AppKit
 
 SRCS			= 		./cub3d.c \
 						./init.c \
-						./engine/intercection.c \
+						./engine/intersection.c \
 						./engine/mlx.c \
 						./engine/render_walls.c \
 						./engine/render_game.c \

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intercection.c                                     :+:      :+:    :+:   */
+/*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:40:02 by mmaila            #+#    #+#             */
-/*   Updated: 2024/07/31 10:39:14 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 15:32:32 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int	wallhit(t_game *game, t_fcoords check, int *door)
 
 t_fcoords	horiz(t_game *game, t_ray *ray)
 {
-	t_fcoords	intercept;
+	t_fcoords	inter;
 	t_fcoords	step;
 
-	intercept.y = floor(game->bob.coords.y / TILE) * TILE;
-	intercept.y += (ray->down * TILE);
-	intercept.x = game->bob.coords.x
-		+ (intercept.y - game->bob.coords.y) / tan(ray->angle);
+	inter.y = floor(game->bob.coords.y / TILE) * TILE;
+	inter.y += (ray->down * TILE);
+	inter.x = game->bob.coords.x
+		+ (inter.y - game->bob.coords.y) / tan(ray->angle);
 	step.y = TILE;
 	if (!ray->down)
 		step.y *= -1;
@@ -44,27 +44,27 @@ t_fcoords	horiz(t_game *game, t_ray *ray)
 		step.x *= -1;
 	if (ray->right && step.x < 0)
 		step.x *= -1;
-	while (intercept.x >= 0 && intercept.x <= game->lvl.width
-		&& intercept.y >= 0 && intercept.y <= game->lvl.height)
+	while (inter.x >= 0 && inter.x <= game->lvl.width
+		&& inter.y >= 0 && inter.y <= game->lvl.height)
 	{
-		if (wallhit(game, (t_fcoords){intercept.x, intercept.y - !ray->down}, &ray->doorh))
-			return (intercept);
-		intercept.x += step.x;
-		intercept.y += step.y;
+		if (wallhit(game, (t_fcoords){inter.x, inter.y - !ray->down}, &ray->doorh))
+			return (inter);
+		inter.x += step.x;
+		inter.y += step.y;
 	}
-	intercept.x = -1;
-	return (intercept);
+	inter.x = -1;
+	return (inter);
 }
 
 t_fcoords	vert(t_game *game, t_ray *ray)
 {
-	t_fcoords	intercept;
+	t_fcoords	inter;
 	t_fcoords	step;
 
-	intercept.x = floor(game->bob.coords.x / TILE) * TILE;
-	intercept.x += (ray->right * TILE);
-	intercept.y = game->bob.coords.y
-		+ (intercept.x - game->bob.coords.x) * tan(ray->angle);
+	inter.x = floor(game->bob.coords.x / TILE) * TILE;
+	inter.x += (ray->right * TILE);
+	inter.y = game->bob.coords.y
+		+ (inter.x - game->bob.coords.x) * tan(ray->angle);
 	step.x = TILE;
 	if (!ray->right)
 		step.x *= -1;
@@ -73,45 +73,45 @@ t_fcoords	vert(t_game *game, t_ray *ray)
 		step.y *= -1;
 	if (ray->down && step.y < 0)
 		step.y *= -1;
-	while (intercept.x >= 0 && intercept.x <= game->lvl.width
-		&& intercept.y >= 0 && intercept.y <= game->lvl.height)
+	while (inter.x >= 0 && inter.x <= game->lvl.width
+		&& inter.y >= 0 && inter.y <= game->lvl.height)
 	{
-		if (wallhit(game, (t_fcoords){intercept.x - !ray->right, intercept.y}, &ray->doorv))
-			return (intercept);
-		intercept.x += step.x;
-		intercept.y += step.y;
+		if (wallhit(game, (t_fcoords){inter.x - !ray->right, inter.y}, &ray->doorv))
+			return (inter);
+		inter.x += step.x;
+		inter.y += step.y;
 	}
-	intercept.x = -1;
-	return (intercept);
+	inter.x = -1;
+	return (inter);
 }
 
 void	calc_hit(t_game *game, t_ray *ray)
 {
-	t_fcoords	hintercept;
-	t_fcoords	vintercept;
+	t_fcoords	hinter;
+	t_fcoords	vinter;
 	float		hdis;
 	float		vdis;
 
-	vintercept = vert(game, ray);
-	hintercept = horiz(game, ray);
+	vinter = vert(game, ray);
+	hinter = horiz(game, ray);
 	hdis = __FLT_MAX__;
-	if (hintercept.x != -1)
-		hdis = distance(game->bob.coords, hintercept);
+	if (hinter.x != -1)
+		hdis = distance(game->bob.coords, hinter);
 	vdis = __FLT_MAX__;
-	if (vintercept.x != -1)
-		vdis = distance(game->bob.coords, vintercept);
+	if (vinter.x != -1)
+		vdis = distance(game->bob.coords, vinter);
 	if (hdis < vdis)
 	{
 		ray->door = ray->doorh;
 		ray->dis = hdis;
-		ray->endpoint = hintercept;
+		ray->endpoint = hinter;
 		ray->horiz = 1;
 	}
 	else
 	{
 		ray->door = ray->doorv;
 		ray->dis = vdis;
-		ray->endpoint = vintercept;
+		ray->endpoint = vinter;
 		ray->horiz = 0;
 	}
 }

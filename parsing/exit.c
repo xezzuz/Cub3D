@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:41:58 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 19:01:36 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 15:06:04 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ int	exit_cub3d(t_game *game)
 	free(game->textures.south);
 	free(game->textures.west);
 	free(game->textures.east);
-	if (game->lvl.doors)
-		free(game->lvl.doors);
+	free(game->lvl.doors);
 	
 	// if (flag == ERROR)
 	// 	(printf("Error\n"), exit(EXIT_FAILURE)); // STDERR
