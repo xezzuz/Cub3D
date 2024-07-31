@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 13:36:36 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 14:04:43 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ void	update_player(t_game *game)
 
 	game->bob.rot_angle += game->bob.turn_dir * game->bob.rot_speed;
 	game->bob.rot_angle += game->mouse_angle;
-	move_step = game->bob.upright * game->bob.moveSpeed;
-	diagmovestep = game->bob.sideways * game->bob.moveSpeed / 2;
+	move_step = game->bob.upright * game->bob.move_speed;
+	diagmovestep = game->bob.sideways * game->bob.move_speed / 2;
 	new_x = round(cos(game->bob.rot_angle - (M_PI / 2)) * diagmovestep);
 	new_y = round(sin(game->bob.rot_angle - (M_PI / 2)) * diagmovestep);
 	new_x += round(game->bob.coords.x + (cos(game->bob.rot_angle) * move_step));

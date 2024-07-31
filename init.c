@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:18:54 by mmaila            #+#    #+#             */
-/*   Updated: 2024/07/31 11:18:02 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 14:04:40 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_data(t_game *game)
 {
-	game->bob.moveSpeed = 4.0;
+	game->bob.move_speed = 4.0;
 	game->bob.rot_speed = 1.4 * (M_PI / 180);
 	game->bob.dppp = ((WIN_WIDTH) / 2) / tan(FOV / 2);
 	game->mouse_angle = 0;

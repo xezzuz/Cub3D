@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 13:52:26 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/31 14:06:00 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@
 # define RED 0xff0000
 # define GRAY 0xCFCFCF
 
-
 typedef struct s_coords
 {
 	int		x;
@@ -92,14 +91,12 @@ typedef struct s_player
 	int			turn_dir;
 	int			upright;
 	int			sideways;
-	float		startingAngle;
 	float		rot_angle;
-	float		moveSpeed;
+	float		move_speed;
 	float		rot_speed;
 	float		dppp;
 }				t_player;
 
-//bits per pixel > bpp
 typedef struct s_frame
 {
 	void	*img;
@@ -136,25 +133,6 @@ typedef struct s_tex
 	int		y_txt;
 }			t_tex;
 
-// typedef struct s_weapon
-// {
-// 	void	*frame1;
-// 	void	*frame2;
-// 	void	*frame3;
-// 	void	*frame4;
-// 	void	*frame5;
-// 	void	*frame6;
-// 	void	*frame7;
-// 	void	*frame8;
-// 	void	*frame9;
-// 	void	*frame10;
-// 	void	*frame11;
-// 	void	*frame12;
-// 	int		width;
-// 	int		height;
-// 	int		count;
-// }			t_weapon;
-
 typedef struct s_texture
 {
 	char			*north;
@@ -175,7 +153,7 @@ typedef struct s_parse
 	char		*err;
 }				t_parse;
 
-typedef struct	s_door
+typedef struct s_door
 {
 	t_coords	coords;
 	int			closed;
@@ -193,7 +171,6 @@ typedef struct s_map
 
 }				t_map;
 
-
 typedef struct s_game
 {
 	t_map		lvl;
@@ -205,7 +182,6 @@ typedef struct s_game
 	t_texture	textures;
 	void		*mlx;
 	void		*win;
-	// t_weapon	gun;
 	int			counter;
 	int			animate;
 	float		mouse_angle;
@@ -215,40 +191,20 @@ typedef struct s_game
 }				t_game;
 
 void	setup_init(t_game *game);
-
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 int		get_pixel_color(t_frame *wall, int x, int y);
-
 int		doorcheck(t_map *lvl, int x, int y);
 float	distance(t_coords a, t_fcoords b);
 int		render_game(t_game	*game);
 void	calc_hit(t_game *game, t_ray *ray);
 void	cast_rays(t_game *game);
 void	update_player(t_game *game);
-
 int		keypress(int key, t_game *game);
 int		keyrelease(int key, t_game *game);
 int		mouse_move(int x, int y, t_game *game);
-
 void	draw_rect(t_game *game, t_coords start, int width, int height, int color);
 void	render_walls(t_game *game);
 void	render_minimap(t_game *game);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 int		exit_cub3d(t_game *game);
 void	free_2d(char **array);
 size_t	array_size(char **array);
@@ -276,11 +232,8 @@ void	set_error(t_game *game, char *error);
 void	print_stderr(char *error);
 int		init_animation_frames(t_game *game);
 void	display_animation_frame(t_game *game);
-
 int		add_to_array(char ***array, char *str);
-
 int		str_is_empty(char *str);
-
 size_t	ft_strlen(const char *s);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strjoin(char const *s1, char const *s2);
@@ -292,7 +245,5 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 char	*get_next_line(int fd);
 char	*ft_itoa(int n);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-
-void	ft_print_config(t_game *game);
 
 #endif
