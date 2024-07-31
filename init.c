@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:18:54 by mmaila            #+#    #+#             */
-/*   Updated: 2024/07/31 14:04:40 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/31 16:14:07 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,11 @@ void	setup_init(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		exit(1); //
+		exit_cub3d(game);
 	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "R|D");
 	if (!game->win)
-		exit(1); //
+		exit_cub3d(game);
 	init_images(game);
 	init_data(game);
+	init_animation_frames(game);
 }

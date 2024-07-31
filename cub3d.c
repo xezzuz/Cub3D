@@ -6,28 +6,21 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:34:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 13:30:23 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/31 16:12:10 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./headers/cub3d.h"
 
-void	ff()
-{
-	system("leaks Cub3D");
-}
-
 int	main(int argc, char **argv)
 {
 	t_game		game;
 
-	atexit(ff);
 	if (argc != 2)
 		return (print_stderr(ARGC), 1);
 	if (!parsing(&game, argv[1]))
-		return (exit_cub3d(&game) ,1);
+		return (exit_cub3d(&game), 1);
 	setup_init(&game);
-	init_animation_frames(&game);
 	mlx_hook(game.win, 2, 0, keypress, &game);
 	mlx_hook(game.win, 3, 0, keyrelease, &game);
 	mlx_hook(game.win, 6, 0, mouse_move, &game);
