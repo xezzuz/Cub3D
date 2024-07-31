@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:18:32 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 15:47:46 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/31 18:08:32 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	struct_init(t_game *game)
 	game->parse.err = NULL;
 	game->lvl.map = NULL;
 	game->lvl.doors = NULL;
+	game->parse.file = NULL;
 	game->textures.north = NULL;
 	game->textures.south = NULL;
 	game->textures.east = NULL;
@@ -37,7 +38,7 @@ int	map_extension(char *map_name)
 	while (*map_name)
 		map_name++;
 	if (ft_strncmp(".cub", map_name - 4, 4) != 0)
-		return (0);
+		return (print_stderr(FNF), 0);
 	return (1);
 }
 
@@ -52,8 +53,10 @@ int	read_config(t_game *game, char *map_name)
 	while (1)
 	{
 		line = get_next_line(fd);
+		if (!line && !game->parse.file)
+			return (set_error(game, ALLOC), close(fd), 0);
 		if (!line)
-			break ;
+			break;
 		if (!add_to_array(&game->parse.file, line))
 			return (close(fd), set_error(game, ALLOC), 0);
 	}

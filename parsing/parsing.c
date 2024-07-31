@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:37:40 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 15:47:20 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/31 18:06:38 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int	fill_struct(t_game *game)
 {
 	int		file_size;
 
-	struct_init(game);
 	game->parse.tex_colors = NULL;
 	if (!fill_textures(game))
 		return (set_error(game, TXT), 0);
@@ -98,9 +97,9 @@ int	fill_struct(t_game *game)
 
 int	parsing(t_game *game, char *map_name)
 {
+	struct_init(game);
 	if (!map_extension(map_name))
 		return (0);
-	game->parse.file = NULL;
 	if (!read_config(game, map_name))
 		return (0);
 	if (!fill_struct(game))

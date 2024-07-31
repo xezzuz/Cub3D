@@ -6,7 +6,7 @@
 #    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/07/31 16:03:34 by nazouz           ###   ########.fr        #
+#    Updated: 2024/07/31 18:01:01 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			= 		Cub3D
 
 CC				= 		cc
 
-CFLAGS			= 		-Wall -Werror -Wextra
+CFLAGS			= 		-g3 #-Wall -Werror -Wextra -g3
 
 INCLUDE			=		./headers/cub3d.h ./mlx/mlx.h
 
