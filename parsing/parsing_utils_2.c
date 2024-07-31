@@ -6,13 +6,13 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 17:58:51 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/29 17:29:38 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/31 15:47:58 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
 
-int validate_surr_ends(char **map, int rows)
+int	validate_surr_ends(char **map, int rows)
 {
 	int		i;
 

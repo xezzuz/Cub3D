@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:48:19 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 13:53:07 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/31 15:49:02 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	parse_colors(t_game *game, char *str, char key)
 	if (!count_commas(str))
 		return (0);
 	i = 0;
-	while (str[i++] == ' ');
+	while (str[i++] == ' ')
+		;
 	while (str[i] == ' ')
 		i++;
 	while (str[i])
@@ -89,7 +90,6 @@ int	fill_map_ends(t_game *game)
 	i = 0;
 	while (i < game->lvl.rows)
 	{
-		// result[i] = ft_strdup(game->lvl.map[i]);
 		result[i] = malloc(game->lvl.columns + 1);
 		if (!result[i])
 			return (free_2d(result), set_error(game, ALLOC), 0);

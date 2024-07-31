@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:18:32 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 12:23:30 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 15:47:46 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,23 @@ int	get_rgb_colors(t_game *game)
 
 int	get_key_value(t_game *game, char **array, int i)
 {
-	if (!ft_strcmp("NO", array[0]) && !game->textures.north && array_size(array) == 2)
+	if (!ft_strcmp("NO", array[0])
+		&& !game->textures.north && array_size(array) == 2)
 		game->textures.north = ft_strdup(array[1]);
-	else if (!ft_strcmp("SO", array[0]) && !game->textures.south && array_size(array) == 2)
+	else if (!ft_strcmp("SO", array[0])
+		&& !game->textures.south && array_size(array) == 2)
 		game->textures.south = ft_strdup(array[1]);
-	else if (!ft_strcmp("WE", array[0]) && !game->textures.west && array_size(array) == 2)
+	else if (!ft_strcmp("WE", array[0])
+		&& !game->textures.west && array_size(array) == 2)
 		game->textures.west = ft_strdup(array[1]);
-	else if (!ft_strcmp("EA", array[0]) && !game->textures.east && array_size(array) == 2)
+	else if (!ft_strcmp("EA", array[0])
+		&& !game->textures.east && array_size(array) == 2)
 		game->textures.east = ft_strdup(array[1]);
-	else if (!ft_strcmp("F", array[0]) && game->textures.floor[0] == ERROR)
+	else if (!ft_strcmp("F", array[0])
+		&& game->textures.floor[0] == ERROR)
 		return (parse_colors(game, game->parse.tex_colors[i], 'F'));
-	else if (!ft_strcmp("C", array[0]) && game->textures.ceiling[0] == ERROR)
+	else if (!ft_strcmp("C", array[0])
+		&& game->textures.ceiling[0] == ERROR)
 		return (parse_colors(game, game->parse.tex_colors[i], 'C'));
 	else
 		return (0);

@@ -6,7 +6,7 @@
 #    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/07/31 13:55:39 by nazouz           ###   ########.fr        #
+#    Updated: 2024/07/31 15:47:11 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			= 		Cub3D
 
 CC				= 		cc
 
-CFLAGS			= 		-Wall -Werror -Wextra -g3
+CFLAGS			= 		-Wall -Werror -Wextra
 
 INCLUDE			=		./headers/cub3d.h ./mlx/mlx.h
 
@@ -45,8 +45,7 @@ SRCS			= 		./cub3d.c \
 						./parsing/utils/ft_itoa.c \
 						./parsing/utils/get_next_line.c \
 						./parsing/utils/utils_2.c \
-						./parsing/utils/utils.c \
-						./parsing/helpers.c  #please remove this file, its for debugging puposes
+						./parsing/utils/utils.c
 
 OBJS			= 		$(SRCS:.c=.o)
 

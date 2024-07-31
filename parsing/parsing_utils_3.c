@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 15:49:54 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 11:57:53 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 15:48:29 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	open_textures(t_game *game)
 	i = -1;
 	while (++i < 4)
 		if (fds[i] == -1)
-			return (close(fds[0]), close(fds[1]), close(fds[2]), close(fds[3]), set_error(game, TXT), 0);
+			return (close(fds[0]), close(fds[1]),
+				close(fds[2]), close(fds[3]), set_error(game, TXT), 0);
 	return (1);
 }
 
@@ -49,7 +50,8 @@ int	config_exist(t_game *game)
 {
 	if (!game->textures.north || !game->textures.south
 		|| !game->textures.west || !game->textures.east
-		|| game->textures.floor[0] == ERROR || game->textures.ceiling[0] == ERROR)
+		|| game->textures.floor[0] == ERROR
+		|| game->textures.ceiling[0] == ERROR)
 		return (set_error(game, TXT), 0);
 	if (game->textures.north[ft_strlen(game->textures.north) - 1] == '\n')
 		game->textures.north[ft_strlen(game->textures.north) - 1] = '\0';
