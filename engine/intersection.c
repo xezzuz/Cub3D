@@ -6,13 +6,13 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:40:02 by mmaila            #+#    #+#             */
-/*   Updated: 2024/07/31 15:32:32 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 16:41:09 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
 
-int	wallhit(t_game *game, t_fcoords check, int *door)
+int	hit(t_game *game, t_fcoords check, int *door)
 {
 	int	x;
 	int	y;
@@ -47,7 +47,7 @@ t_fcoords	horiz(t_game *game, t_ray *ray)
 	while (inter.x >= 0 && inter.x <= game->lvl.width
 		&& inter.y >= 0 && inter.y <= game->lvl.height)
 	{
-		if (wallhit(game, (t_fcoords){inter.x, inter.y - !ray->down}, &ray->doorh))
+		if (hit(game, (t_fcoords){inter.x, inter.y - !ray->down}, &ray->doorh))
 			return (inter);
 		inter.x += step.x;
 		inter.y += step.y;
@@ -76,7 +76,7 @@ t_fcoords	vert(t_game *game, t_ray *ray)
 	while (inter.x >= 0 && inter.x <= game->lvl.width
 		&& inter.y >= 0 && inter.y <= game->lvl.height)
 	{
-		if (wallhit(game, (t_fcoords){inter.x - !ray->right, inter.y}, &ray->doorv))
+		if (hit(game, (t_fcoords){inter.x - !ray->right, inter.y}, &ray->doorv))
 			return (inter);
 		inter.x += step.x;
 		inter.y += step.y;
@@ -106,12 +106,10 @@ void	calc_hit(t_game *game, t_ray *ray)
 		ray->dis = hdis;
 		ray->endpoint = hinter;
 		ray->horiz = 1;
+		return ;
 	}
-	else
-	{
-		ray->door = ray->doorv;
-		ray->dis = vdis;
-		ray->endpoint = vinter;
-		ray->horiz = 0;
-	}
+	ray->door = ray->doorv;
+	ray->dis = vdis;
+	ray->endpoint = vinter;
+	ray->horiz = 0;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_walls.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 16:02:43 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/31 17:05:16 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,23 +75,23 @@ void	assign_tex(t_game *game, t_coords start, t_ray *ray)
 void	render_walls(t_game *game)
 {
 	t_coords	start;
-	int			flcl_height;
+	int			fch;
 	int			i;
 
 	start.x = 0;
 	i = 0;
 	while (i < NUM_OF_RAYS)
 	{
-		flcl_height = (WIN_HEIGHT - game->rays[i].wall_height) / 2;
+		fch = (WIN_HEIGHT - game->rays[i].wall_height) / 2;
 		start.y = ((WIN_HEIGHT) / 2) - (game->rays[i].wall_height / 2);
-		draw_rect(game, (t_coords){start.x, 0}, 1, flcl_height, game->textures.ceil);
+		draw_rect(game, (t_coords){start.x, 0}, 1, fch, game->textures.ceil);
 		if (game->rays[i].horiz)
 			game->wall.offset = fmod(game->rays[i].endpoint.x * (game->wall.width / TILE), game->wall.height); // multiplying the ray hit by how much bigger the wall tex is than the actual wall and fmoding it so it loops back around the tex if it exceeds the borders. 
 		else
 			game->wall.offset = fmod(game->rays[i].endpoint.y * (game->wall.width / TILE), game->wall.height);
 		assign_tex(game, start, &game->rays[i]);
 		start.y += game->rays[i].wall_height;
-		draw_rect(game, (t_coords){start.x, start.y}, 1, flcl_height, game->textures.fl);
+		draw_rect(game, start, 1, fch, game->textures.fl);
 		start.x++;
 		i++;
 	}
