@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 10:40:18 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 13:36:36 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,11 @@ int	hitbox(t_map *lvl, t_hitbox *box, int new_x, int new_y)
 	if (lvl->map[box->up.y / TILE][box->up.x / TILE] == '1'
 		|| doorcheck(lvl, box->up.x, box->up.y)
 		|| lvl->map[box->right.y / TILE][box->right.x / TILE] == '1'
-		|| doorcheck(lvl, box->right.x, box->up.y)
+		|| doorcheck(lvl, box->right.x, box->right.y)
 		|| lvl->map[box->left.y / TILE][box->left.x / TILE] == '1'
-		|| doorcheck(lvl, box->left.x, box->up.y)
+		|| doorcheck(lvl, box->left.x, box->left.y)
 		|| lvl->map[box->down.y / TILE][box->down.x / TILE] == '1'
-		|| doorcheck(lvl, box->down.x, box->up.y))
+		|| doorcheck(lvl, box->down.x, box->down.y))
 		return (1);
 	return (0);
 }
