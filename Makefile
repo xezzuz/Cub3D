@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
+#    By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/07/31 18:01:01 by nazouz           ###   ########.fr        #
+#    Updated: 2024/07/31 18:57:30 by mmaila           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,10 +26,10 @@ SRCS			= 		./cub3d.c \
 						./init.c \
 						./engine/intersection.c \
 						./engine/mlx.c \
-						./engine/render_walls.c \
-						./engine/render_game.c \
-						./engine/render_game_utils.c \
-						./engine/update_game.c \
+						./engine/walls.c \
+						./engine/gameloop.c \
+						./engine/minimap.c \
+						./engine/update.c \
 						./events/keypress.c \
 						./events/mouse_events.c \
 						./events/animation.c \

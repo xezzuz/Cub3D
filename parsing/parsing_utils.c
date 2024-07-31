@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:18:32 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 18:08:32 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/31 18:54:08 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	read_config(t_game *game, char *map_name)
 		if (!line && !game->parse.file)
 			return (set_error(game, ALLOC), close(fd), 0);
 		if (!line)
-			break;
+			break ;
 		if (!add_to_array(&game->parse.file, line))
 			return (close(fd), set_error(game, ALLOC), 0);
 	}
