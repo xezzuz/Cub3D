@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+         #
+#    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/07/31 15:08:45 by mmaila           ###   ########.fr        #
+#    Updated: 2024/07/31 16:03:34 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,8 +45,7 @@ SRCS			= 		./cub3d.c \
 						./parsing/utils/ft_itoa.c \
 						./parsing/utils/get_next_line.c \
 						./parsing/utils/utils_2.c \
-						./parsing/utils/utils.c \
-						./parsing/helpers.c  #please remove this file, its for debugging puposes
+						./parsing/utils/utils.c
 
 OBJS			= 		$(SRCS:.c=.o)
 

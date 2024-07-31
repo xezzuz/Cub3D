@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:37:40 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 12:09:45 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 15:47:20 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,5 @@ int	parsing(t_game *game, char *map_name)
 		return (0);
 	if (!map_is_rect(game))
 		return (fill_map_ends(game));
-	// printf("\n\n\n\n");
-	// ft_print_config(game);
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:41:58 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 15:06:04 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 16:03:24 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,7 @@ int	exit_cub3d(t_game *game)
 	free(game->textures.west);
 	free(game->textures.east);
 	free(game->lvl.doors);
-	
-	// if (flag == ERROR)
-	// 	(printf("Error\n"), exit(EXIT_FAILURE)); // STDERR
-	// exit(EXIT_SUCCESS);
 	if (game->parse.err)
 		print_stderr(game->parse.err);
-		// write(STDERR_FILENO, game->parse.err, ft_strlen(game->parse.err));
-	exit(0);
-	return (0);
+	return (exit(0), 0);
 }
-

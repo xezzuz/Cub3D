@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_validate.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 19:20:14 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 19:05:20 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 15:51:14 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,23 +92,19 @@ int	validate_shape(char **map, size_t rows)
 	{
 		if (i != rows - 1 && ft_strlen(map[i]) > ft_strlen(map[i + 1]))
 		{
-			j = 0;
-			while (map[i][j])
-			{
-				if (j >= ft_strlen(map[i + 1]) && map[i][j] != WALL && map[i][j] != EMPTY)
+			j = -1;
+			while (map[i][++j])
+				if (j >= ft_strlen(map[i + 1])
+					&& map[i][j] != WALL && map[i][j] != EMPTY)
 					return (0);
-				j++;
-			}
 		}
 		if (i != 0 && ft_strlen(map[i]) > ft_strlen(map[i - 1]))
 		{
-			j = 0;
-			while (map[i][j])
-			{
-				if (j >= ft_strlen(map[i - 1]) && map[i][j] != WALL && map[i][j] != EMPTY)
+			j = -1;
+			while (map[i][++j])
+				if (j >= ft_strlen(map[i - 1])
+					&& map[i][j] != WALL && map[i][j] != EMPTY)
 					return (0);
-				j++;
-			}
 		}
 		i++;
 	}
