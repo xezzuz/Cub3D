@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 17:05:16 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 18:39:28 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ float	distance(t_coords a, t_fcoords b)
 	return (sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y)));
 }
 
-void	draw_rect(t_game *game, t_coords start, int width, int height, int color)
+void	draw_rect(t_game *game, t_coords start, t_coords end, int color)
 {
 	int		cols;
 	int		rows;
 
-	if (height < 0)
+	if (end.y < 0)
 		return ;
 	rows = start.y;
-	while (rows < start.y + height)
+	while (rows < start.y + end.y)
 	{
 		cols = start.x;
-		while (cols < start.x + width)
+		while (cols < start.x + end.x)
 		{
 			my_mlx_pixel_put(game, cols, rows, color);
 			cols++;
@@ -50,7 +50,7 @@ void	render_tex(t_game *game, t_coords start, int height, t_frame txt)
 	while (i < height && start.y < WIN_HEIGHT)
 	{
 		game->wall.y_txt = roundf(((start.y + (height / 2) - (WIN_HEIGHT / 2))
-					* game->wall.height) / height);
+					* txt.height) / height);
 		my_mlx_pixel_put(game, start.x, start.y,
 			get_pixel_color(&txt, game->wall.offset, game->wall.y_txt));
 		start.y++;
@@ -61,37 +61,54 @@ void	render_tex(t_game *game, t_coords start, int height, t_frame txt)
 void	assign_tex(t_game *game, t_coords start, t_ray *ray)
 {
 	if (ray->door)
+	{
+		if (ray->horiz)
+			game->wall.offset = fmod(ray->hit.x , 64);
+		else
+			game->wall.offset = fmod(ray->hit.y , 64);
 		render_tex(game, start, ray->wall_height, game->wall.doortex);
+	}
 	else if (ray->horiz && !ray->down)
+	{
+		game->wall.offset = fmod(ray->hit.x * (game->wall.tex.width / TILE), game->wall.tex.width);
 		render_tex(game, start, ray->wall_height, game->wall.tex);
+	}
 	else if (ray->horiz && ray->down)
+	{
+		game->wall.offset = fmod(ray->hit.x * (game->wall.tex1.width / TILE), game->wall.tex1.width);
 		render_tex(game, start, ray->wall_height, game->wall.tex1);
+	}
 	else if (!ray->horiz && !ray->right)
+	{
+		game->wall.offset = fmod(ray->hit.y * (game->wall.tex2.width / TILE), game->wall.tex2.height);
 		render_tex(game, start, ray->wall_height, game->wall.tex2);
+	}
 	else if (!ray->horiz && ray->right)
+	{
+		game->wall.offset = fmod(ray->hit.y * (game->wall.tex3.width / TILE), game->wall.tex3.height);
 		render_tex(game, start, ray->wall_height, game->wall.tex3);
+	}
 }
 
 void	render_walls(t_game *game)
 {
 	t_coords	start;
+	t_coords	end;
 	int			fch;
 	int			i;
 
 	start.x = 0;
+	end.x = 1;
 	i = 0;
 	while (i < NUM_OF_RAYS)
 	{
 		fch = (WIN_HEIGHT - game->rays[i].wall_height) / 2;
 		start.y = ((WIN_HEIGHT) / 2) - (game->rays[i].wall_height / 2);
-		draw_rect(game, (t_coords){start.x, 0}, 1, fch, game->textures.ceil);
-		if (game->rays[i].horiz)
-			game->wall.offset = fmod(game->rays[i].endpoint.x * (game->wall.width / TILE), game->wall.height); // multiplying the ray hit by how much bigger the wall tex is than the actual wall and fmoding it so it loops back around the tex if it exceeds the borders. 
-		else
-			game->wall.offset = fmod(game->rays[i].endpoint.y * (game->wall.width / TILE), game->wall.height);
+		end.y = fch;
+		draw_rect(game, (t_coords){start.x, 0}, end, game->textures.ceil);
 		assign_tex(game, start, &game->rays[i]);
 		start.y += game->rays[i].wall_height;
-		draw_rect(game, start, 1, fch, game->textures.fl);
+		draw_rect(game, start, end, game->textures.fl);
 		start.x++;
 		i++;
 	}

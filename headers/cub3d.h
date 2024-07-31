@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 18:09:06 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/07/31 18:38:56 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,13 @@ typedef struct s_frame
 	int		bpp;
 	int		line_length;
 	int		endian;
+	int		height;
+	int		width;
 }			t_frame;
 
 typedef struct s_ray
 {
-	t_fcoords	endpoint;
+	t_fcoords	hit;
 	float		angle;
 	float		dis;
 	float		wall_height;
@@ -128,8 +130,6 @@ typedef struct s_tex
 	t_frame	tex2;
 	t_frame	tex3;
 	t_frame	doortex;
-	int		height;
-	int		width;
 	int		offset;
 	int		y_txt;
 }			t_tex;
@@ -205,7 +205,7 @@ void	update_player(t_game *game);
 int		keypress(int key, t_game *game);
 int		keyrelease(int key, t_game *game);
 int		mouse_move(int x, int y, t_game *game);
-void	draw_rect(t_game *game, t_coords start, int width, int height, int color);
+void	draw_rect(t_game *game, t_coords start, t_coords end, int color);
 void	render_walls(t_game *game);
 void	render_minimap(t_game *game);
 int		exit_cub3d(t_game *game);

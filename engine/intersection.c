@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:40:02 by mmaila            #+#    #+#             */
-/*   Updated: 2024/07/31 16:41:09 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 18:36:03 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,12 @@ void	calc_hit(t_game *game, t_ray *ray)
 	{
 		ray->door = ray->doorh;
 		ray->dis = hdis;
-		ray->endpoint = hinter;
+		ray->hit = hinter;
 		ray->horiz = 1;
 		return ;
 	}
 	ray->door = ray->doorv;
 	ray->dis = vdis;
-	ray->endpoint = vinter;
+	ray->hit = vinter;
 	ray->horiz = 0;
 }

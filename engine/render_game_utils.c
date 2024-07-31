@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 19:04:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 16:51:19 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 18:37:40 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	render_minimap(t_game *game)
 	t_coords		center;
 	int				x;
 	int				y;
-	
+
 	center.x = 156;
 	center.y = 156;
 	diff.x = center.x - game->bob.coords.x;
 	diff.y = center.y - game->bob.coords.y;
-	draw_rect(game, (t_coords){7, 312}, 300, 7, 0x62645F);
-	draw_rect(game, (t_coords){7, 19}, 5, 300, 0x62645F);
-	draw_rect(game, (t_coords){12, 12}, 300, 300, 0x2F312D);
+	draw_rect(game, (t_coords){7, 312}, (t_coords){300, 7}, 0x62645F);
+	draw_rect(game, (t_coords){7, 19}, (t_coords){5, 300}, 0x62645F);
+	draw_rect(game, (t_coords){12, 12}, (t_coords){300, 300}, 0x2F312D);
 	x = 0;
 	while (x < game->lvl.width)
 	{
@@ -47,5 +47,5 @@ void	render_minimap(t_game *game)
 		}
 		x++;
 	}
-	draw_rect(game, (t_coords){153, 153}, 6, 6, RED);
+	draw_rect(game, (t_coords){153, 153}, (t_coords){6, 6}, RED);
 }
