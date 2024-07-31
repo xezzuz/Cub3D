@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:18:30 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 18:57:44 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 09:42:30 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	flip_door(t_game *game)
 			|| (game->lvl.doors[i].coords.y + 1 == y
 			&& game->lvl.doors[i].coords.x == x)
 			|| (game->lvl.doors[i].coords.y - 1 == y
-			&& game->lvl.doors[i].coords.x == x))
+			&& game->lvl.doors[i].coords.x == x))	
 			game->lvl.doors[i].closed = !game->lvl.doors[i].closed;
 		i++;
 	}

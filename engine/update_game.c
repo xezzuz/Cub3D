@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:00:46 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 18:28:26 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 09:45:27 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,15 @@ void	cast_rays(t_game *game)
 	}
 }
 
-int	doorcheck(t_map *lvl, int x)
+int	doorcheck(t_map *lvl, int x, int y)
 {
 	int	i;
 
 	i = 0;
-	// if (lvl->dcount == 0)
-	// 	return (1);
-	while (lvl->doors[i].coords.x != x / TILE)
+	if (lvl->map[y / TILE][x / TILE] != 'D')
+		return (0);
+	while (lvl->doors[i].coords.x != x / TILE
+		|| lvl->doors[i].coords.y != y / TILE)
 		i++;
 	return (lvl->doors[i].closed);
 }
@@ -73,17 +74,13 @@ int	hitbox(t_map *lvl, t_hitbox *box, int new_x, int new_y)
 	box->down.y = new_y + 6;
 	box->down.x = new_x;
 	if (lvl->map[box->up.y / TILE][box->up.x / TILE] == '1'
-		|| (lvl->map[box->up.y / TILE][box->up.x / TILE] == 'D'
-		&& doorcheck(lvl, box->up.x))
+		|| doorcheck(lvl, box->up.x, box->up.y)
 		|| lvl->map[box->right.y / TILE][box->right.x / TILE] == '1'
-		|| (lvl->map[box->right.y / TILE][box->right.x / TILE] == 'D'
-		&& doorcheck(lvl, box->right.x))
+		|| doorcheck(lvl, box->right.x, box->up.y)
 		|| lvl->map[box->left.y / TILE][box->left.x / TILE] == '1'
-		|| (lvl->map[box->left.y / TILE][box->left.x / TILE] == 'D'
-		&& doorcheck(lvl, box->left.x))
+		|| doorcheck(lvl, box->left.x, box->up.y)
 		|| lvl->map[box->down.y / TILE][box->down.x / TILE] == '1'
-		|| (lvl->map[box->down.y / TILE][box->down.x / TILE] == 'D'
-		&& doorcheck(lvl, box->down.x)))
+		|| doorcheck(lvl, box->down.x, box->up.y))
 		return (1);
 	return (0);
 }

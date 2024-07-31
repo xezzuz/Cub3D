@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 19:00:09 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 09:39:45 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,7 @@ void	setup_init(t_game *game);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 int		get_pixel_color(t_frame *wall, int x, int y);
 
-int		doorcheck(t_map *lvl, int x);
+int		doorcheck(t_map *lvl, int x, int y);
 float	distance(t_coords a, t_fcoords b);
 int		render_game(t_game	*game);
 void	calc_hit(t_game *game, t_ray *ray);

@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 19:20:14 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/30 19:02:36 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/30 19:05:20 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,15 +118,11 @@ int	validate_shape(char **map, size_t rows)
 int	validate_map(t_game *game)
 {
 	game->lvl.rows = array_size(game->lvl.map);
-	if (!validate_surroundings(game->lvl.map, game->lvl.rows))
-		return (set_error(game, MAP), 0);
-	if (validate_objects(game) != 1)
-		return (set_error(game, MAP), 0);
-	if (!validate_shape(game->lvl.map, game->lvl.rows))
-		return (set_error(game, MAP), 0);
-	if (!validate_spaces(game->lvl.map))
-		return (set_error(game, MAP), 0);
-	if (!validate_doors(game, game->lvl.map))
+	if (!validate_surroundings(game->lvl.map, game->lvl.rows)
+		|| validate_objects(game) != 1
+		|| !validate_shape(game->lvl.map, game->lvl.rows)
+		|| !validate_spaces(game->lvl.map)
+		|| !validate_doors(game, game->lvl.map))
 		return (set_error(game, MAP), 0);
 	return (1);
 }

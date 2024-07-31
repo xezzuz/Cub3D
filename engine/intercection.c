@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:40:02 by mmaila            #+#    #+#             */
-/*   Updated: 2024/07/30 18:20:27 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/07/31 09:40:16 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int	wallhit(t_game *game, t_fcoords check)
 	x = floor(check.x);
 	y = floor(check.y);
 	if (game->lvl.map[y / TILE][x / TILE] == '1'
-		|| (game->lvl.map[y / TILE][x / TILE] == 'D'
-		&& doorcheck(&game->lvl, x))
+		|| doorcheck(&game->lvl, x, y)
 		|| game->lvl.map[y / TILE][x / TILE] == ' ')
 		return (1);
 	return (0);
