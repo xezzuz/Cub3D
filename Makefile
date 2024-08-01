@@ -6,13 +6,13 @@
 #    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 16:13:58 by nazouz            #+#    #+#              #
-#    Updated: 2024/08/01 17:06:06 by nazouz           ###   ########.fr        #
+#    Updated: 2024/08/01 18:14:37 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= 		Cub3D
+NAME			= 		cub3D
 
-NAME_BONUS		= 		Cub3D_Bonus
+NAME_BONUS		= 		cub3D_bonus
 
 CC				= 		cc
 
