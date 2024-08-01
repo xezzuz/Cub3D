@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:18:54 by mmaila            #+#    #+#             */
-/*   Updated: 2024/08/01 10:54:44 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/01 10:59:11 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_textures(t_game *game)
 			&game->wall.doortex.width, &game->wall.doortex.height);
 	if (!game->wall.tex.img || !game->wall.tex1.img || !game->wall.tex2.img
 		|| !game->wall.tex3.img || !game->wall.doortex.img)
-		exit_cub3d(game);
+		(set_error(game, TXT), exit_cub3d(game));
 }
 
 void	init_images(t_game *game)
@@ -74,10 +74,10 @@ void	setup_init(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		exit_cub3d(game);
+		(set_error(game, MLX), exit_cub3d(game));
 	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "R|D");
 	if (!game->win)
-		exit_cub3d(game);
+		(set_error(game, MLX), exit_cub3d(game));
 	init_images(game);
 	init_data(game);
 	init_animation_frames(game);

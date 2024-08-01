@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/01 10:48:52 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/01 11:00:06 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define ALLOC "Allocation Failed :("
 # define TXT "Textures / Colors are not Valid :("
 # define MAP "Map is not Valid :("
+# define MLX "MLX FAILED"
 
 # define WALL '1'
 # define FLOOR '0'
