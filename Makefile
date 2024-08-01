@@ -6,7 +6,7 @@
 #    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/08/01 10:23:13 by nazouz           ###   ########.fr        #
+#    Updated: 2024/08/01 10:49:13 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRCS			= 		./cub3d.c \
 						./parsing/parsing_textures.c \
 						./parsing/parsing_textures_utils.c \
 						./parsing/exit.c \
+						./parsing/free_mlx.c \
 						./parsing/utils/ft_split.c \
 						./parsing/utils/ft_itoa.c \
 						./parsing/utils/get_next_line.c \

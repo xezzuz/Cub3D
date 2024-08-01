@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/01 10:23:53 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/01 10:48:52 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,6 +228,7 @@ int		valid_up_down(char **map, size_t i, size_t j);
 int		valid_left_right(char **map, size_t i, size_t j);
 int		validate_doors(t_game *game, char **map);
 int		map_is_rect(t_game *game);
+void	free_mlx(t_game *game);
 int		fill_map_ends(t_game *game);
 int		map_is_done(char **map, int i);
 void	init_bob(t_game *game, int i, int j, char direction);

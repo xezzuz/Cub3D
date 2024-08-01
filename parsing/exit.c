@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:41:58 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 16:03:24 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/01 10:55:07 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ void	print_stderr(char *error)
 
 int	exit_cub3d(t_game *game)
 {
+	free_mlx(game);
 	free_2d(game->lvl.map);
 	free_2d(game->parse.file);
+	free(game->parse.tex_colors);
 	free(game->textures.north);
 	free(game->textures.south);
 	free(game->textures.west);

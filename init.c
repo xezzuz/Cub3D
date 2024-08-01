@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:18:54 by mmaila            #+#    #+#             */
-/*   Updated: 2024/08/01 09:36:51 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/01 10:54:44 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ void	init_textures(t_game *game)
 	game->wall.doortex.img
 		= mlx_xpm_file_to_image(game->mlx, "./textures/joker",
 			&game->wall.doortex.width, &game->wall.doortex.height);
+	if (!game->wall.tex.img || !game->wall.tex1.img || !game->wall.tex2.img
+		|| !game->wall.tex3.img || !game->wall.doortex.img)
+		exit_cub3d(game);
 }
 
 void	init_images(t_game *game)

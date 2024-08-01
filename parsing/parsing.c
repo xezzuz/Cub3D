@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:37:40 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/01 10:20:49 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/01 10:42:17 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	struct_init(t_game *game)
 {
+	game->mlx = NULL;
+	game->win = NULL;
 	game->lvl.rows = 0;
 	game->lvl.columns = 0;
 	game->parse.err = NULL;

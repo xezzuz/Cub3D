@@ -1,4 +1,4 @@
-NO ./textures/pokerclubs
+NO ./Makefile
 SO ./textures/pokerheart
 WE ./textures/pokerdiamond
 EA ./textures/pokerspades
