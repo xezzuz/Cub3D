@@ -5,68 +5,105 @@
 #                                                     +:+ +:+         +:+      #
 #    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/08/01 15:50:17 by nazouz           ###   ########.fr        #
+#    Created: 2024/08/01 16:13:58 by nazouz            #+#    #+#              #
+#    Updated: 2024/08/01 17:06:06 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= 		Cub3D
 
+NAME_BONUS		= 		Cub3D_Bonus
+
 CC				= 		cc
 
 CFLAGS			= 		-Wall -Werror -Wextra
 
-INCLUDE			=		./headers/cub3d.h
+INCLUDE			=		mandatory/headers/cub3d.h
 
-MLXLIB			=		mlx/libmlx.a
+INCLUDE_BONUS	=		bonus/headers/cub3d_bonus.h
 
-MLX				=		$(MLXLIB) -lm -framework OpenGL -framework AppKit
+MLX				=		-lmlx -framework OpenGL -framework AppKit
 
-SRCS			= 		./cub3d.c \
-						./init.c \
-						./engine/intersection.c \
-						./engine/mlx.c \
-						./engine/walls.c \
-						./engine/gameloop.c \
-						./engine/minimap.c \
-						./engine/update.c \
-						./events/keypress.c \
-						./events/mouse_events.c \
-						./events/animation.c \
-						./parsing/parsing.c \
-						./parsing/parsing_config.c \
-						./parsing/parsing_utils.c \
-						./parsing/parsing_map.c \
-						./parsing/parsing_map_2.c \
-						./parsing/parsing_map_utils.c \
-						./parsing/parsing_map_utils_2.c \
-						./parsing/parsing_textures.c \
-						./parsing/parsing_textures_utils.c \
-						./parsing/exit.c \
-						./parsing/free_mlx.c \
-						./parsing/utils/ft_split.c \
-						./parsing/utils/ft_itoa.c \
-						./parsing/utils/get_next_line.c \
-						./parsing/utils/utils_2.c \
-						./parsing/utils/utils.c
+MLX_BONUS		=		./bonus/mlx/libmlx.a -lm -framework OpenGL -framework AppKit
+
+SRCS			= 		mandatory/cub3d.c \
+						mandatory/init.c \
+						mandatory/engine/intersection.c \
+						mandatory/engine/mlx.c \
+						mandatory/engine/walls.c \
+						mandatory/engine/gameloop.c \
+						mandatory/engine/update.c \
+						mandatory/events/keypress.c \
+						mandatory/parsing/parsing.c \
+						mandatory/parsing/parsing_config.c \
+						mandatory/parsing/parsing_utils.c \
+						mandatory/parsing/parsing_map.c \
+						mandatory/parsing/parsing_map_2.c \
+						mandatory/parsing/parsing_map_utils.c \
+						mandatory/parsing/parsing_map_utils_2.c \
+						mandatory/parsing/parsing_textures.c \
+						mandatory/parsing/parsing_textures_utils.c \
+						mandatory/parsing/exit.c \
+						mandatory/parsing/free_mlx.c \
+						mandatory/parsing/utils/ft_split.c \
+						mandatory/parsing/utils/ft_itoa.c \
+						mandatory/parsing/utils/get_next_line.c \
+						mandatory/parsing/utils/utils_2.c \
+						mandatory/parsing/utils/utils.c
+
+SRCS_BONUS		= 		bonus/cub3d_bonus.c \
+						bonus/init_bonus.c \
+						bonus/engine/intersection_bonus.c \
+						bonus/engine/mlx_bonus.c \
+						bonus/engine/walls_bonus.c \
+						bonus/engine/gameloop_bonus.c \
+						bonus/engine/minimap_bonus.c \
+						bonus/engine/update_bonus.c \
+						bonus/events/keypress_bonus.c \
+						bonus/events/mouse_events_bonus.c \
+						bonus/events/animation_bonus.c \
+						bonus/parsing/parsing_bonus.c \
+						bonus/parsing/parsing_config_bonus.c \
+						bonus/parsing/parsing_utils_bonus.c \
+						bonus/parsing/parsing_map_bonus.c \
+						bonus/parsing/parsing_map_2_bonus.c \
+						bonus/parsing/parsing_map_utils_bonus.c \
+						bonus/parsing/parsing_map_utils_2_bonus.c \
+						bonus/parsing/parsing_textures_bonus.c \
+						bonus/parsing/parsing_textures_utils_bonus.c \
+						bonus/parsing/exit_bonus.c \
+						bonus/parsing/free_mlx_bonus.c \
+						bonus/parsing/utils/ft_split.c \
+						bonus/parsing/utils/ft_itoa.c \
+						bonus/parsing/utils/get_next_line.c \
+						bonus/parsing/utils/utils_2.c \
+						bonus/parsing/utils/utils.c
 
 OBJS			= 		$(SRCS:.c=.o)
 
+OBJS_BONUS		= 		$(SRCS_BONUS:.c=.o)
+
 all : $(NAME)
 
-%.o : %.c $(INCLUDE)
+%.o : %.c $(INCLUDE) $(INCLUDE_BONUS)
 	@echo "\033[5;34mCompiling ${notdir $<}\033[0m"
-	@$(CC) $(CFLAGS) -O3 -I ./mlx -c $< -o $@
+	@$(CC) $(CFLAGS) -O3 -c $< -o $@
 
-$(NAME) : $(OBJS) $(INCLUDE)
+$(NAME) : $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(MLX) -o $(NAME)
 	@echo "\033[1;32mSUCCESS\033[0m"
 
+$(NAME_BONUS) : $(OBJS_BONUS)
+	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(MLX_BONUS) -o $(NAME_BONUS)
+	@echo "\033[1;32mSUCCESS\033[0m"
+
+bonus : $(NAME_BONUS)
+
 clean :
 	@echo "\033[3;31mCleaning...\033[0m"
-	@rm -rf $(OBJS)
+	@rm -rf $(OBJS) $(OBJS_BONUS)
 
 fclean : clean
-	@rm -rf $(NAME) $(OBJS)
+	@rm -rf $(NAME) $(OBJS) $(NAME_BONUS) $(OBJS_BONUS)
 
 re : fclean all
