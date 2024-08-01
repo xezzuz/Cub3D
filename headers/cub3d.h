@@ -6,14 +6,14 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/01 15:48:54 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/01 15:52:26 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../mlx/mlx.h"
+# include <mlx.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
@@ -189,6 +189,10 @@ typedef struct s_game
 	void		*animation[NUM_FRAMES];
 	int			current_frame;
 }				t_game;
+
+int		mlx_mouse_hide(void);
+int		mlx_mouse_show(void);
+int		mlx_mouse_move(void *win_ptr, int x, int y);
 
 void	setup_init(t_game *game);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);

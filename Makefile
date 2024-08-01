@@ -6,7 +6,7 @@
 #    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/08/01 11:00:03 by nazouz           ###   ########.fr        #
+#    Updated: 2024/08/01 15:50:17 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC				= 		cc
 
 CFLAGS			= 		-Wall -Werror -Wextra
 
-INCLUDE			=		./headers/cub3d.h ./mlx/mlx.h
+INCLUDE			=		./headers/cub3d.h
 
 MLXLIB			=		mlx/libmlx.a
 
