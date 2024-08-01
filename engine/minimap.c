@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 19:04:22 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 18:59:20 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/08/01 15:46:05 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	render_minimap(t_game *game)
 			if (x + diff.x <= 312 && x + diff.x >= 12
 				&& y + diff.y <= 312 && y + diff.y >= 12)
 				if (game->lvl.map[y / TILE][x / TILE] != '1')
-					my_mlx_pixel_put(game, x + diff.x, y + diff.y, WHITE);
+					my_mlx_pixel_put(game, x + diff.x, y + diff.y, 0xF2F2F2);
 		x++;
 	}
 	draw_rect(game, (t_coords){153, 153}, (t_coords){6, 6}, RED);

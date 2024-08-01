@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/01 11:00:06 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/01 15:48:54 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define CUB3D_H
 
 # include "../mlx/mlx.h"
-# include <stdio.h>
-# include <string.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
@@ -221,6 +219,7 @@ t_door	*alloc_doors(char **map);
 int		map_extension(char *map_name);
 int		read_config(t_game *game, char *map_name);
 int		get_key_value(t_game *game, char **array, int i);
+void	mouse_adjustement(t_game *game);
 int		parse_colors(t_game *game, char *str, char key);
 int		get_rgb_colors(t_game *game);
 int		validate_map(t_game *game);
