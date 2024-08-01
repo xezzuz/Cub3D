@@ -1,3 +1,2 @@
 we should protect mlx_xpm_file_to_image
-mouse should be unhidden
-fix # define FOV (M_PI / 3) norm error
+we don't destroy the window

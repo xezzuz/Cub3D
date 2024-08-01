@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 18:55:26 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/08/01 10:23:53 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
 # define TILE 64
-# define FOV (M_PI / 3)
+# define FOV 1.0471975512
 # define NUM_OF_RAYS WIN_WIDTH
 
 # define UP 126
@@ -174,6 +174,9 @@ typedef struct s_map
 
 typedef struct s_game
 {
+	void		*mlx;
+	void		*win;
+	void		*currframe;
 	t_map		lvl;
 	t_ray		rays[NUM_OF_RAYS];
 	t_player	bob;
@@ -181,16 +184,11 @@ typedef struct s_game
 	t_frame		frame;
 	t_parse		parse;
 	t_texture	textures;
-	void		*mlx;
-	void		*win;
-	int			counter;
-	int			animate;
 	int			mouse_mp;
 	float		mouse_angle;
-	void		*currframe;
-	int			current_frame;
-	void		*animation[NUM_FRAMES];
 	int			mouse_hidden;
+	void		*animation[NUM_FRAMES];
+	int			current_frame;
 }				t_game;
 
 void	setup_init(t_game *game);
@@ -213,6 +211,12 @@ void	free_2d(char **array);
 size_t	array_size(char **array);
 int		parsing(t_game *game, char *map_name);
 void	struct_init(t_game *game);
+int		fill_struct(t_game *game);
+int		fill_textures(t_game *game);
+int		fill_map(t_game *game, int map_size);
+int		validate_doors(t_game *game, char **map);
+int		validate_spaces(char **map);
+t_door	*alloc_doors(char **map);
 int		map_extension(char *map_name);
 int		read_config(t_game *game, char *map_name);
 int		get_key_value(t_game *game, char **array, int i);

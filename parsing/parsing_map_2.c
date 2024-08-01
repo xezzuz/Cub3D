@@ -1,40 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_validate_2.c                               :+:      :+:    :+:   */
+/*   parsing_map_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/30 13:13:42 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 15:58:30 by nazouz           ###   ########.fr       */
+/*   Created: 2024/08/01 10:08:43 by nazouz            #+#    #+#             */
+/*   Updated: 2024/08/01 10:09:27 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
-
-t_door	*alloc_doors(char **map)
-{
-	int		i;
-	int		j;
-	int		count;
-	t_door	*doors;
-
-	i = 0;
-	count = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == 'D')
-				count++;
-			j++;
-		}
-		i++;
-	}
-	doors = (t_door *) malloc((count * sizeof(t_door)));
-	return (doors);
-}
 
 int	validate_doors(t_game *game, char **map)
 {
@@ -62,5 +38,24 @@ int	validate_doors(t_game *game, char **map)
 		i++;
 	}
 	game->lvl.dcount = k;
+	return (1);
+}
+
+int	validate_spaces(char **map)
+{
+	size_t		i;
+	size_t		j;
+
+	i = -1;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+		{
+			if (map[i][j] == EMPTY)
+				if (!valid_left_right(map, i, j) || !valid_up_down(map, i, j))
+					return (0);
+		}
+	}
 	return (1);
 }

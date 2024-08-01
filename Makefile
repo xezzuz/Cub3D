@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+         #
+#    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 18:56:33 by mmaila            #+#    #+#              #
-#    Updated: 2024/07/31 18:57:30 by mmaila           ###   ########.fr        #
+#    Updated: 2024/08/01 10:23:13 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			= 		Cub3D
 
 CC				= 		cc
 
-CFLAGS			= 		-g3 #-Wall -Werror -Wextra -g3
+CFLAGS			= 		-Wall -Werror -Wextra
 
 INCLUDE			=		./headers/cub3d.h ./mlx/mlx.h
 
@@ -34,12 +34,14 @@ SRCS			= 		./cub3d.c \
 						./events/mouse_events.c \
 						./events/animation.c \
 						./parsing/parsing.c \
+						./parsing/parsing_config.c \
 						./parsing/parsing_utils.c \
-						./parsing/parsing_utils_2.c \
-						./parsing/parsing_utils_3.c \
-						./parsing/parsing_utils_4.c \
-						./parsing/parsing_validate.c \
-						./parsing/parsing_validate_2.c \
+						./parsing/parsing_map.c \
+						./parsing/parsing_map_2.c \
+						./parsing/parsing_map_utils.c \
+						./parsing/parsing_map_utils_2.c \
+						./parsing/parsing_textures.c \
+						./parsing/parsing_textures_utils.c \
 						./parsing/exit.c \
 						./parsing/utils/ft_split.c \
 						./parsing/utils/ft_itoa.c \

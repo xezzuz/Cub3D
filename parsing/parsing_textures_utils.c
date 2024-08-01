@@ -1,16 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils_3.c                                  :+:      :+:    :+:   */
+/*   parsing_textures_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/29 15:49:54 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 15:48:29 by nazouz           ###   ########.fr       */
+/*   Created: 2024/07/30 09:48:19 by nazouz            #+#    #+#             */
+/*   Updated: 2024/08/01 10:14:57 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
+
+int	count_commas(char *str)
+{
+	int			i;
+	int			comma;
+
+	if (!str)
+		return (0);
+	i = 0;
+	comma = 0;
+	while (str[i])
+	{
+		if (str[i++] == ',')
+		{
+			comma++;
+			while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+				i++;
+			if (!(str[i] >= '0' && str[i] <= '9'))
+				return (0);
+		}
+	}
+	return (comma == 2);
+}
 
 int	open_textures(t_game *game)
 {
@@ -29,23 +52,6 @@ int	open_textures(t_game *game)
 	return (1);
 }
 
-void	count_rows_cols(t_game *game)
-{
-	int	col_len;
-
-	game->lvl.columns = ft_strlen(game->lvl.map[0]);
-	game->lvl.rows = 0;
-	while (game->lvl.map[game->lvl.rows])
-	{
-		col_len = ft_strlen(game->lvl.map[game->lvl.rows]);
-		if (col_len > game->lvl.columns)
-			game->lvl.columns = col_len;
-		game->lvl.rows++;
-	}
-	game->lvl.height = TILE * game->lvl.rows;
-	game->lvl.width = TILE * game->lvl.columns;
-}
-
 int	config_exist(t_game *game)
 {
 	if (!game->textures.north || !game->textures.south
@@ -62,27 +68,4 @@ int	config_exist(t_game *game)
 	if (game->textures.east[ft_strlen(game->textures.east) - 1] == '\n')
 		game->textures.east[ft_strlen(game->textures.east) - 1] = '\0';
 	return (open_textures(game));
-}
-
-void	init_bob(t_game *game, int i, int j, char direction)
-{
-	game->bob.coords.x = (j * TILE) + TILE / 2;
-	game->bob.coords.y = (i * TILE) + TILE / 2;
-	if (direction == 'N')
-		game->bob.rot_angle = (M_PI * 3.0) / 2.0;
-	else if (direction == 'S')
-		game->bob.rot_angle = M_PI / 2.0;
-	else if (direction == 'E')
-		game->bob.rot_angle = 0;
-	else if (direction == 'W')
-		game->bob.rot_angle = M_PI;
-}
-
-int	map_is_done(char **map, int i)
-{
-	while (map && map[i] && str_is_empty(map[i]))
-		i++;
-	if (!map[i])
-		return (1);
-	return (0);
 }

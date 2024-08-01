@@ -1,16 +1,68 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils_2.c                                  :+:      :+:    :+:   */
+/*   parsing_map_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 17:58:51 by nazouz            #+#    #+#             */
-/*   Updated: 2024/07/31 15:47:58 by nazouz           ###   ########.fr       */
+/*   Created: 2024/08/01 10:10:31 by nazouz            #+#    #+#             */
+/*   Updated: 2024/08/01 10:24:22 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
+
+int	fill_map_ends(t_game *game)
+{
+	int		i;
+	int		j;
+	char	**result;
+
+	result = malloc(sizeof(char *) * (game->lvl.rows + 1));
+	if (!result)
+		return (set_error(game, ALLOC), 0);
+	i = 0;
+	while (i < game->lvl.rows)
+	{
+		result[i] = malloc(game->lvl.columns + 1);
+		if (!result[i])
+			return (free_2d(result), set_error(game, ALLOC), 0);
+		ft_strlcpy(result[i], game->lvl.map[i], game->lvl.columns + 1);
+		j = ft_strlen(game->lvl.map[i]);
+		while (j < game->lvl.columns)
+			result[i][j++] = ' ';
+		result[i][j] = '\0';
+		i++;
+	}
+	result[i] = NULL;
+	free_2d(game->lvl.map);
+	game->lvl.map = result;
+	return (1);
+}
+
+t_door	*alloc_doors(char **map)
+{
+	int		i;
+	int		j;
+	int		count;
+	t_door	*doors;
+
+	i = 0;
+	count = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'D')
+				count++;
+			j++;
+		}
+		i++;
+	}
+	doors = (t_door *) malloc((count * sizeof(t_door)));
+	return (doors);
+}
 
 int	validate_surr_ends(char **map, int rows)
 {
@@ -46,49 +98,5 @@ int	valid_left_right(char **map, size_t i, size_t j)
 	if (j >= 1)
 		if (map[i][j - 1] != EMPTY && map[i][j - 1] != WALL)
 			return (0);
-	return (1);
-}
-
-int	str_is_empty(char *str)
-{
-	int		i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-			i++;
-		else
-			return (0);
-	}
-	return (1);
-}
-
-int	add_to_array(char ***array, char *line)
-{
-	int		i;
-	char	**result;
-
-	if (!*array)
-	{
-		result = malloc(sizeof(char *) * 2);
-		if (!result)
-			return (0);
-		result[0] = line;
-		result[1] = NULL;
-	}
-	else
-	{
-		result = malloc(sizeof(char *) * (array_size(*array) + 2));
-		if (!result)
-			return (0);
-		i = -1;
-		while (*array && (*array)[++i])
-			result[i] = (*array)[i];
-		result[i] = line;
-		result[i + 1] = NULL;
-	}
-	free(*array);
-	*array = result;
 	return (1);
 }
