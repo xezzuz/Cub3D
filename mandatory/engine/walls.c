@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/04 18:19:06 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/08/04 19:34:07 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ void	render_tex(t_game *game, t_coords start, t_ray *ray, t_tex wall)
 	}
 	if (ray->horiz)
 		wall.offset = fmod(ray->hit.x
-		* (wall.tex.width / TILE), wall.tex.width);
+				* (wall.tex.width / TILE), wall.tex.width);
 	else
 		wall.offset = fmod(ray->hit.y
-		* (wall.tex.width / TILE), wall.tex.height);
+				* (wall.tex.width / TILE), wall.tex.height);
 	height = (int)ray->wall_height;
 	while (i < height && start.y < WIN_HEIGHT)
 	{
