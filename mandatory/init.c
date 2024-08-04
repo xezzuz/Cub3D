@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 11:18:54 by mmaila            #+#    #+#             */
-/*   Updated: 2024/08/01 16:06:53 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/04 18:15:15 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,20 @@ void	init_data(t_game *game)
 
 void	init_textures(t_game *game)
 {
-	game->wall.tex.img
+	game->wall[0].tex.img
 		= mlx_xpm_file_to_image(game->mlx, game->textures.north,
-			&game->wall.tex.width, &game->wall.tex.height);
-	game->wall.tex1.img
+			&game->wall[0].tex.width, &game->wall[0].tex.height);
+	game->wall[1].tex.img
 		= mlx_xpm_file_to_image(game->mlx, game->textures.south,
-			&game->wall.tex1.width, &game->wall.tex1.height);
-	game->wall.tex2.img
+			&game->wall[1].tex.width, &game->wall[1].tex.height);
+	game->wall[2].tex.img
 		= mlx_xpm_file_to_image(game->mlx, game->textures.west,
-			&game->wall.tex2.width, &game->wall.tex2.height);
-	game->wall.tex3.img
+			&game->wall[2].tex.width, &game->wall[2].tex.height);
+	game->wall[3].tex.img
 		= mlx_xpm_file_to_image(game->mlx, game->textures.east,
-			&game->wall.tex3.width, &game->wall.tex3.height);
-	game->wall.doortex.img
-		= mlx_xpm_file_to_image(game->mlx, "./textures/joker",
-			&game->wall.doortex.width, &game->wall.doortex.height);
-	if (!game->wall.tex.img || !game->wall.tex1.img || !game->wall.tex2.img
-		|| !game->wall.tex3.img || !game->wall.doortex.img)
+			&game->wall[3].tex.width, &game->wall[3].tex.height);
+	if (!game->wall[0].tex.img || !game->wall[1].tex.img
+		|| !game->wall[2].tex.img || !game->wall[3].tex.img)
 		(set_error(game, TXT), exit_cub3d(game));
 }
 
@@ -51,21 +48,18 @@ void	init_images(t_game *game)
 		= mlx_get_data_addr(game->frame.img, &game->frame.bpp,
 			&game->frame.line_length, &game->frame.endian);
 	init_textures(game);
-	game->wall.doortex.addr
-		= mlx_get_data_addr(game->wall.doortex.img, &game->wall.doortex.bpp,
-			&game->wall.doortex.line_length, &game->wall.doortex.endian);
-	game->wall.tex.addr
-		= mlx_get_data_addr(game->wall.tex.img, &game->wall.tex.bpp,
-			&game->wall.tex.line_length, &game->wall.tex.endian);
-	game->wall.tex1.addr
-		= mlx_get_data_addr(game->wall.tex1.img, &game->wall.tex1.bpp,
-			&game->wall.tex1.line_length, &game->wall.tex1.endian);
-	game->wall.tex2.addr
-		= mlx_get_data_addr(game->wall.tex2.img, &game->wall.tex2.bpp,
-			&game->wall.tex2.line_length, &game->wall.tex2.endian);
-	game->wall.tex3.addr
-		= mlx_get_data_addr(game->wall.tex3.img, &game->wall.tex3.bpp,
-			&game->wall.tex3.line_length, &game->wall.tex3.endian);
+	game->wall[0].tex.addr
+		= mlx_get_data_addr(game->wall[0].tex.img, &game->wall[0].tex.bpp,
+			&game->wall[0].tex.line_length, &game->wall[0].tex.endian);
+	game->wall[1].tex.addr
+		= mlx_get_data_addr(game->wall[1].tex.img, &game->wall[1].tex.bpp,
+			&game->wall[1].tex.line_length, &game->wall[1].tex.endian);
+	game->wall[2].tex.addr
+		= mlx_get_data_addr(game->wall[2].tex.img, &game->wall[2].tex.bpp,
+			&game->wall[2].tex.line_length, &game->wall[2].tex.endian);
+	game->wall[3].tex.addr
+		= mlx_get_data_addr(game->wall[3].tex.img, &game->wall[3].tex.bpp,
+			&game->wall[3].tex.line_length, &game->wall[3].tex.endian);
 }
 
 void	setup_init(t_game *game)

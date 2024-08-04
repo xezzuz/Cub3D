@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:26:14 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/01 17:26:29 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/04 17:13:39 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,6 @@ typedef struct s_ray
 typedef struct s_tex
 {
 	t_frame	tex;
-	t_frame	tex1;
-	t_frame	tex2;
-	t_frame	tex3;
-	t_frame	doortex;
 	int		offset;
 	int		y_txt;
 }			t_tex;
@@ -179,7 +175,7 @@ typedef struct s_game
 	t_map		lvl;
 	t_ray		rays[NUM_OF_RAYS];
 	t_player	bob;
-	t_tex		wall;
+	t_tex		wall[5];
 	t_frame		frame;
 	t_parse		parse;
 	t_texture	textures;

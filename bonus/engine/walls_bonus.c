@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/03 17:57:11 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/08/04 18:08:02 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@ void	draw_rect(t_game *game, t_coords start, t_coords end, int color)
 	}
 }
 
-void	render_tex(t_game *game, t_coords start, int height, t_frame txt)
+void	render_tex(t_game *game, t_coords start, t_ray *ray, t_tex wall)
 {
 	int	i;
+	int	height;
 
 	i = 0;
 	if (start.y < 0)
@@ -47,12 +48,19 @@ void	render_tex(t_game *game, t_coords start, int height, t_frame txt)
 		i += -start.y;
 		start.y = 0;
 	}
+	if (ray->horiz)
+		wall.offset = fmod(ray->hit.x
+			* (wall.tex.width / TILE), wall.tex.width);
+	else
+		wall.offset = fmod(ray->hit.y
+			* (wall.tex.width / TILE), wall.tex.height);
+	height = (int)ray->wall_height;
 	while (i < height && start.y < WIN_HEIGHT)
 	{
-		game->wall.y_txt = roundf(((start.y + (height / 2) - (WIN_HEIGHT / 2))
-					* txt.height) / height);
+		wall.y_txt = roundf(((start.y + (height / 2) - (WIN_HEIGHT / 2))
+					* wall.tex.height) / height);
 		my_mlx_pixel_put(game, start.x, start.y,
-			get_pixel_color(&txt, game->wall.offset, game->wall.y_txt));
+			get_pixel_color(&wall.tex, wall.offset, wall.y_txt));
 		start.y++;
 		i++;
 	}
@@ -61,41 +69,20 @@ void	render_tex(t_game *game, t_coords start, int height, t_frame txt)
 void	assign_tex(t_game *game, t_coords start, t_ray *ray)
 {
 	if (ray->door)
-	{
-		game->wall.offset = fmod(ray->hit.y, 64);
-		if (ray->horiz)
-			game->wall.offset = fmod(ray->hit.x, 64);
-		render_tex(game, start, ray->wall_height, game->wall.doortex);
-	}
+		render_tex(game, start, ray, game->wall[4]);
 	else if (ray->horiz)
 	{
 		if (!ray->down)
-		{
-			game->wall.offset = fmod(ray->hit.x
-				* (game->wall.tex.width / TILE), game->wall.tex.width);
-			render_tex(game, start, ray->wall_height, game->wall.tex);
-		}
+			render_tex(game, start, ray, game->wall[0]);
 		else
-		{
-			game->wall.offset = fmod(ray->hit.x
-				* (game->wall.tex1.width / TILE), game->wall.tex1.width);
-			render_tex(game, start, ray->wall_height, game->wall.tex1);
-		}
+			render_tex(game, start, ray, game->wall[1]);
 	}
 	else if (!ray->horiz)
 	{
 		if (!ray->right)
-		{
-			game->wall.offset = fmod(ray->hit.y
-				* (game->wall.tex2.width / TILE), game->wall.tex2.height);
-			render_tex(game, start, ray->wall_height, game->wall.tex2);
-		}
+			render_tex(game, start, ray, game->wall[2]);
 		else
-		{
-			game->wall.offset = fmod(ray->hit.y
-				* (game->wall.tex2.width / TILE), game->wall.tex2.height);
-			render_tex(game, start, ray->wall_height, game->wall.tex3);
-		}
+			render_tex(game, start, ray, game->wall[3]);
 	}
 }
 
