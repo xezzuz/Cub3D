@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/01 16:10:57 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/03 17:57:11 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,21 +69,33 @@ void	assign_tex(t_game *game, t_coords start, t_ray *ray)
 	}
 	else if (ray->horiz)
 	{
-		game->wall.offset = fmod(ray->hit.x
-				* (game->wall.tex.width / TILE), game->wall.tex.width);
 		if (!ray->down)
+		{
+			game->wall.offset = fmod(ray->hit.x
+				* (game->wall.tex.width / TILE), game->wall.tex.width);
 			render_tex(game, start, ray->wall_height, game->wall.tex);
+		}
 		else
+		{
+			game->wall.offset = fmod(ray->hit.x
+				* (game->wall.tex1.width / TILE), game->wall.tex1.width);
 			render_tex(game, start, ray->wall_height, game->wall.tex1);
+		}
 	}
 	else if (!ray->horiz)
 	{
-		game->wall.offset = fmod(ray->hit.y
-				* (game->wall.tex2.width / TILE), game->wall.tex2.height);
 		if (!ray->right)
+		{
+			game->wall.offset = fmod(ray->hit.y
+				* (game->wall.tex2.width / TILE), game->wall.tex2.height);
 			render_tex(game, start, ray->wall_height, game->wall.tex2);
+		}
 		else
+		{
+			game->wall.offset = fmod(ray->hit.y
+				* (game->wall.tex2.width / TILE), game->wall.tex2.height);
 			render_tex(game, start, ray->wall_height, game->wall.tex3);
+		}
 	}
 }
 
