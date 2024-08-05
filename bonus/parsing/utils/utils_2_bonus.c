@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:04:06 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/01 16:26:48 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/05 11:44:26 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ int	ft_atoi(const char *str)
 		if (result > INT_MAX)
 			return (-1);
 	}
+	if (!str_is_empty((char *)str))
+		return (-1);
 	return (result * sign);
 }

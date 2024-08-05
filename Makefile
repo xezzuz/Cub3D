@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+         #
+#    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 16:13:58 by nazouz            #+#    #+#              #
-#    Updated: 2024/08/04 18:21:01 by mmaila           ###   ########.fr        #
+#    Updated: 2024/08/05 12:05:32 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRCS			= 		mandatory/cub3d.c \
 						mandatory/parsing/free_mlx.c \
 						mandatory/parsing/utils/ft_split.c \
 						mandatory/parsing/utils/ft_itoa.c \
+						mandatory/parsing/utils/ft_strtrim.c \
 						mandatory/parsing/utils/get_next_line.c \
 						mandatory/parsing/utils/utils_2.c \
 						mandatory/parsing/utils/utils.c
@@ -73,11 +74,12 @@ SRCS_BONUS		= 		bonus/cub3d_bonus.c \
 						bonus/parsing/parsing_textures_utils_bonus.c \
 						bonus/parsing/exit_bonus.c \
 						bonus/parsing/free_mlx_bonus.c \
-						bonus/parsing/utils/ft_split.c \
-						bonus/parsing/utils/ft_itoa.c \
-						bonus/parsing/utils/get_next_line.c \
-						bonus/parsing/utils/utils_2.c \
-						bonus/parsing/utils/utils.c
+						bonus/parsing/utils/ft_split_bonus.c \
+						bonus/parsing/utils/ft_itoa_bonus.c \
+						bonus/parsing/utils/ft_strtrim_bonus.c \
+						bonus/parsing/utils/get_next_line_bonus.c \
+						bonus/parsing/utils/utils_2_bonus.c \
+						bonus/parsing/utils/utils_bonus.c
 
 OBJS			= 		$(SRCS:.c=.o)
 

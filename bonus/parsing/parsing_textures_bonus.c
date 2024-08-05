@@ -6,61 +6,58 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:01:49 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/01 16:10:57 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/05 11:51:28 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d_bonus.h"
 
-int	get_rgb_colors(t_game *game)
+char	**trim_split(char *str, char key)
 {
 	int		i;
+	char	*trimmed;
+	char	**array;
 
-	i = 0;
-	while (i < 3)
-	{
-		if (game->textures.floor[i] < 0 || game->textures.floor[i] > 255)
+	str[ft_strlen(str) - 1] = '\0';
+	while (*str == ' ')
+		str++;
+	if (*str != key)
+		return (NULL);
+	str++;
+	trimmed = ft_strtrim(str, " ");
+	if (!trimmed)
+		return (NULL);
+	if (trimmed[0] < 48 || trimmed[0] > 57
+		|| trimmed[ft_strlen(trimmed) - 1] < 48
+		|| trimmed[ft_strlen(trimmed) - 1] > 57)
+		return (free(trimmed), NULL);
+	i = -1;
+	while (trimmed[++i])
+		if (trimmed[i] == ',' && trimmed[i + 1] == ',')
 			return (0);
-		if (game->textures.ceiling[i] < 0 || game->textures.ceiling[i] > 255)
-			return (0);
-		i++;
-	}
-	game->textures.ceil = (game->textures.ceiling[0] << 16)
-		| (game->textures.ceiling[1] << 8)
-		| game->textures.ceiling[2];
-	game->textures.fl = (game->textures.floor[0] << 16)
-		| (game->textures.floor[1] << 8)
-		| game->textures.floor[2];
-	return (1);
+	array = ft_split(trimmed, ',');
+	if (!array || array_size(array) != 3)
+		return (free(trimmed), free_2d(array), NULL);
+	return (free(trimmed), array);
 }
 
 int	parse_colors(t_game *game, char *str, char key)
 {
 	int		i;
-	int		num_counter;
+	char	**array;
 
-	num_counter = 0;
-	if (!count_commas(str))
+	i = -1;
+	array = trim_split(str, key);
+	if (!array)
 		return (0);
-	i = 0;
-	while (str[i++] == ' ')
-		;
-	while (str[i] == ' ')
-		i++;
-	while (str[i])
-	{
-		if (num_counter == 3)
-			return (0);
-		if (key == 'C')
-			game->textures.ceiling[num_counter++] = ft_atoi(&str[i]);
-		else
-			game->textures.floor[num_counter++] = ft_atoi(&str[i]);
-		while (str[i] >= '0' && str[i] <= '9')
-			i++;
-		while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13) || str[i] == ',')
-			i++;
-	}
-	return (num_counter == 3);
+	if (key == 'C')
+		while (++i < 3)
+			game->textures.ceiling[i] = ft_atoi(array[i]);
+	else if (key == 'F')
+		while (++i < 3)
+			game->textures.floor[i] = ft_atoi(array[i]);
+	free_2d(array);
+	return (1);
 }
 
 int	get_key_value(t_game *game, char **array, int i)

@@ -6,33 +6,32 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:48:19 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/01 10:14:57 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/05 12:02:30 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
 
-int	count_commas(char *str)
+int	get_rgb_colors(t_game *game)
 {
-	int			i;
-	int			comma;
+	int		i;
 
-	if (!str)
-		return (0);
 	i = 0;
-	comma = 0;
-	while (str[i])
+	while (i < 3)
 	{
-		if (str[i++] == ',')
-		{
-			comma++;
-			while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-				i++;
-			if (!(str[i] >= '0' && str[i] <= '9'))
-				return (0);
-		}
+		if (game->textures.floor[i] < 0 || game->textures.floor[i] > 255)
+			return (0);
+		if (game->textures.ceiling[i] < 0 || game->textures.ceiling[i] > 255)
+			return (0);
+		i++;
 	}
-	return (comma == 2);
+	game->textures.ceil = (game->textures.ceiling[0] << 16)
+		| (game->textures.ceiling[1] << 8)
+		| game->textures.ceiling[2];
+	game->textures.fl = (game->textures.floor[0] << 16)
+		| (game->textures.floor[1] << 8)
+		| game->textures.floor[2];
+	return (1);
 }
 
 int	open_textures(t_game *game)

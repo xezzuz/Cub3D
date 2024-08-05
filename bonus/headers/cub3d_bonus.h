@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:26:14 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/04 17:13:39 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/08/05 10:18:08 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,5 +253,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 char	*get_next_line(int fd);
 char	*ft_itoa(int n);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char	*ft_strtrim(char const *s1, char const *set);
 
 #endif
