@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:40:02 by mmaila            #+#    #+#             */
-/*   Updated: 2024/08/01 16:10:57 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/07 16:26:27 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ t_fcoords	horiz(t_game *game, t_ray *ray)
 		step.x *= -1;
 	if (ray->right && step.x < 0)
 		step.x *= -1;
-	while (inter.x >= 0 && inter.x <= game->lvl.width
-		&& inter.y >= 0 && inter.y <= game->lvl.height)
+	while (inter.x > 0 && inter.x < game->lvl.width
+		&& inter.y > 0 && inter.y < game->lvl.height)
 	{
 		if (hit(game, (t_fcoords){inter.x, inter.y - !ray->down}, &ray->doorh))
 			return (inter);
@@ -73,8 +73,8 @@ t_fcoords	vert(t_game *game, t_ray *ray)
 		step.y *= -1;
 	if (ray->down && step.y < 0)
 		step.y *= -1;
-	while (inter.x >= 0 && inter.x <= game->lvl.width
-		&& inter.y >= 0 && inter.y <= game->lvl.height)
+	while (inter.x > 0 && inter.x < game->lvl.width
+		&& inter.y > 0 && inter.y < game->lvl.height)
 	{
 		if (hit(game, (t_fcoords){inter.x - !ray->right, inter.y}, &ray->doorv))
 			return (inter);

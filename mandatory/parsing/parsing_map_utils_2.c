@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map_utils_2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:22:50 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/01 10:24:27 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/05 16:28:38 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
-
+#include<stdio.h>
 void	count_rows_cols(t_game *game)
 {
 	int	col_len;
@@ -25,6 +25,7 @@ void	count_rows_cols(t_game *game)
 			game->lvl.columns = col_len;
 		game->lvl.rows++;
 	}
+	printf("%d\n", game->lvl.rows);
 	game->lvl.height = TILE * game->lvl.rows;
 	game->lvl.width = TILE * game->lvl.columns;
 }

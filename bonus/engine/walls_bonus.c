@@ -6,7 +6,7 @@
 /*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/04 19:33:57 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/08/07 16:26:04 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ void	render_tex(t_game *game, t_coords start, t_ray *ray, t_tex wall)
 {
 	int	i;
 	int	height;
+	int	yy;
 
 	i = 0;
+	yy = start.y;
 	if (start.y < 0)
 	{
 		i += -start.y;
@@ -57,8 +59,9 @@ void	render_tex(t_game *game, t_coords start, t_ray *ray, t_tex wall)
 	height = (int)ray->wall_height;
 	while (i < height && start.y < WIN_HEIGHT)
 	{
-		wall.y_txt = roundf(((start.y + (height / 2) - (WIN_HEIGHT / 2))
-					* wall.tex.height) / height);
+		wall.y_txt = ((start.y - yy) * wall.tex.height) / height;
+		// wall.y_txt = roundf(((start.y + (height / 2) - (WIN_HEIGHT / 2))
+		// 			* wall.tex.height) / height);
 		my_mlx_pixel_put(game, start.x, start.y,
 			get_pixel_color(&wall.tex, wall.offset, wall.y_txt));
 		start.y++;

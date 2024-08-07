@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:40:02 by mmaila            #+#    #+#             */
-/*   Updated: 2024/08/01 16:00:47 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/05 16:45:35 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ t_fcoords	horiz(t_game *game, t_ray *ray)
 		step.x *= -1;
 	if (ray->right && step.x < 0)
 		step.x *= -1;
-	while (inter.x >= 0 && inter.x <= game->lvl.width
-		&& inter.y >= 0 && inter.y <= game->lvl.height)
+	while (inter.x > 0 && inter.x < game->lvl.width
+		&& inter.y > 0 && inter.y < game->lvl.height)
 	{
 		if (hit(game, (t_fcoords){inter.x, inter.y - !ray->down}))
 			return (inter);
@@ -71,8 +71,8 @@ t_fcoords	vert(t_game *game, t_ray *ray)
 		step.y *= -1;
 	if (ray->down && step.y < 0)
 		step.y *= -1;
-	while (inter.x >= 0 && inter.x <= game->lvl.width
-		&& inter.y >= 0 && inter.y <= game->lvl.height)
+	while (inter.x > 0 && inter.x < game->lvl.width
+		&& inter.y > 0 && inter.y < game->lvl.height)
 	{
 		if (hit(game, (t_fcoords){inter.x - !ray->right, inter.y}))
 			return (inter);
@@ -90,8 +90,8 @@ void	calc_hit(t_game *game, t_ray *ray)
 	float		hdis;
 	float		vdis;
 
-	vinter = vert(game, ray);
 	hinter = horiz(game, ray);
+	vinter = vert(game, ray);
 	hdis = __FLT_MAX__;
 	if (hinter.x != -1)
 		hdis = distance(game->bob.coords, hinter);
