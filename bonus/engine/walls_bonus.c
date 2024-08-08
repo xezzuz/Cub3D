@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:03:55 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/08 11:05:36 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/08 11:16:11 by mmaila           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	draw_rect(t_game *game, t_coords start, t_coords end, int color)
 void	render_tex(t_game *game, t_coords start, t_ray *ray, t_tex wall)
 {
 	int	i;
-	int	height;
 	int	yy;
 
 	i = 0;
@@ -56,10 +55,9 @@ void	render_tex(t_game *game, t_coords start, t_ray *ray, t_tex wall)
 	else
 		wall.offset = fmod(ray->hit.y
 				* (wall.tex.width / TILE), wall.tex.height);
-	height = (int)ray->wall_height;
-	while (i < height && start.y < WIN_HEIGHT)
+	while (i < (int)ray->wall_height && start.y < WIN_HEIGHT)
 	{
-		wall.y_txt = ((start.y - yy) * wall.tex.height) / height;
+		wall.y_txt = ((start.y - yy) * wall.tex.height) / (int)ray->wall_height;
 		my_mlx_pixel_put(game, start.x, start.y,
 			get_pixel_color(&wall.tex, wall.offset, wall.y_txt));
 		start.y++;
