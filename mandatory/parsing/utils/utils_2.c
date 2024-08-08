@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:04:06 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/05 12:03:52 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/08 11:44:53 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,20 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
+int	is_all_spaces(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	ft_atoi(const char *str)
 {
 	int				sign;
@@ -39,7 +53,7 @@ int	ft_atoi(const char *str)
 
 	sign = 1;
 	result = 0;
-	while (*str == 32 || (*str < 14 && *str > 8))
+	while (*str == 32)
 		str++;
 	if (*str == '-' || *str == '+')
 	{
@@ -55,7 +69,7 @@ int	ft_atoi(const char *str)
 		if (result > INT_MAX)
 			return (-1);
 	}
-	if (!str_is_empty((char *)str))
+	if (!is_all_spaces((char *)str))
 		return (-1);
 	return (result * sign);
 }
