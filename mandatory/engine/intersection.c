@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 13:40:02 by mmaila            #+#    #+#             */
-/*   Updated: 2024/08/05 16:45:35 by mmaila           ###   ########.fr       */
+/*   Updated: 2024/08/08 11:05:00 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ void	calc_hit(t_game *game, t_ray *ray)
 	float		hdis;
 	float		vdis;
 
-	hinter = horiz(game, ray);
 	vinter = vert(game, ray);
+	hinter = horiz(game, ray);
 	hdis = __FLT_MAX__;
 	if (hinter.x != -1)
 		hdis = distance(game->bob.coords, hinter);

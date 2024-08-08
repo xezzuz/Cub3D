@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mmaila <mmaila@student.42.fr>              +#+  +:+       +#+         #
+#    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 16:13:58 by nazouz            #+#    #+#              #
-#    Updated: 2024/08/05 16:30:56 by mmaila           ###   ########.fr        #
+#    Updated: 2024/08/08 11:03:42 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME_BONUS		= 		cub3D_bonus
 
 CC				= 		cc
 
-CFLAGS			= 		-Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS			= 		-Wall -Werror -Wextra
 
 INCLUDE			=		mandatory/headers/cub3d.h
 
