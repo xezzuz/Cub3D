@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:36:27 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/08 11:04:18 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/08 13:21:39 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,6 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	void		*currframe;
 	t_map		lvl;
 	t_ray		rays[NUM_OF_RAYS];
 	t_player	bob;

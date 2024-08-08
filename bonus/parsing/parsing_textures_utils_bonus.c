@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:48:19 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/05 11:51:35 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/08 14:04:57 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,21 @@ int	get_rgb_colors(t_game *game)
 int	open_textures(t_game *game)
 {
 	int		i;
-	int		fds[4];
+	int		fds[5];
 
 	fds[0] = open(game->textures.north, O_RDONLY);
 	fds[1] = open(game->textures.south, O_RDONLY);
 	fds[2] = open(game->textures.east, O_RDONLY);
 	fds[3] = open(game->textures.west, O_RDONLY);
+	fds[4] = open("./textures/joker", O_RDONLY);
 	i = -1;
-	while (++i < 4)
+	while (++i < 5)
 		if (fds[i] == -1)
 			return (close(fds[0]), close(fds[1]),
-				close(fds[2]), close(fds[3]), set_error(game, TXT), 0);
-	return (1);
+				close(fds[2]), close(fds[3]),
+				close(fds[4]), set_error(game, TXT), 0);
+	return (close(fds[0]), close(fds[1]),
+		close(fds[2]), close(fds[3]), close(fds[4]), 1);
 }
 
 int	config_exist(t_game *game)

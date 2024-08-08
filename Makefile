@@ -6,7 +6,7 @@
 #    By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 16:13:58 by nazouz            #+#    #+#              #
-#    Updated: 2024/08/08 11:03:42 by nazouz           ###   ########.fr        #
+#    Updated: 2024/08/08 13:21:32 by nazouz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,6 @@ SRCS			= 		mandatory/cub3d.c \
 						mandatory/parsing/exit.c \
 						mandatory/parsing/free_mlx.c \
 						mandatory/parsing/utils/ft_split.c \
-						mandatory/parsing/utils/ft_itoa.c \
 						mandatory/parsing/utils/ft_strtrim.c \
 						mandatory/parsing/utils/get_next_line.c \
 						mandatory/parsing/utils/utils_2.c \

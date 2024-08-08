@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 09:48:19 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/05 12:02:30 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/08 14:04:39 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,16 @@ int	open_textures(t_game *game)
 	fds[1] = open(game->textures.south, O_RDONLY);
 	fds[2] = open(game->textures.east, O_RDONLY);
 	fds[3] = open(game->textures.west, O_RDONLY);
-	i = -1;
-	while (++i < 4)
+	i = 0;
+	while (i < 4)
+	{
 		if (fds[i] == -1)
 			return (close(fds[0]), close(fds[1]),
 				close(fds[2]), close(fds[3]), set_error(game, TXT), 0);
-	return (1);
+		i++;
+	}
+	return (close(fds[0]), close(fds[1]),
+		close(fds[2]), close(fds[3]), 1);
 }
 
 int	config_exist(t_game *game)

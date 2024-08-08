@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 10:05:57 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/01 16:10:57 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/08 13:49:06 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,15 @@ int	fill_map(t_game *game, int map_size)
 		i++;
 	game->lvl.map = malloc(sizeof(char *) * (map_size + 1));
 	if (!game->lvl.map)
-		return (0);
+		return (set_error(game, ALLOC), 0);
 	j = 0;
 	while (game->parse.file[i] && !map_is_done(game->parse.file, i))
 	{
 		if (game->parse.file[i][ft_strlen(game->parse.file[i]) - 1] == '\n')
 			game->parse.file[i][ft_strlen(game->parse.file[i]) - 1] = '\0';
 		game->lvl.map[j++] = ft_strdup(game->parse.file[i++]);
+		if (!game->lvl.map[j - 1])
+			return (free_2d(game->lvl.map), set_error(game, ALLOC), 0);
 	}
 	game->lvl.map[j] = NULL;
 	return (1);

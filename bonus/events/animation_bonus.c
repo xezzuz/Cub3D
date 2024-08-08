@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 19:48:29 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/01 17:21:41 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/08 14:02:41 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,24 @@ int	fill_animation_frames(t_game *game)
 int	init_animation_frames(t_game *game)
 {
 	int			i;
+	int			x;
+	int			fd;
+	char		*frame_name;
 
 	i = 0;
 	game->current_frame = 0;
 	while (i < NUM_FRAMES)
-		game->animation[i++] = NULL;
-	fill_animation_frames(game);
+	{
+		frame_name = get_frame_name(i);
+		if (!frame_name)
+			(set_error(game, ALLOC), exit_cub3d(game));
+		fd = open(frame_name, O_RDONLY);
+		if (fd == -1)
+			return (free(frame_name), set_error(game, TXT), exit_cub3d(game));
+		game->animation[i++]
+			= mlx_xpm_file_to_image(game->mlx, frame_name, &x, &x);
+		free(frame_name);
+	}
 	return (1);
 }
 

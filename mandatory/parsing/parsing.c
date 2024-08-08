@@ -6,7 +6,7 @@
 /*   By: nazouz <nazouz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:37:40 by nazouz            #+#    #+#             */
-/*   Updated: 2024/08/01 16:01:34 by nazouz           ###   ########.fr       */
+/*   Updated: 2024/08/08 13:24:49 by nazouz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	struct_init(t_game *game)
 {
+	int			i;
+
+	i = 0;
 	game->mlx = NULL;
 	game->win = NULL;
 	game->lvl.rows = 0;
@@ -28,6 +31,9 @@ void	struct_init(t_game *game)
 	game->textures.west = NULL;
 	game->textures.floor[0] = ERROR;
 	game->textures.ceiling[0] = ERROR;
+	game->frame.img = NULL;
+	while (i < 4)
+		game->wall[i++].tex.img = NULL;
 }
 
 int	parsing(t_game *game, char *map_name)
